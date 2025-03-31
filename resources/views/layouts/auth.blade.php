@@ -8,7 +8,7 @@
         <title>@yield('title')</title>
 
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('assets/favicon.ico') }}" />
 
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -20,15 +20,14 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
 
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="/assets/css/css.css" rel="stylesheet" />
+        <link href="{{ asset('assets/css/css.css') }}" rel="stylesheet" />
 
         {{-- Custom CSS --}}
-        <link rel="stylesheet" href="/assets/css/styles.css">
+        <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
 
 
         <style>
             .nav-link span, .btn-tx span{
-                font-weight: 600;
                 font-size: 0.78rem
             }
 
@@ -64,17 +63,17 @@
         
     <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mainNav">
-            <div class="container">
+            <div class="container gap-5">
                 <a class="navbar-brand" href="#page-top">
-                    <img src="/assets/img/navbar-logo.svg" alt="Logo" />
+                    <img src="{{ asset('assets/img/navbar-logo.svg') }}" alt="Logo" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" 
                         aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu <i class="fas fa-bars ms-1"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav text-uppercase ms-auto d-flex justify-content-center">
-                        <div class="d-sm-flex justify-content-center px-2">
+                    <ul class="navbar-nav text-uppercase d-flex gap-5 w-auto">
+                        <div class="d-sm-flex justify-content-center px-1 me-1 ms-3 pe-1 ps-3">
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('home') }}">
                                     <span>Inicio</span>
@@ -104,15 +103,15 @@
                         {{-- so aparece quando o utilizador nao esta logado --}}
                         @guest
                         <!-- Botão de Cadastro/Login -->
-                        <div class="d-flex justify-content-end">
+                        <div class="d-flex">
                             <li class="nav-item me-1">
-                                <a class="btn-tx btn btn-outline-primary px-3 py-2 rounded-sm" href="{{ route('login') }}">
+                                <a class="btn-tx btn btn-outline-primary rounded-sm" href="{{ route('login') }}">
                                     <span>Login</span>
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="btn-tx btn btn-primary px-3 py-2 rounded-sm" href="{{ route('register') }}">
+                                <a class="btn-tx btn btn-primary rounded-sm" href="{{ route('register') }}">
                                     <span>Registo</span>
                                 </a>
                             </li>
@@ -127,7 +126,7 @@
                     <a class="nav-link dropdown-toggle bg-transparent"  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       
                           <img class="img-profile rounded-circle"
-                              src="/assets/img/undraw_profile_1.svg">
+                              src="{{ asset('assets/img/undraw_profile_1.svg') }}">
                     </a>
                     <ul class="dropdown-menu p-4">
                         <li>
@@ -161,12 +160,12 @@
         </footer>
 
         {{-- custom js --}}
-        <script src="/assets/js/app.js"></script>
+        <script src="{{ asset('assets/js/app.js') }}"></script>
 
             <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="/assets/js/scripts.js"></script>
+        <script src="{{ asset('assets/js/scripts.js') }}"></script>
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 </body>
 </html>

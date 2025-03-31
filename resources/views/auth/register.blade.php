@@ -2,13 +2,15 @@
 
 @section('title', 'Nova Conta | ')
 
-@section('card-title', 'Nova Conta')
-
 @section('content')
+
+        
         
         <div class="container d-flex justify-content-center align-items-center p-5 mt-2 bg-grey-200 ">
             <div class="p-4 col-6 card shadow  card-auth">
                 <h3 class="text-center">{{ __('Nova Conta') }}</h3>
+                    
+                    <x-validation-errors class="mb-4 alert alert-danger"/>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 

@@ -41,64 +41,48 @@
                             </form>
                         </div>
                     </div>
-                    
-                    <div class="row mt-4">
-                        <div class="col-md-3 curso popular">
-                            <div class="card">
-                                <img src="/assets/img/maxresdefault-2-870x440.jpg" class="card-img-top" alt="Curso 1">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Curso de Fast Food</h5>
-                                    <p class="card-text">Aprenda a fazer hambúrgueres artesanais e outros lanches.</p>
-                                    <div class="d-flex justify-content-center align-items-center gap-2">
-                                        <span class="fw-bold text-success">MT 2,500</span>
-                                        <a href="{{ route('courses.details') }}" class="btn btn-success">Ver Mais</a>
+                    @if (empty($courses))
+                        <div class="alert alert-danger">
+                            Nenhum Curso foi registado
+                        </div>
+                    @else
+                        <div class="row mt-4">
+                        @foreach ($courses as $course)
+                            <div class="col-md-3 p-2">
+                                <div class="card">
+                                    <img src="{{ asset($course->course_photo_path)}}" class="card-img-top" alt="{{ $course->name }}">
+                                    <div class="card-body text-center">
+                                        <h4 class="card-title">{{ $course->name }}</h4>
+                                        {{-- <p class="card-text">{{ $course->description }}</p> --}}
+                                        <div class="d-flex justify-content-center align-items-center row p-2">
+                                            <span class="fw-bold text-success">{{ $course->price }} MZN</span>
+                                            <a href="{{ route('courses.details', ['id' => $course->course_id]) }}" class="btn btn-success mt-1">Mais Detalhes</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        @endforeach
                         </div>
-                        
-                        <div class="col-md-3 curso recente">
-                            <div class="card">
-                                <img src="./assets/img/pretzel-870x440.png" class="card-img-top" alt="Curso 2">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Confeitaria Profissional</h5>
-                                    <p class="card-text">Domine a arte da confeitaria e faça bolos incríveis.</p>
-                                    <div class="d-flex justify-content-center align-items-center gap-2">
-                                        <span class="fw-bold text-success">MT 3,000</span>
-                                        <a href="{{ route('courses.details') }}" class="btn btn-success">Ver Mais</a>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="d-flex justify-content-center">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    <li class="page-item">
+                                        <a class="page-link bg-primary text-white" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link bg-primary text-white" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link bg-primary text-white" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link bg-primary text-white" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link bg-primary text-white" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
-                    
-                        <div class="col-md-3 curso popular">
-                            <div class="card">
-                                <img src="./assets/img/sobremesas-de-pascoa-10-receitas-deliciosas-para-adocar-o-feriado-870x440.jpg" class="card-img-top" alt="Curso 3">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Culinária Internacional</h5>
-                                    <p class="card-text">Descubra sabores do mundo com receitas autênticas.</p>
-                                    <div class="d-flex justify-content-center align-items-center gap-2">
-                                        <span class="fw-bold text-success">MT 2,800</span>
-                                        <a href="{{ route('courses.details') }}" class="btn btn-success">Ver Mais</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <div class="col-md-3 curso recente">
-                            <div class="card">
-                                <img src="./assets/img/Takeaway-main-scaled-750x500-1-870x440.jpg" class="card-img-top" alt="Curso 4">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Cozinha Saudável</h5>
-                                    <p class="card-text">Aprenda a preparar refeições saborosas e equilibradas.</p>
-                                    <div class="d-flex justify-content-center align-items-center gap-2">
-                                        <span class="fw-bold text-success">MT 2,200</span>
-                                        <button class="btn btn-success">Comprar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         </section>

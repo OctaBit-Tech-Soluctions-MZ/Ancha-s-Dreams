@@ -15,3 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let video = document.getElementById("player");
     video.poster = video.getAttribute("data-poster");
 });
+
+if (window.innerWidth <= 500) {
+    sidebar.classList.add("collapse"); // Esconder sidebar
+}

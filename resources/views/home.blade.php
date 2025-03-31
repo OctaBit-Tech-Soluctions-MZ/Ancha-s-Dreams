@@ -8,7 +8,7 @@
             <div class="row align-items-center">
                 <!-- Imagem ao lado (Reduzida) -->
                 <div class="col-md-6 text-center img p-2">
-                    <img src="/assets/img/culinary_classes_online.png" 
+                    <img src="{{ asset('assets/img/culinary_classes_online.png') }}" 
                          alt="Culinária" 
                          class="img-fluid" 
                          style="max-width: 80%; height: auto;">
@@ -36,7 +36,7 @@
                 </div>
                 <!-- Imagem ao lado (Reduzida) -->
                 <div class="col-md-6 text-center img p-2">
-                    <img src="/assets/img/make_cake.png" 
+                    <img src="{{ asset('assets/img/make_cake.png') }}" 
                          alt="Culinária" 
                          class="img-fluid" 
                          style="max-width: 80%; height: auto;">

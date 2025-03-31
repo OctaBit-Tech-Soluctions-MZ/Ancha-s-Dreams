@@ -9,6 +9,8 @@
                 {{ $value }}
             </div>
         @endsession
+
+        <x-validation-errors class="mb-4" />
         
         <div class="container d-flex justify-content-center align-items-center p-5 mt-2 bg-grey-200 ">
             <div class="p-4 col-6 card shadow  card-auth">

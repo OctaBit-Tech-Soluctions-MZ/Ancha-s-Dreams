@@ -248,3 +248,9 @@ body {
 .rounded-circle {
   border-radius: 50% !important;
 }
+
+@media  (max-width: 487px) {
+  .ard_dash{
+    width: 300px;
+  }
+}

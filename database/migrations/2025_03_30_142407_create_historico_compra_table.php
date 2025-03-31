@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('my_courses', function (Blueprint $table) {
+        Schema::create('historico_compra', function (Blueprint $table) {
             $table->id();
-            $table->string('my_courses_id')->unique();
-            $table->string('student');
-            $table->string('course');
+            $table->string('historic_id')->unique();
+            $table->integer('user');
+            $table->string('product');
+            $table->integer('payment_meth');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('my_courses');
+        Schema::dropIfExists('historico_compra');
     }
 };
