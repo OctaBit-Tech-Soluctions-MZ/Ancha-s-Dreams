@@ -14,7 +14,7 @@
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         
         <script src="https://unpkg.com/scrollreveal"></script>
-        
+      
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
@@ -22,8 +22,14 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{ asset('assets/css/css.css') }}" rel="stylesheet" />
 
+        {{-- Plans Custom CSS --}}
+        <link rel="stylesheet" href="{{ asset('assets/css/plans.css') }}">
+
         {{-- Custom CSS --}}
         <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+
+        {{-- Profile Custom css --}}
+        <link rel="stylesheet" href="{{asset('assets/css/profile.css') }}">
 
 
         <style>
@@ -122,25 +128,19 @@
 
                 {{-- so aparece quando o utilizador esta logado --}}
                 @auth
-                <div class="dropdown justify-content-end">
-                    <a class="nav-link dropdown-toggle bg-transparent"  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="btn btn-transparent bg-transparent"  href="{{ route('profile.show') }}">
                       
                           <img class="img-profile rounded-circle"
                               src="{{ asset('assets/img/undraw_profile_1.svg') }}">
                     </a>
-                    <ul class="dropdown-menu p-4">
-                        <li>
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
-                        </li>
-                      <li><a class="dropdown-item" href="{{ route('profile.show') }}">Perfil</a></li>
-                      <li><a class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>
-                    </ul>
-                  </div>
-                  @endauth
+                    <button type="button" class="btn btn-danger btn-sm fw-bolder" 
+                            data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
+                @endauth
             </div>
         </nav>
-                @yield('content')
-
+                
+        @yield('content')
+        
         <!-- Footer-->
         <footer class="footer py-4">
             <div class="container">
@@ -159,14 +159,75 @@
             </div>
         </footer>
 
+        @auth
+        <!-- Modal -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Terminar sessão</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Clique em Terminar caso queria terminar a sessão
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form method="POST" action="{{ route('logout') }}" x-data>
+                        @csrf
+                        <button type="submit" class="btn btn-primary">{{ __('Terminar') }}</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- Modal Delete -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Confirmar Exclusão</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Tem certeza que deseja excluir este item?
+                    </div>
+                    <div class="modal-footer">
+                        <form id="deleteForm" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-danger">Deletar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var deleteModal = document.getElementById('deleteModal');
+                deleteModal.addEventListener('show.bs.modal', function (event) {
+                    var button = event.relatedTarget;
+                    var form = document.getElementById('deleteForm');
+                    var actionUrl = button.getAttribute('data-action');
+                    form.action = actionUrl; 
+                });
+            });
+        </script>
+        @endauth
+
         {{-- custom js --}}
         <script src="{{ asset('assets/js/app.js') }}"></script>
-
-            <!-- Bootstrap core JS-->
+        {{-- JQUERY --}}
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="{{ asset('assets/js/scripts.js') }}"></script>
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        {{-- Chart js --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"></script>
 </body>
 </html>
 

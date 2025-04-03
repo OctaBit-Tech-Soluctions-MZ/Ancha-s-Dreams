@@ -216,6 +216,16 @@ width: 2rem;
   width: 50px;
   height: 50px;
 }
+.float{
+	position:fixed;
+	bottom:40px;
+	right:40px;
+	text-align:center;
+}
+
+.my-float{
+	margin-top:22px;
+}
 
 /* extension */
 html.sr .widget {
@@ -623,4 +633,13 @@ html.sr .widget {
 	.course__details__pic {
 		margin-bottom: 40px;
 	}
+	.float {
+		bottom:80px;
+	}
 }
+
+.img-sm {
+	max-width: 40px;
+	height: 40px;
+}
+

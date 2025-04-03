@@ -19,3 +19,4 @@ document.addEventListener("DOMContentLoaded", function() {
 if (window.innerWidth <= 500) {
     sidebar.classList.add("collapse"); // Esconder sidebar
 }
+

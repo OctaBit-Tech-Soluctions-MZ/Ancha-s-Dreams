@@ -114,21 +114,14 @@
 
                 {{-- so aparece quando o utilizador esta logado --}}
                 @auth
-                <div class="dropdown justify-content-end">
-                    <a class="nav-link dropdown-toggle bg-transparent"  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      
-                          <img class="img-profile rounded-circle"
-                              src="/assets/img/undraw_profile_1.svg">
-                    </a>
-                    <ul class="dropdown-menu p-4">
-                        <li>
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
-                        </li>
-                      <li><a class="dropdown-item" href="{{ route('profile.show') }}">Perfil</a></li>
-                      <li><a class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>
-                    </ul>
-                  </div>
-                  @endauth
+                <a class="btn btn-transparent bg-transparent"  href="{{ route('profile.show') }}">
+                  
+                      <img class="img-profile rounded-circle"
+                          src="{{ asset('assets/img/undraw_profile_1.svg') }}">
+                </a>
+                <button type="button" class="btn btn-danger btn-sm fw-bolder" 
+                        data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
+                @endauth
             </div>
         </nav>
 

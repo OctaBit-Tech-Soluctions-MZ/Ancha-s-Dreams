@@ -11,7 +11,7 @@
         <div class="course__details__content">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="course__details__pic set-bg" data-setbg="/assets/img/maxresdefault-2-870x440.jpg">
+                    <div class="course__details__pic set-bg" data-setbg="{{ asset('assets/img/courses/'.$course->course_photo_path) }}">
                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                         <div class="view"><i class="fa fa-eye"></i> {{ $course->views }}</div>
                     </div>
@@ -30,24 +30,21 @@
                                 <a href="#"><i class="fa fa-star"></i></a>
                                 <a href="#"><i class="fa fa-star-half-o"></i></a>
                             </div>
-                            <span>1.029 Votos</span>
                         </div>
                         <p>{{ $course->description }}</p>
                         <div class="course__details__widget">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
                                     <ul>
-                                        <li><span>Tipo:</span> Culinária Francesa</li>
-                                        <li><span>Lancado em:</span> {{ $course->created_at }}</li>
+                                        <li><span>Lancado em:</span> {{ $course->created_at->format('Y-m-d') }}</li>
                                         <li><span>Status:</span> {{ $course->status }}</li>
-                                        <li><span>Categoria:</span> Comidas Quentes</li>
+                                        <li><span>Categoria:</span> {{ $course->categoria }}</li>
                                     </ul>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <ul>
                                         <li><span>Avaliacao:</span> {{ $course->rating}}</li>
                                         <li><span>Aulas:</span> 20</li>
-                                        <li><span>Qualidade:</span> HD</li>
                                         <li><span>Visualizacoes:</span> {{ $course->views }}</li>
                                     </ul>
                                 </div>
@@ -55,7 +52,7 @@
                         </div>
                         <div class="course__details__btn">
                             <a href="#" class="buy-btn btn-success"><i class="fa fa-shopping-cart"></i> Comprar</a>
-                            <a href="{{ route('courses.watch', ['id' => $course->course_id]) }}" class="watch-btn"><span class=" bg-primary">Aprenda Agora</span> <i
+                            <a href="{{ route('courses.watch', ['slug' => $course->slug]) }}" class="watch-btn"><span class=" bg-primary">Aprenda Agora</span> <i
                                 class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
