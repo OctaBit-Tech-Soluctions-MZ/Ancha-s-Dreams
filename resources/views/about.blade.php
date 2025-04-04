@@ -6,7 +6,7 @@
     <div class="text-center mb-5">
         <h1 class="fw-bold text-primary">Sobre Nós</h1>
         <p class="text-muted">Descubra nossa paixão pela confeitaria e culinária.</p>
-    </div>
+    </div><br>
 
     <!-- Nossa História -->
     <div class="row align-items-center">
@@ -25,14 +25,14 @@
             <div class="card shadow p-4">
                 <i class="fas fa-bullseye fa-3x text-primary"></i>
                 <h4 class="mt-3">Missão</h4>
-                <p class="text-muted">Ensinar a arte da culinária  de forma acessível e inspiradora.</p>
+                <p class="text-muted">Ensinar a arte da culinária  de forma acessível e inspiradora</p>
             </div>
         </div>
         <div class="col-md-4">
             <div class="card shadow p-4">
                 <i class="fas fa-eye fa-3x text-primary"></i>
                 <h4 class="mt-3">Visão</h4>
-                <p class="text-muted">Ser a maior plataforma de ensino gastronômico do Brasil.</p>
+                <p class="text-muted">Ser a maior plataforma de ensino gastronômico do Brasil</p>
             </div>
         </div>
         <div class="col-md-4">

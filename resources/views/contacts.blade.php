@@ -23,9 +23,9 @@
             </div>
             <div class="col-md-6">
                 <h4 class="text-primary">Informações de Contato</h4>
-                <p><i class="bi bi-geo-alt-fill"></i> Maputo, Moçambique</p>
-                <p><i class="bi bi-envelope-fill"></i> contato@alagoana.com</p>
-                <p><i class="bi bi-phone-fill"></i> +258 84 123 4567</p>
+                <p><i class="bi bi-geo-alt-fill"></i>   Maputo, Moçambique</p>
+                <p><i class="bi bi-envelope-fill"></i>Contato@alagoana.com</p>
+                <p><i class="bi bi-phone-fill"></i> +258 841234567</p>
             </div>
         </div>
     </div>
