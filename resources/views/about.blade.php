@@ -12,7 +12,7 @@
     <div class="row align-items-center">
         <div class="col-md-6">
             <h2 class="fw-bold">Nossa História</h2>
-            <p class="text-muted">Fundada em 2015, nossa plataforma de cursos online nasceu com o objetivo de compartilhar conhecimento gastronômico com o mundo. Desde receitas tradicionais até técnicas avançadas, ajudamos milhares de alunos a aperfeiçoarem suas habilidades.</p>
+            <p class="text-muted">Fundada em 2015, nossa plataforma de cursos online nasceu com o objetivo de compartilhar conhecimento gastronômico com o mundo. Desde receitas tradicionais até técnicas avançadas, ajudamos milhares de alunos a aperfeiçoarem suas habilidades. </p>
         </div>
         <div class="col-md-6 text-center">
             <img src="{{ asset('assets/img/culinary_classes_online.png') }}" class="img-fluid rounded shadow" alt="Nossa História">
