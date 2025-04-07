@@ -86,8 +86,10 @@
                                                 </td>
                                                 <td> {{ $course->price }} MZN</td>
                                                 <td> 
-                                                    <a class="btn btn-primary btn-sm m-1"  href="{{ route('profile.courses.details',['slug' => $course->slug]) }}"><i class="fas fa-eye"></i></a>
-                                                    <a class="btn btn-danger btn-sm m-1" 
+                                                    <a class="btn btn-success btn-sm"  href="{{ route('profile.courses.details',['slug' => $course->slug]) }}"><i class="fas fa-eye"></i></a>
+                                                    <a href="{{ route('profile.courses.update', ['slug' => $course->slug]) }}" 
+                                                        class="btn btn-primary btn-sm m-1"><i class="fas fa-edit"></i></a>
+                                                    <a class="btn btn-danger btn-sm" 
                                                         data-bs-toggle="modal" 
                                                         data-bs-target="#deleteModal" 
                                                         data-action="{{ route('profile.courses.delete', ['slug' => $course->slug]) }}"

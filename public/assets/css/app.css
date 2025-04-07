@@ -248,7 +248,10 @@ body {
 .rounded-circle {
   border-radius: 50% !important;
 }
-
+.img-sm {
+	max-width: 40px;
+	height: 40px;
+}
 @media  (max-width: 487px) {
   .ard_dash{
     width: 300px;

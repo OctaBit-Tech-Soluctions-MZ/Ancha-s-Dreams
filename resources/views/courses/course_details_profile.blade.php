@@ -1,6 +1,6 @@
 @extends('layouts.profile')
 
-@section('title', ' | Curso')
+@section('title', 'Detalhes | '.$course->name)
 
 @section('profile-content')
 <div class="panel card shadow border border-0 mb-3">
@@ -46,7 +46,8 @@
                                 </div>
                             </div>
                             <div class="course__details__btn">
-                                <a href="{{ route('profile.courses.update', ['slug' => $course->slug]) }}" class="buy-btn btn-primary"><i class="fa fa-edit"></i> Editar</a>
+                                <a href="{{ route('profile.courses.lesson', ['slug' => $course->slug]) }}" class="buy-btn btn-primary"><i class="fa fa-edit"></i> Video Aulas</a>
+                                <a href="" class="buy-btn btn-success fw-bolder">Alunos Inscritos</a>
                             </div>
                         </div>
                     </div>

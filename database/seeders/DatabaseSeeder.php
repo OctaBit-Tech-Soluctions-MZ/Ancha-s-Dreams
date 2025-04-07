@@ -20,9 +20,9 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        // $this->add_roles();
+        $this->add_roles();
 
-        // $this->add_fake_users();
+        $this->add_fake_users();
 
         $this->add_fake_categorys();
     }
@@ -69,7 +69,7 @@ class DatabaseSeeder extends Seeder
         
         $role->create([
             'name' => 'administrador',
-            'route' => 'admin',
+            'route' => '/admin/dashboard',
         ]);
 
         $role->create([

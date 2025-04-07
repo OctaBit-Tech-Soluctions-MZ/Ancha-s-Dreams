@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,7 +11,16 @@ use Illuminate\Validation\ValidationException;
 
 class ProfileController extends Controller
 {
-    
+    public function index(Request $request)
+    {
+        $role = Role::find(Auth::user()->role,['name']);
+
+        return view('profile.show', [
+            'request' => $request,
+            'user' => $request->user(),
+            'role' => $role,
+        ]);
+    }   
 
     public function edit() {
         $id = Auth::user()->id;

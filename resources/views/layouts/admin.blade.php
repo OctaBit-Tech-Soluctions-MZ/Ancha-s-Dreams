@@ -50,17 +50,17 @@
                             <span>Dashboard</span></a>
                     </li>
                     <li class="nav-item m-2">
-                        <a class="nav-link p-2" aria-current="page" href="{{ route('users') }}">
+                        <a class="nav-link p-2" aria-current="page" href="{{ route('admin.users') }}">
                             <i class="fas fa-fw fa-users"></i>
                             <span>Utilizadores</span></a>
                     </li>
                     <li class="nav-item m-2">
-                        <a class="nav-link p-2" aria-current="page" href="{{ route('books.show') }}">
+                        <a class="nav-link p-2" aria-current="page" href="{{ route('admin.books') }}">
                             <i class="fas fa-fw fa-book"></i>
                             <span>Livros</span></a>
                     </li>
                     <li class="nav-item m-2">
-                        <a class="nav-link p-2" aria-current="page" href="{{ route('courses.show')}}">
+                        <a class="nav-link p-2" aria-current="page" href="{{ route('admin.courses')}}">
                             <i class="fas fa-fw fa-certificate"></i>
                             <span>Cursos</span></a>
                     </li>
@@ -117,6 +117,10 @@
             </div>
         </div>
     </div>
+
+    @include('components.modals.logout')
+    @include('components.modals.delete')
+
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
