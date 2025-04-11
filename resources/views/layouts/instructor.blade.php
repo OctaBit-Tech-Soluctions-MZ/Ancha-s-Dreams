@@ -29,6 +29,12 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/app.css') }}">
 
+    <!-- Course Details CSS -->
+    @include('components.styles.courses')
+
+    <!-- Profile Css -->
+    <link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}">
+
 </head>
 <body>
     <div class="">
@@ -45,41 +51,19 @@
                     </a>
 
                     <li class="nav-item m-2">
-                        <a class="nav-link p-2" aria-current="page" href="{{ route('admin.dashboard') }}">
+                        <a class="nav-link p-2" aria-current="page" href="{{ route('instructor.dashboard') }}">
                             <i class="fas fa-fw fa-tachometer-alt me-2"></i>
                             <span>Dashboard</span></a>
                     </li>
                     <li class="nav-item m-2">
-                        <a class="nav-link p-2" aria-current="page" href="{{ route('admin.users') }}">
-                            <i class="fas fa-fw fa-users me-2"></i>
-                            <span>Administradores</span></a>
-                    </li>
-                    <li class="nav-item m-2">
-                        <a href="{{ route('admin.instructor')}}" class="nav-link p-2">
-                            <i class="fa-solid fa-fw fa-chalkboard-user me-2"></i>
-                            <span>Instrutores</span>
-                        </a>
-                    </li>
-                    <li class="nav-item m-2">
-                        <a href="" class="nav-link p-2">
-                            <i class="fa-solid fa-fw fa-user-graduate me-2"></i>
-                            <span>Alunos</span>
-                        </a>
-                    </li>
-                    <li class="nav-item m-2">
-                        <a class="nav-link p-2" aria-current="page" href="{{ route('admin.books') }}">
+                        <a class="nav-link p-2" aria-current="page" href="{{ route('instructor.books') }}">
                             <i class="fas fa-fw fa-book me-2"></i>
                             <span>Livros</span></a>
                     </li>
                     <li class="nav-item m-2">
-                        <a class="nav-link p-2" aria-current="page" href="{{ route('admin.courses')}}">
+                        <a class="nav-link p-2" aria-current="page" href="{{ route('instructor.courses')}}">
                             <i class="fas fa-fw fa-certificate me-2"></i>
                             <span>Cursos</span></a>
-                    </li>
-                    <li class="nav-item m-2">
-                        <a class="nav-link p-2" aria-current="page" href="#">
-                            <i class="fas fa-fw fa-comments me-2"></i>
-                            <span>Feedbacks</span></a>
                     </li>
                 </ul>
             </nav>
@@ -87,7 +71,7 @@
             <div id="content-wrapper" class="d-flex flex-column">
     
                 <!-- Main Content -->
-                <div id="content">
+                <div id="content h-100">
 
                     <nav class="navbar bg-body-tertiary">
                         <div class="container-fluid">
@@ -96,15 +80,15 @@
                             data-bs-toggle="collapse" href="#collapseSidebar" role="button" aria-expanded="false" aria-controls="collapseSidebar">
                                 <i class="fa fa-bars"></i>
                             </button>
-                            <div class="dropdown">
+                            <div class="dropdown justify-content-end">
                                 <a class="nav-link dropdown-toggle bg-transparent"  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     
                                         <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
                                         <img class="img-profile rounded-circle"
                                             src="/assets/img/undraw_profile_1.svg">
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-dark p-2 me-3">
-                                    <li><a class="dropdown-item active" href="#">Perfil</a></li>
+                                <ul class="dropdown-menu p-2 me-3 border border-0 shadow">
+                                    <li><a class="dropdown-item" href="{{ route('instructor.profile') }}">Perfil</a></li>
                                     <li><a class="dropdown-item" href="#"
                                         data-bs-toggle="modal" data-bs-target="#logoutModal">Terminar Sessao</a></li>
                                 </ul>
@@ -113,8 +97,9 @@
                     </nav>
                             
                     <!-- Content Row -->
-                    <div class="row p-2">
-                        <div class="pt-2 ps-5">
+                    <div class="row">
+                        <div class="pt-2 pb-2 ps-5 pe-5 d-flex justify-content-between">
+                            <a href="{{ url()->previous() }}" class="btn btn-primary">Voltar</a>
                             <h3>@yield('page')</h3>
                         </div>
                         @yield('content')

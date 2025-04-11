@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('role')
             ->after('profile_photo_path')
-            ->default(2);
+            ->default('student');
         });
     }
 

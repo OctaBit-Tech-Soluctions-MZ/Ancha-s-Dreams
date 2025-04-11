@@ -49,14 +49,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin User',
             'email' => 'admin@example.com',
             'password' => Hash::make('12345678'),
-            'role' => 1
-        ]);
-
-        User::factory()->create([
-            'name' => 'Teacher User',
-            'email' => 'teacher@example.com',
-            'password' => Hash::make('12345678'),
-            'role' => 3
+            'role' => 'admin'
         ]);
 
 
@@ -68,18 +61,21 @@ class DatabaseSeeder extends Seeder
         $role = new Role();
         
         $role->create([
-            'name' => 'administrador',
-            'route' => '/admin/dashboard',
+            'role_key' => 'admin',
+            'role_name' => 'administrador',
+            'route' => 'admin.dashboard',
         ]);
 
         $role->create([
-            'name' => 'Aluno',
-            'route' => '/',
+            'role_key' => 'student',
+            'role_name' => 'Aluno',
+            'route' => 'home',
         ]);
         
         $role->create([
-            'name' => 'Instrutor',
-            'route' => '/',
+            'role_key' => 'instructor',
+            'role_name' => 'Instrutor',
+            'route' => 'instructor.dashboard',
         ]);
 
     }

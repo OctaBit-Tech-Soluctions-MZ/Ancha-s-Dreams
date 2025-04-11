@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 
-@section('title', 'Aula 01 | Cursos X')
+@section('title', $contentFirst->title)
 
 @section('content')
 
@@ -8,13 +8,17 @@
 <section class="course-details spad">
     <div class="container">
         <div class="row">
+            <div class="p-3">
+                <h3>{{ $contentFirst->title }}</h3>
+            </div>
             <div class="col-lg-12">
                 <div class="course__video__player">
-                    <video id="player" playsinline controls data-poster="{{ asset('/assets/img/video/cooking_online.jpg') }}">
-                        <source src="https://www.youtube.com/watch?v=AsMwuNJXY7M" type="video/mp4" />
+                    <iframe src="{{ $contentFirst->url_preview }}" allow="autoplay"></iframe>
+                    {{-- <video id="player" playsinline controls data-poster="{{ asset('/assets/img/video/cooking_online.jpg') }}">
+                        <source src="{{ $contentFirst->url_view }}" type="video/mp4" />
                         <!-- Captions are optional -->
                         <track kind="captions" label="English captions" src="#" srclang="en" default />
-                    </video>
+                    </video> --}}
                 </div>
                 <div class="course__details__episodes">
                     <div class="section-title">

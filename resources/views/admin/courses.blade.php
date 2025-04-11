@@ -2,6 +2,8 @@
 
 @section('title', 'Courses | Admin')
 
+@section('page', 'Listagem de Cursos')
+
 @section('content')
 
 <div class="p-3">
@@ -67,37 +69,37 @@
                             {{ session('error') }}
                         </div>
                     @endif
-                    <table class="table" id="dataTable">
-                        <thead class="border-0">
-                            <tr>
-                                <th>#</th>
-                                <th>Nome do Curso</th>
-                                <th>Instrutor</th>
-                                <th>Preço do Curso</th>
-                                <th>Status</th>
-                                <th>Acção</th>
+                    <table class="table table-bordered table-striped" id="dataTable">
+                        <thead class="table-dark">
+                            <tr class="border border-0">
+                                <th class="border border-0">#</th>
+                                <th class="border border-0">Nome do Curso</th>
+                                <th class="border border-0">Instrutor</th>
+                                <th class="border border-0">Preço do Curso</th>
+                                <th class="border border-0">Status</th>
+                                <th class="border border-0">Acção</th>
                             </tr>
                         </thead>
                         <tbody>
                             
                             @foreach ($courses as $course)
-                            <tr>
-                                <td> {{ $loop->index + 1 }} </td>
-                                <td> 
+                            <tr class="border border-0">
+                                <td class="border border-0"> {{ $loop->index + 1 }} </td>
+                                <td class="border border-0"> 
                                     <img src="{{ asset('assets/img/courses/'.$course->course_photo_path)}}" 
                                     class="img-sm me-1" alt="{{ $course->name }}"> 
                                     {{ $course->name }}
                                 </td>
-                                <td> {{ $course->instructor->name }}</td>
-                                <td> {{ $course->price }} MZN</td>
-                                <td> {{ $course->status }}</td>
-                                <td> 
-                                    <a class="btn btn-success btn-sm"  href="{{ route('admin.courses.details',['slug' => $course->slug]) }}"><i class="fas fa-eye"></i></a>
-                                    <a class="btn btn-danger btn-sm" 
+                                <td class="border border-0"> {{ $course->instructor->name }}</td>
+                                <td class="border border-0"> {{ $course->price }} MZN</td>
+                                <td class="border border-0"> {{ $course->status }}</td>
+                                <td class="border border-0"> 
+                                    <a class="btn btn-success btn-sm mt-1"  href="{{ route('admin.courses.details',['slug' => $course->slug]) }}"><i class="fas fa-eye"></i></a>
+                                    <button class="btn btn-danger btn-sm mt-1" 
                                         data-bs-toggle="modal" 
                                         data-bs-target="#deleteModal" 
                                         data-action="{{ route('admin.courses.delete', ['slug' => $course->slug]) }}"
-                                        href="#"><i class="fas fa-trash"></i></a>
+                                        ><i class="fas fa-trash"></i></button>
                                 </td>
                             </tr>
                             @endforeach

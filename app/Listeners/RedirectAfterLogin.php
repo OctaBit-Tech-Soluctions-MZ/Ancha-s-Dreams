@@ -6,6 +6,7 @@ use Illuminate\Auth\Events\Login;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class RedirectAfterLogin
 {
@@ -24,12 +25,12 @@ class RedirectAfterLogin
     {
         $user = $event->user;
         $role = DB::table('roles')
-        ->where('id', $user->role_id)
+        ->where('role_key', $user->role)
         ->first();
 
         // redirecionar o user para a sua respectiva rota (rota default "/")
         $redirectTo = $role->route;
 
-        redirect($redirectTo);
+        redirect(Session::put('redirect_after_login', route($redirectTo)));
     }
 }

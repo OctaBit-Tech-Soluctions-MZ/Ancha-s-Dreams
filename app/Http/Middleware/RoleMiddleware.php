@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Role;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,7 @@ class RoleMiddleware
         if (Auth::check() && Auth::user()->role === $role) {
             return $next($request);
         }
-        return redirect('/');
+        $role = Role::where('role_key',Auth::user()->role)->first();
+        return redirect(route($role->route));
     }
 }

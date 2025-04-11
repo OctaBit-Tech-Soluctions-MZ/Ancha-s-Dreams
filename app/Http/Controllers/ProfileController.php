@@ -22,6 +22,14 @@ class ProfileController extends Controller
         ]);
     }   
 
+    public function instructor(Request $request)
+    {
+        $user = User::findOrFail(Auth::user()->id);
+        $role = Role::where('role_key',Auth::user()->role)->first(['role_name']);
+
+        return view('instructor.profile', compact('user', 'role'));
+    }  
+
     public function edit() {
         $id = Auth::user()->id;
 
@@ -66,7 +74,4 @@ class ProfileController extends Controller
         return redirect()->back()->with('success', 'Senha alterada com sucesso');
     }
 
-    public function pricing(){
-        return view('profile.pricing');
-    }
 }

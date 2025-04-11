@@ -31,6 +31,8 @@
         {{-- Profile Custom css --}}
         <link rel="stylesheet" href="{{asset('assets/css/profile.css') }}">
 
+        <!-- Course Details CSS -->
+        @include('components.styles.courses')
 
         <style>
             .nav-link span, .btn-tx span{
@@ -160,20 +162,9 @@
         </footer>
 
         @auth
-        @include('components.modals.logout')
-        @include('components.modal.delete')
-        
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                var deleteModal = document.getElementById('deleteModal');
-                deleteModal.addEventListener('show.bs.modal', function (event) {
-                    var button = event.relatedTarget;
-                    var form = document.getElementById('deleteForm');
-                    var actionUrl = button.getAttribute('data-action');
-                    form.action = actionUrl; 
-                });
-            });
-        </script>
+            @include('components.modals.logout')
+            @include('components.modals.delete')
+            @include('components.scripts.get-id-to-delete')
         @endauth
 
         {{-- custom js --}}

@@ -16,10 +16,12 @@ return new class extends Migration
             $table->string('content_id')->unique();
             $table->string('title');
             $table->text('description');
-            $table->string('video_path');
-            $table->string('course');
-            $table->string('rating');
-            $table->string('views');
+            $table->string('drive_file_id');
+            $table->string('url_view');
+            $table->string('url_download');
+            $table->string('course_id');
+            $table->double('rating')->default(0);
+            $table->integer('views')->default(0);
             $table->timestamps();
         });
     }

@@ -1,9 +1,13 @@
-@extends('layouts.profile')
- 
-@section('profile-content')
+@extends('layouts.instructor')
 
+@section('title', 'Meus Cursos | '.Auth::user()->name)
+
+@section('page', 'Meus Cursos')
+ 
+@section('content')
+                <div class="p-3">
                     <div class="panel card shadow border border-0 mb-3">
-                        <form action="{{ route('profile.courses') }}" method="get">
+                        <form action="{{ route('instructor.courses') }}" method="get">
                             <div class="row p-3">
                                 <div class="col-sm-4 mb-1">
                                     <input type="text" name="search" class="form-control form-control-sm" placeholder="pesquisar por nome...">
@@ -40,13 +44,13 @@
                     @endif
                     
                     <div class="panel card shadow border border-0">
-                        <div class="d-flex justify-content-start p-3">
-                            <a href="{{ route('courses.register') }}" class="btn btn-success btn-sm">Registar Curso</a>
+                        <div class="d-flex justify-content-start p-2">
+                            <a href="{{ route('instructor.courses.register') }}" class="btn btn-success btn-sm">Registar Curso</a>
                         </div>
                         
                     @if (count($courses) == 0 && $search)
                         <div class="p-3 text-center">
-                            nao foi possivel encontrar um curso com {{ $search }} <a href="{{ route('courses.teacher') }}">Ver todos Cursos</a>
+                            nao foi possivel encontrar um curso com {{ $search }} <a href="{{ route('instructor.courses') }}">Ver todos Cursos</a>
                         </div>
                     @elseif (count($courses) == 0)
                         <div class="p-3">
@@ -56,7 +60,7 @@
                         </div>
                     @else
                         <!-- DataTales Example -->
-                        <div class="panel-body bio-graph-info p-3">
+                        <div class="panel-body bio-graph-info">
                             <div class="card-body">
                                 <div class="table-responsive">
 
@@ -65,29 +69,27 @@
                                             {{ session('error') }}
                                         </div>
                                     @endif
-                                    <table class="table" id="dataTable">
-                                        <thead class="border-0">
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Nome do Curso</th>
-                                                <th>Preço do Curso</th>
-                                                <th>Acção</th>
+                                    <table class="table table-bordered table-striped" id="dataTable">
+                                        <thead class="table-dark">
+                                            <tr class="border border-0">
+                                                <th class="border border-0">#</th>
+                                                <th class="border border-0">Nome do Curso</th>
+                                                <th class="border border-0">Categoria</th>
+                                                <th class="border border-0">Preço do Curso</th>
+                                                <th class="border border-0">Acção</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody class="table-sm">
                                             
                                             @foreach ($courses as $course)
                                             <tr>
                                                 <td> {{ $loop->index + 1 }} </td>
-                                                <td> 
-                                                    <img src="{{ asset('assets/img/courses/'.$course->course_photo_path)}}" 
-                                                    class="img-sm me-1" alt="{{ $course->name }}"> 
-                                                     {{ $course->name }}
-                                                </td>
+                                                <td> {{ $course->name }} </td>
+                                                <td> {{ $course->category }} </td>
                                                 <td> {{ $course->price }} MZN</td>
                                                 <td> 
-                                                    <a class="btn btn-success btn-sm"  href="{{ route('profile.courses.details',['slug' => $course->slug]) }}"><i class="fas fa-eye"></i></a>
-                                                    <a href="{{ route('profile.courses.update', ['slug' => $course->slug]) }}" 
+                                                    <a class="btn btn-success btn-sm"  href="{{ route('instructor.courses.details',['slug' => $course->slug]) }}"><i class="fas fa-eye"></i></a>
+                                                    <a href="{{ route('instructor.courses.update', ['slug' => $course->slug]) }}" 
                                                         class="btn btn-primary btn-sm m-1"><i class="fas fa-edit"></i></a>
                                                     <a class="btn btn-danger btn-sm" 
                                                         data-bs-toggle="modal" 
@@ -107,5 +109,6 @@
                         </div>
                     @endif
                     </div>
+                </div>
 
 @endsection

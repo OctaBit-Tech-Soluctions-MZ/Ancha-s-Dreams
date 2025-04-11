@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('courses', function (Blueprint $table) {
-            $table->string('categoria');
+        Schema::table('contents', function (Blueprint $table) {
+            $table->string('url_preview')
+            ->after('url_download');
         });
     }
 
@@ -21,8 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('courses', function (Blueprint $table) {
-            //
+        Schema::table('contents', function (Blueprint $table) {
+            $table->dropColumn('url_preview');
         });
     }
 };

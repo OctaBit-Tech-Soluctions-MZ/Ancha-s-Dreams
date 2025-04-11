@@ -155,6 +155,7 @@
 
         @Auth
             @include('components.modals.logout')
+            @include('components.scripts.get-id-to-delete')
         @endauth
 
         {{-- custom js --}}

@@ -1,12 +1,12 @@
-@extends('layouts.profile')
+@extends('layouts.instructor')
 
 @section('title', 'Editando o Cursos | '.$course->name)
 
-@section('profile-content')
+@section('page', 'Formulario Edição de Cursos')
 
-            <div class="panel card shadow border border-0 mb-3 p-3">
-                <h1 class="h3 mb-0 text-gray-800 text-center">Formulario Edição de Cursos</h1>
-            </div>
+@section('content')
+
+            <div class="p-3">
                 <div class="panel card shadow border border-0">
                     <div class="panel-body bio-graph-info p-3">
                         <div class="card-body">
@@ -30,7 +30,7 @@
                                     {{ session('success') }}
                                 </div>
                             @endif
-                            <form method="post" action="{{ route('profile.courses.update', ['slug' => $course->slug]) }}" enctype="multipart/form-data">
+                            <form method="post" action="{{ route('instructor.courses.update', ['slug' => $course->slug]) }}" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="row p-2">
@@ -46,7 +46,7 @@
                                             <option value="">Selecione a categoria do curso</option>
                                             @foreach ($categories as $category)    
                                                 <option value="{{ $category->name }}" 
-                                                    {{ $category->name == $course->categoria ? 'selected="selected"' : ''}}>
+                                                    {{ $category->name == $course->category ? 'selected="selected"' : ''}}>
                                                     {{ $category->name }}</option>
                                             @endforeach
                                         </select>
@@ -76,5 +76,6 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
 @endsection

@@ -1,14 +1,13 @@
-@extends('layouts.profile')
+@extends('layouts.instructor')
 
 @section('title', 'Registo de Cursos |')
 
-@section('profile-content')
+@section('page','Formulario de Registo de Cursos')
 
-            <div class="panel card shadow border border-0 mb-3 p-3">
-                <h1 class="h3 mb-0 text-gray-800 text-center">Formulario de Registo de Cursos</h1>
-            </div>
-                <div class="panel card shadow border border-0">
-                    <div class="panel-body bio-graph-info p-3">
+@section('content')
+            <div class="ps-3 pe-3">
+                <div class="panel card shadow border border-0 p-1">
+                    <div class="panel-body bio-graph-info">
                         <div class="card-body">
                             @if($errors->any())
                                 <div style="color:red">
@@ -30,7 +29,7 @@
                                     {{ session('success') }}
                                 </div>
                             @endif
-                            <form method="post" action="{{ route('courses.store') }}" enctype="multipart/form-data">
+                            <form method="post" action="{{ route('instructor.courses.store') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row p-2">
                                     <div class="col-sm-12 mb-3 mb-sm-0 p-1">
@@ -72,5 +71,5 @@
                         </div>
                     </div>
                 </div>
-
+            </div>
 @endsection
