@@ -20,3 +20,7 @@ yarn-error.log
 /.idea
 /.vscode
 /.zed
+<<<<<<< HEAD
+=======
+.qodo
+>>>>>>> 9fabbde (Primeiro commit)

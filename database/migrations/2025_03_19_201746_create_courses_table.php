@@ -16,9 +16,21 @@ return new class extends Migration
             $table->string('course_id')->unique();
             $table->string('name');
             $table->text('description');
+<<<<<<< HEAD
             $table->double('price');
             $table->string('course_photo_path');
             $table->string('teacher');
+=======
+            $table->string('category');
+            $table->double('price');
+            $table->string('course_photo_path');
+            $table->string('teacher');
+            $table->integer('views')->default(0);
+            $table->double('rating')->default(0);
+            $table->string('status')->default('Em Lançamento');
+            $table->string('drive_folder_id')->unique();
+            $table->string('slug')->unique();
+>>>>>>> 9fabbde (Primeiro commit)
             $table->timestamps();
         });
     }

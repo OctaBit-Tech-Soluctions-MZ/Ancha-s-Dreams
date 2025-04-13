@@ -2,6 +2,10 @@
 
 namespace App\Http\Middleware;
 
+<<<<<<< HEAD
+=======
+use App\Models\Role;
+>>>>>>> 9fabbde (Primeiro commit)
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +23,11 @@ class RoleMiddleware
         if (Auth::check() && Auth::user()->role === $role) {
             return $next($request);
         }
+<<<<<<< HEAD
         return redirect('/');
+=======
+        $role = Role::where('role_key',Auth::user()->role)->first();
+        return redirect(route($role->route));
+>>>>>>> 9fabbde (Primeiro commit)
     }
 }

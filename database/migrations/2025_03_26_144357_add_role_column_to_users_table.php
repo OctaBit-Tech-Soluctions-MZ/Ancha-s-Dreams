@@ -14,7 +14,11 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('role')
             ->after('profile_photo_path')
+<<<<<<< HEAD
             ->default(2);
+=======
+            ->default('student');
+>>>>>>> 9fabbde (Primeiro commit)
         });
     }
 

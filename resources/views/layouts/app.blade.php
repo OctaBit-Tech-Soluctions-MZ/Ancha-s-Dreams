@@ -12,9 +12,15 @@
 
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+<<<<<<< HEAD
         
         <script src="https://unpkg.com/scrollreveal"></script>
         
+=======
+
+        <script src="https://unpkg.com/scrollreveal"></script>
+
+>>>>>>> 9fabbde (Primeiro commit)
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
@@ -51,14 +57,22 @@
                 <div></div><div></div><div></div><div></div>
             </div>
         </div>
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 9fabbde (Primeiro commit)
     <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-body-tertiary fixed-top" id="mainNav">
             <div class="container gap-5">
                 <a class="navbar-brand" href="#page-top">
                     <img src="{{ asset('assets/img/navbar-logo.svg') }}" alt="Logo" />
                 </a>
+<<<<<<< HEAD
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" 
+=======
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+>>>>>>> 9fabbde (Primeiro commit)
                         aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu <i class="fas fa-bars ms-1"></i>
                 </button>
@@ -75,6 +89,15 @@
                                     <span>Livros</span>
                                 </a>
                             </li>
+<<<<<<< HEAD
+=======
+                            <li>
+                                <a class="nav-link" href="{{ route('receita') }}">
+                                    <span>Receita</span>
+                                </a>
+
+                            </li>
+>>>>>>> 9fabbde (Primeiro commit)
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('courses') }}">
                                     <span>Cursos</span>
@@ -115,11 +138,19 @@
                 {{-- so aparece quando o utilizador esta logado --}}
                 @auth
                 <a class="btn btn-transparent bg-transparent"  href="{{ route('profile.show') }}">
+<<<<<<< HEAD
                   
                       <img class="img-profile rounded-circle"
                           src="{{ asset('assets/img/undraw_profile_1.svg') }}">
                 </a>
                 <button type="button" class="btn btn-danger btn-sm fw-bolder" 
+=======
+
+                      <img class="img-profile rounded-circle"
+                          src="{{ asset('assets/img/undraw_profile_1.svg') }}">
+                </a>
+                <button type="button" class="btn btn-danger btn-sm fw-bolder"
+>>>>>>> 9fabbde (Primeiro commit)
                         data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
                 @endauth
             </div>
@@ -153,6 +184,7 @@
             </div>
         </footer>
 
+<<<<<<< HEAD
         @auth
         <!-- Modal -->
         <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -175,6 +207,11 @@
             </div>
             </div>
         </div>
+=======
+        @Auth
+            @include('components.modals.logout')
+            @include('components.scripts.get-id-to-delete')
+>>>>>>> 9fabbde (Primeiro commit)
         @endauth
 
         {{-- custom js --}}

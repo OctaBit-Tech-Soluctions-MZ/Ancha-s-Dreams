@@ -1,6 +1,10 @@
 @extends('layouts.auth')
 
+<<<<<<< HEAD
 @section('title', 'Aula 01 | Cursos X')
+=======
+@section('title', $contentFirst->title)
+>>>>>>> 9fabbde (Primeiro commit)
 
 @section('content')
 
@@ -8,6 +12,7 @@
 <section class="course-details spad">
     <div class="container">
         <div class="row">
+<<<<<<< HEAD
             <div class="col-lg-12">
                 <div class="course__video__player">
                     <video id="player" playsinline controls data-poster="{{ asset('/assets/img/video/cooking_online.jpg') }}">
@@ -15,6 +20,19 @@
                         <!-- Captions are optional -->
                         <track kind="captions" label="English captions" src="#" srclang="en" default />
                     </video>
+=======
+            <div class="p-3">
+                <h3>{{ $contentFirst->title }}</h3>
+            </div>
+            <div class="col-lg-12">
+                <div class="course__video__player">
+                    <iframe src="{{ $contentFirst->url_preview }}" allow="autoplay"></iframe>
+                    {{-- <video id="player" playsinline controls data-poster="{{ asset('/assets/img/video/cooking_online.jpg') }}">
+                        <source src="{{ $contentFirst->url_view }}" type="video/mp4" />
+                        <!-- Captions are optional -->
+                        <track kind="captions" label="English captions" src="#" srclang="en" default />
+                    </video> --}}
+>>>>>>> 9fabbde (Primeiro commit)
                 </div>
                 <div class="course__details__episodes">
                     <div class="section-title">

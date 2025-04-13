@@ -23,4 +23,12 @@ class Course extends Model
             $course->slug = Str::slug($course->name, '-');
         });
     }
+<<<<<<< HEAD
+=======
+
+    public function contents()
+    {   
+        return $this->hasMany(Content::class, 'course_id');
+    }
+>>>>>>> 9fabbde (Primeiro commit)
 }

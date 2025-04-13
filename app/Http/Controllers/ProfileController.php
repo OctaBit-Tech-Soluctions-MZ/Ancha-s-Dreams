@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
+=======
+use App\Models\Role;
+>>>>>>> 9fabbde (Primeiro commit)
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,7 +14,28 @@ use Illuminate\Validation\ValidationException;
 
 class ProfileController extends Controller
 {
+<<<<<<< HEAD
     
+=======
+    public function index(Request $request)
+    {
+        $role = Role::find(Auth::user()->role,['name']);
+
+        return view('profile.show', [
+            'request' => $request,
+            'user' => $request->user(),
+            'role' => $role,
+        ]);
+    }   
+
+    public function instructor(Request $request)
+    {
+        $user = User::findOrFail(Auth::user()->id);
+        $role = Role::where('role_key',Auth::user()->role)->first(['role_name']);
+
+        return view('instructor.profile', compact('user', 'role'));
+    }  
+>>>>>>> 9fabbde (Primeiro commit)
 
     public function edit() {
         $id = Auth::user()->id;
@@ -56,7 +81,10 @@ class ProfileController extends Controller
         return redirect()->back()->with('success', 'Senha alterada com sucesso');
     }
 
+<<<<<<< HEAD
     public function pricing(){
         return view('profile.pricing');
     }
+=======
+>>>>>>> 9fabbde (Primeiro commit)
 }

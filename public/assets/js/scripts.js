@@ -28,6 +28,10 @@ revelar.reveal('.texto',{
     origin: 'left'
 })
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9fabbde (Primeiro commit)
 //dcroll menu trasparent
 window.addEventListener("scroll", function(){
     let header = document.querySelector('#header')
@@ -50,7 +54,11 @@ window.addEventListener('DOMContentLoaded', event => {
 
     };
 
+<<<<<<< HEAD
     // Shrink the navbar 
+=======
+    // Shrink the navbar
+>>>>>>> 9fabbde (Primeiro commit)
     navbarShrink();
 
     // Shrink the navbar when page is scrolled

@@ -29,6 +29,7 @@
                         <a class="nav-link rounded-0" href="{{ route('profile.password') }}">
                             <i class="fa fa-lock me-3"></i> Mudar Senha</a>
                     </li>
+<<<<<<< HEAD
                     <li class="nav-item">
                         <a class="nav-link rounded-0" href="{{ route('profile.courses')}}"> 
                             <i class="fa fa-certificate me-3"></i> Gerir Cursos Lecionados
@@ -38,6 +39,8 @@
                         <a class="nav-link rounded-0" href="{{ route('profile.pricing') }}"> 
                             <i class="fa fa-chalkboard-teacher me-3"></i> Tornar-se Instrutor</a>
                     </li>
+=======
+>>>>>>> 9fabbde (Primeiro commit)
                 </ul>
                 
             </div>

@@ -29,6 +29,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+<<<<<<< HEAD
+=======
+        'role',
+>>>>>>> 9fabbde (Primeiro commit)
     ];
 
     /**
@@ -65,7 +69,11 @@ class User extends Authenticatable
         ];
     }
 
+<<<<<<< HEAD
     public function role()
+=======
+    public function roles()
+>>>>>>> 9fabbde (Primeiro commit)
     {
         return $this->belongsTo(Role::class);
     }

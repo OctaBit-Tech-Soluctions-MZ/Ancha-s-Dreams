@@ -31,6 +31,11 @@
         {{-- Profile Custom css --}}
         <link rel="stylesheet" href="{{asset('assets/css/profile.css') }}">
 
+<<<<<<< HEAD
+=======
+        <!-- Course Details CSS -->
+        @include('components.styles.courses')
+>>>>>>> 9fabbde (Primeiro commit)
 
         <style>
             .nav-link span, .btn-tx span{
@@ -160,6 +165,7 @@
         </footer>
 
         @auth
+<<<<<<< HEAD
         <!-- Modal -->
         <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -215,6 +221,11 @@
                 });
             });
         </script>
+=======
+            @include('components.modals.logout')
+            @include('components.modals.delete')
+            @include('components.scripts.get-id-to-delete')
+>>>>>>> 9fabbde (Primeiro commit)
         @endauth
 
         {{-- custom js --}}

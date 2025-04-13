@@ -20,9 +20,15 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
+<<<<<<< HEAD
         // $this->add_roles();
 
         // $this->add_fake_users();
+=======
+        $this->add_roles();
+
+        $this->add_fake_users();
+>>>>>>> 9fabbde (Primeiro commit)
 
         $this->add_fake_categorys();
     }
@@ -49,6 +55,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin User',
             'email' => 'admin@example.com',
             'password' => Hash::make('12345678'),
+<<<<<<< HEAD
             'role' => 1
         ]);
 
@@ -57,6 +64,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'teacher@example.com',
             'password' => Hash::make('12345678'),
             'role' => 3
+=======
+            'role' => 'admin'
+>>>>>>> 9fabbde (Primeiro commit)
         ]);
 
 
@@ -68,6 +78,7 @@ class DatabaseSeeder extends Seeder
         $role = new Role();
         
         $role->create([
+<<<<<<< HEAD
             'name' => 'administrador',
             'route' => 'admin',
         ]);
@@ -80,6 +91,23 @@ class DatabaseSeeder extends Seeder
         $role->create([
             'name' => 'Instrutor',
             'route' => '/',
+=======
+            'role_key' => 'admin',
+            'role_name' => 'administrador',
+            'route' => 'admin.dashboard',
+        ]);
+
+        $role->create([
+            'role_key' => 'student',
+            'role_name' => 'Aluno',
+            'route' => 'home',
+        ]);
+        
+        $role->create([
+            'role_key' => 'instructor',
+            'role_name' => 'Instrutor',
+            'route' => 'instructor.dashboard',
+>>>>>>> 9fabbde (Primeiro commit)
         ]);
 
     }

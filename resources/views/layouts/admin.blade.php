@@ -45,6 +45,7 @@
                     </a>
 
                     <li class="nav-item m-2">
+<<<<<<< HEAD
                         <a class="nav-link p-2" aria-current="page" href="{{ route('dashboard') }}">
                             <i class="fas fa-fw fa-tachometer-alt"></i>
                             <span>Dashboard</span></a>
@@ -62,16 +63,51 @@
                     <li class="nav-item m-2">
                         <a class="nav-link p-2" aria-current="page" href="{{ route('courses.show')}}">
                             <i class="fas fa-fw fa-certificate"></i>
+=======
+                        <a class="nav-link p-2" aria-current="page" href="{{ route('admin.dashboard') }}">
+                            <i class="fas fa-fw fa-tachometer-alt me-2"></i>
+                            <span>Dashboard</span></a>
+                    </li>
+                    <li class="nav-item m-2">
+                        <a class="nav-link p-2" aria-current="page" href="{{ route('admin.users') }}">
+                            <i class="fas fa-fw fa-users me-2"></i>
+                            <span>Administradores</span></a>
+                    </li>
+                    <li class="nav-item m-2">
+                        <a href="{{ route('admin.instructor')}}" class="nav-link p-2">
+                            <i class="fa-solid fa-fw fa-chalkboard-user me-2"></i>
+                            <span>Instrutores</span>
+                        </a>
+                    </li>
+                    <li class="nav-item m-2">
+                        <a href="" class="nav-link p-2">
+                            <i class="fa-solid fa-fw fa-user-graduate me-2"></i>
+                            <span>Alunos</span>
+                        </a>
+                    </li>
+                    <li class="nav-item m-2">
+                        <a class="nav-link p-2" aria-current="page" href="{{ route('admin.books') }}">
+                            <i class="fas fa-fw fa-book me-2"></i>
+                            <span>Livros</span></a>
+                    </li>
+                    <li class="nav-item m-2">
+                        <a class="nav-link p-2" aria-current="page" href="{{ route('admin.courses')}}">
+                            <i class="fas fa-fw fa-certificate me-2"></i>
+>>>>>>> 9fabbde (Primeiro commit)
                             <span>Cursos</span></a>
                     </li>
                     <li class="nav-item m-2">
                         <a class="nav-link p-2" aria-current="page" href="#">
+<<<<<<< HEAD
                             <i class="fas fa-fw fa-credit-card"></i>
                             <span>Planos</span></a>
                     </li>
                     <li class="nav-item m-2">
                         <a class="nav-link p-2" aria-current="page" href="#">
                             <i class="fas fa-fw fa-comments"></i>
+=======
+                            <i class="fas fa-fw fa-comments me-2"></i>
+>>>>>>> 9fabbde (Primeiro commit)
                             <span>Feedbacks</span></a>
                     </li>
                 </ul>
@@ -89,6 +125,7 @@
                             data-bs-toggle="collapse" href="#collapseSidebar" role="button" aria-expanded="false" aria-controls="collapseSidebar">
                                 <i class="fa fa-bars"></i>
                             </button>
+<<<<<<< HEAD
                             <div class="dropdown justify-content-end">
                             <a class="nav-link dropdown-toggle bg-transparent"  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 
@@ -103,13 +140,33 @@
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="#">Separated link</a></li>
                             </ul>
+=======
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle bg-transparent"  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    
+                                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
+                                        <img class="img-profile rounded-circle"
+                                            src="/assets/img/undraw_profile_1.svg">
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark p-2 me-3">
+                                    <li><a class="dropdown-item active" href="#">Perfil</a></li>
+                                    <li><a class="dropdown-item" href="#"
+                                        data-bs-toggle="modal" data-bs-target="#logoutModal">Terminar Sessao</a></li>
+                                </ul>
+>>>>>>> 9fabbde (Primeiro commit)
                             </div>
                         </div>
                     </nav>
                             
                     <!-- Content Row -->
                     <div class="row p-2">
+<<<<<<< HEAD
 
+=======
+                        <div class="pt-2 ps-5">
+                            <h3>@yield('page')</h3>
+                        </div>
+>>>>>>> 9fabbde (Primeiro commit)
                         @yield('content')
 
                     </div>
@@ -118,6 +175,14 @@
         </div>
     </div>
 
+<<<<<<< HEAD
+=======
+    @include('components.modals.logout')
+    @include('components.modals.delete')
+    @include('components.scripts.get-id-to-delete')
+
+
+>>>>>>> 9fabbde (Primeiro commit)
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 

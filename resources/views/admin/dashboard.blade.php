@@ -11,7 +11,11 @@
                 <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                 Alunos</div>
+<<<<<<< HEAD
                     <div class="h5 mb-0 font-weight-bold text-gray-800">1000</div>
+=======
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $students}}</div>
+>>>>>>> 9fabbde (Primeiro commit)
                 </div>
                 <div class="col-auto">
                     <i class="fas fa-users fa-2x text-gray-300"></i>
@@ -28,7 +32,11 @@
                 <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                 Instrutores</div>
+<<<<<<< HEAD
                     <div class="h5 mb-0 font-weight-bold text-gray-800">1000</div>
+=======
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $instructors }}</div>
+>>>>>>> 9fabbde (Primeiro commit)
                 </div>
                 <div class="col-auto">
                     <i class="fas fa-chalkboard-teacher fa-2x text-gray-300"></i>
@@ -45,7 +53,11 @@
                 <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                 Cursos</div>
+<<<<<<< HEAD
                     <div class="h5 mb-0 font-weight-bold text-gray-800">1000</div>
+=======
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $courses }}</div>
+>>>>>>> 9fabbde (Primeiro commit)
                 </div>
                 <div class="col-auto">
                     <i class="fas fa-certificate fa-2x text-gray-300"></i>
