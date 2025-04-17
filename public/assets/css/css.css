@@ -10961,7 +10961,10 @@ header.masthead {
   padding-bottom: 6rem;
   text-align: center;
   color: #fff;
-  background-image: url("../img/aaron-blanco-tejedor-IfH30ZvmZBQ-unsplash-1208x800.jpg");
+  background:linear-gradient(
+    rgba(0, 0, 0, 0.5), 
+    rgba(0, 0, 0, 0.5)
+  ), url("../img/aaron-blanco-tejedor-IfH30ZvmZBQ-unsplash-1208x800.jpg");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;

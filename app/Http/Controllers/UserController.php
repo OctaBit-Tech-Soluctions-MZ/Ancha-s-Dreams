@@ -11,28 +11,28 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
 
-    public function store(UserRequest $request) {
-        $user = new User();
-        
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = $request->password;
-        $user->role = 'admin';
-        $user->save();
-
-        return redirect()->back()->with('success','Administrador Criado com Sucesso');
+    public function index() {
+        $search = '';
+        $users = User::where('role', 'student')->paginate(10);
+        return view('admin.students', compact('users','search'));
     }
 
-    public function storeInstructor(UserRequest $request) {
+    public function register(){
+        return view('auth.register');
+    }
+
+    public function store(UserRequest $request) {
         $user = new User();
-
         $user->name = $request->name;
+        $user->surname = $request->surname;
         $user->email = $request->email;
+        $user->nivel = $request->nivel;
+        $user->phone_number = $request->phone_number;
         $user->password = Hash::make($request->password);
-        $user->role = 'instructor';
+        $user->role = 'student';
         $user->save();
-
-        return redirect()->back()->with('success','Instructor Registado com sucesso');
+        Auth::login($user);
+        return redirect(route('home'));
     }
 
     public function destroy($id) {

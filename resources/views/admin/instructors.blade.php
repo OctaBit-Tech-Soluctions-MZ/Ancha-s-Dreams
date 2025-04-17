@@ -65,8 +65,11 @@
                                 <thead class="table-dark">
                                     <tr class="border border-0">
                                         <th class="border border-0">#</th>
-                                        <th class="border border-0">Nome Completo</th>
+                                        <th class="border border-0">Nome</th>
+                                        <th class="border border-0">Apelido</th>
                                         <th class="border border-0">Email</th>
+                                        <th class="border border-0">Telefone</th>
+                                        <th class="border border-0">Status da Conta</th>
                                         <th class="border border-0">Acção</th>
                                     </tr>
                                 </thead>
@@ -75,15 +78,18 @@
                                     @foreach ($users as $user)
                                     <tr class="border border-0">
                                         <td class="border border-0"> {{ $loop->index + 1 }} </td>
-                                        <td class="border border-0"> 
-                                            {{-- <img src="{{ asset('assets/img/courses/'.$course->course_photo_path)}}" 
-                                            class="img-sm me-1" alt="{{ $course->name }}">  --}}
-                                            {{ $user->name }}
-                                        </td>
+                                        <td class="border border-0"> {{ $user->name }}</td>
+                                        <td class="border border-0">{{ $user->surname }}</td>
                                         <td class="border border-0"> {{ $user->email }}</td>
+                                        <td class="border border-0"><a href="tel:+258{{ $user->phone_number }}">{{ $user->phone_number }}</a></td>
+                                        <td class="border border-0 d-flex justify-content-center">
+                                            <div class="text-center text-white p-1 text-uppercase rounded
+                                                 w-75 bg-{{ $user->status == 'activo'? 'success' : 'danger'}} btn-sm fw-semibold ">
+                                                {{ $user->status }}</div>
+                                        </td>
                                         <td class="border border-0"> 
-                                            <a class="btn btn-success btn-sm mt-1"  href="{{ route('admin.users.edit', ['id' => $user->id]) }}"><i class="fas fa-edit"></i></a>
-                                            <button class="btn btn-danger btn-sm mt-1" 
+                                            <a class="btn btn-success btn-sm"  href="{{ route('admin.instructor.edit', ['slug' => $user->slug]) }}"><i class="fas fa-edit"></i></a>
+                                            <button class="btn btn-danger btn-sm" 
                                                 data-bs-toggle="modal" 
                                                 data-bs-target="#deleteModal" 
                                                 data-action="{{ route('admin.users.destroy', ['id' => $user->id]) }}"

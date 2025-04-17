@@ -69,38 +69,28 @@
                                             {{ session('error') }}
                                         </div>
                                     @endif
-                                    <table class="table table-bordered table-striped" id="dataTable">
-                                        <thead class="table-dark">
-                                            <tr class="border border-0">
-                                                <th class="border border-0">#</th>
-                                                <th class="border border-0">Nome do Curso</th>
-                                                <th class="border border-0">Categoria</th>
-                                                <th class="border border-0">Preço do Curso</th>
-                                                <th class="border border-0">Acção</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="table-sm">
-                                            
-                                            @foreach ($courses as $course)
-                                            <tr>
-                                                <td> {{ $loop->index + 1 }} </td>
-                                                <td> {{ $course->name }} </td>
-                                                <td> {{ $course->category }} </td>
-                                                <td> {{ $course->price }} MZN</td>
-                                                <td> 
-                                                    <a class="btn btn-success btn-sm"  href="{{ route('instructor.courses.details',['slug' => $course->slug]) }}"><i class="fas fa-eye"></i></a>
-                                                    <a href="{{ route('instructor.courses.update', ['slug' => $course->slug]) }}" 
-                                                        class="btn btn-primary btn-sm m-1"><i class="fas fa-edit"></i></a>
-                                                    <a class="btn btn-danger btn-sm" 
-                                                        data-bs-toggle="modal" 
-                                                        data-bs-target="#deleteModal" 
-                                                        data-action="{{ route('profile.courses.delete', ['slug' => $course->slug]) }}"
-                                                        href="#"><i class="fas fa-trash"></i></a>
-                                                </td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                        @foreach ($courses as $course)
+
+                                            <div class="filter__gallery col-sm-4">
+                                                <div class="product__sidebar__view__item set-bg mix day years"
+                                                    data-setbg="{{ asset('assets/img/courses/'.$course->course_photo_path) }}">
+                                                    <div class="ep">{{ $course->price }} MZN</div>
+                                                    <div class="view"><i class="fa fa-eye"></i> {{ $course->views }}</div>
+                                                    <h5><a href="{{ route('instructor.courses.details',['slug' => $course->slug]) }}">{{ $course->name }}</a></h5>
+                                                    <div class="action"> 
+                                                        <a class="btn btn-success btn-sm"  href="{{ route('instructor.courses.details',['slug' => $course->slug]) }}"><i class="fas fa-eye"></i></a>
+                                                        <a href="{{ route('instructor.courses.update', ['slug' => $course->slug]) }}" 
+                                                            class="btn btn-primary btn-sm m-1"><i class="fas fa-edit"></i></a>
+                                                        <a class="btn btn-danger btn-sm" 
+                                                            data-bs-toggle="modal" 
+                                                            data-bs-target="#deleteModal" 
+                                                            data-action="{{ route('profile.courses.delete', ['slug' => $course->slug]) }}"
+                                                            href="#"><i class="fas fa-trash"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center p-2">

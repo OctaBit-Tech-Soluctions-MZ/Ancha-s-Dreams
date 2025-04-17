@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create('contents', function (Blueprint $table) {
             $table->id();
-            $table->string('content_id')->unique();
             $table->string('title');
             $table->text('description');
-            $table->string('drive_file_id');
-            $table->string('url_view');
-            $table->string('url_download');
+            $table->string('file_id')->nullable();
+            $table->string('duration');
+            $table->integer('order');
+            $table->string('url_preview');
+            $table->string('url_view')->nullable();
+            $table->string('url_download')->nullable();
+            $table->string('slug')->unique();
             $table->string('course_id');
             $table->double('rating')->default(0);
             $table->integer('views')->default(0);

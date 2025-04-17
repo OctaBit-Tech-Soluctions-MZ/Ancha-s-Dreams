@@ -2,17 +2,21 @@
 
 @section('title', 'Cursos')
 
+@section('subheading', 'Os nossos cursos de culinária')
+
+@section('headingtext', 'São 100% digitais e com um método inovador.')
+
 @section('content')
 
         <!-- Seção de Cursos -->
         <section class="p-3">
             <div class="container mt-4">
                 <div class="container text-center">
-                    <h2 class="fw-bold">Os <span class="text-success">nossos cursos</span> de culinária</h2>
-                    <p class="text-muted">São 100% digitais e com um método inovador.</p>
-
+                    <h5 class="mb-4 mt-4">
+                        <i class="bi bi-chevron-right"></i> <strong>CONHEÇA OS CURSOS E VEJA O QUE VOCÊ VAI APRENDER</strong>
+                    </h5>
                     <div class="">
-                        <div class="panel card shadow border border-0 mb-3">
+                        <div class="panel card border border-0 mb-3">
                             <form action="{{ route('courses') }}" method="get">
                                 <div class="row p-3">
                                     <div class="col-sm-4 mb-1">
@@ -43,9 +47,6 @@
                             Nenhum Curso foi registado
                         </div>
                     @else
-                        <h5 class="mb-4 mt-4">
-                            <i class="bi bi-chevron-right"></i> <strong>CONHEÇA OS CURSOS E VEJA O QUE VOCÊ VAI APRENDER</strong>
-                        </h5>
                         <div class="row row-cols-1 row-cols-md-3 g-4">
                         @foreach ($courses as $course)
                             <div class="col">
@@ -53,9 +54,9 @@
                                 <img src="{{ asset('assets/img/courses/'.$course->course_photo_path)}}" class="card-img-top" alt="{{ $course->name }}">
                                     <div class="card-body">
                                         <h6 class="text-uppercase fw-bold">{{ $course->name }}</h6>
-                                        <ul class="mt-3">
+                                        {{-- <ul class="mt-3">
                                             {{ $course->description }}
-                                        </ul>
+                                        </ul> --}}
                                         <p class="text-primary fw-bold mt-3 mb-1">{{ $course->price }} MZN</p>
                                     </div>
                                     <div class="card-footer d-flex justify-content-between">

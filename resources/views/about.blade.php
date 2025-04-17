@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('title', 'Sobre Nós')
+
+@section('subheading', 'Apaixonados por Sabores e Conhecimento')
+
+@section('headingtext', 'Ensinamos, cozinhamos e crescemos com você.')
+
 @section('content')
 <div class="container mt-5">
     <!-- Cabeçalho -->

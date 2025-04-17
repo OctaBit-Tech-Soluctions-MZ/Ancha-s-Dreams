@@ -19,29 +19,41 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
 
+    <!-- Trix Editor CSS -->
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
 
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
     <!-- Sidebar CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/sidebar.css') }}">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/app.css') }}">
+    
+    <!-- Loader Css -->
+    <link rel="stylesheet" href="{{ asset('assets/css/loader.css')}}">
 
 </head>
 <body>
-    <div class="">
+        <!-- Loader -->
+        <div class="loader-container" id="loader">
+            <div class="lds-roller">
+                <div></div><div></div><div></div><div></div>
+                <div></div><div></div><div></div><div></div>
+            </div>
+        </div>
+
         <div id="wrapper">
             <!-- Sidebar -->
-            <nav class="col-3 bg-dark vh-100 sidebar" id="collapseSidebar">
+            <nav class="col-3 bg-dark vh-100 sidebar show collapse" id="sidebar">
                 <ul class="nav flex-column">
                      <!-- Sidebar - Brand -->
                     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin">
                         <div class="sidebar-brand-icon rotate-n-15">
                             <img src="{{ asset('assets/img/navbar-logo.svg') }}" alt="">
                         </div>
-                        <div class="sidebar-brand-text mx-2 text-white">ALAGOANA</div>
+                        <div class="sidebar-brand-text mx-2 text-white">Escola de Culinaria</div>
                     </a>
 
                     <li class="nav-item m-2">
@@ -61,7 +73,7 @@
                         </a>
                     </li>
                     <li class="nav-item m-2">
-                        <a href="" class="nav-link p-2">
+                        <a href="{{ route('admin.students')}}" class="nav-link p-2">
                             <i class="fa-solid fa-fw fa-user-graduate me-2"></i>
                             <span>Alunos</span>
                         </a>
@@ -93,7 +105,7 @@
                         <div class="container-fluid">
                             <!-- Sidebar Toggle (Topbar) -->
                             <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3" 
-                            data-bs-toggle="collapse" href="#collapseSidebar" role="button" aria-expanded="false" aria-controls="collapseSidebar">
+                            data-bs-toggle="collapse" href="#sidebar" role="button" data-bs-target="#sidebar">
                                 <i class="fa fa-bars"></i>
                             </button>
                             <div class="dropdown">
@@ -123,7 +135,6 @@
                 </div>
             </div>
         </div>
-    </div>
 
     @include('components.modals.logout')
     @include('components.modals.delete')
@@ -138,6 +149,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+
+    <!-- Trix Editor JS -->
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
 
     <!-- Custom JS -->
     <script src="{{ asset('assets/js/app.js') }}"></script>

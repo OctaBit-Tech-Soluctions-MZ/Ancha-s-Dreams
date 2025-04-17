@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 
-@section('title', 'Login | ')
+@section('title', 'Entre na Sua Cozinha Virtual')
 
 @section('content')
         
@@ -14,7 +14,7 @@
         
         <div class="container d-flex justify-content-center align-items-center p-5 mt-2 bg-grey-200 ">
             <div class="p-4 col-6 card shadow  card-auth">
-                <h3 class="text-center">Entrar</h3>
+                <h3 class="text-center p-1">Acesse Sua Conta</h3>
                 
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
@@ -40,9 +40,9 @@
                             </a>
                         @endif
 
-                        <x-button class="ms-4 btn btn-primary">
+                        <button type="submit" class="ms-4 btn btn-primary">
                             {{ __('Login') }}
-                        </x-button>
+                        </button>
                     </div>
                 </form>
             </div>

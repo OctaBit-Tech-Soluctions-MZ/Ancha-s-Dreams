@@ -365,3 +365,11 @@ ul.summary-list > li:last-child  {
 .__image__ {
     font-size: 1.78rem;
 }
+
+@media (max-width: 568px) {
+    .bio-graph-heading {
+        font-size: 12px;
+        padding: 0;
+        padding: 20px;
+    }
+}

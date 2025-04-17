@@ -27,6 +27,7 @@ class CourseRequest extends FormRequest
             'description' => 'required|string',
             'course_photo' => 'required|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'categories'   => 'required|string',
+            'nivel'        => 'required|string'
         ];
     }
 

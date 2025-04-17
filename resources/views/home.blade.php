@@ -2,6 +2,10 @@
 
 @section('title', 'Pagina Inicial')
 
+@section('subheading', 'Bem vindo a ALAGOANA!')
+
+@section('headingtext', 'PRAZER EM CONHECER TE')
+
 @section('content')
 
         <section class="container my-5">

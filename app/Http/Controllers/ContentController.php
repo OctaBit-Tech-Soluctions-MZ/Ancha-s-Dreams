@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 class ContentController extends Controller
 {
     public function index($slug){
+
         Course::where('slug', $slug)->firstOrFail();
         $contents = Content::all();
         return view('instructor.lesson',compact('slug', 'contents'));
@@ -32,8 +33,6 @@ class ContentController extends Controller
 
         $course = Course::where('slug',$slug)->firstOrFail();
         $content = new Content();
-        $content->content_id = GenerateID::exists($content, 'ls',['min'=>10,'max'=>99],
-                                                                 ['min'=>100,'max'=>999]);
         $content->title = $request->title;
         $content->description = $request->description;
         $content->course_id = $course->course_id;

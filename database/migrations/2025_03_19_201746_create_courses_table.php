@@ -13,18 +13,21 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->string('course_id')->unique();
             $table->string('name');
             $table->text('description');
             $table->string('category');
             $table->double('price');
+            $table->string('slug')->unique();
+            $table->string('nivel');
+            $table->integer('course_type');
+            $table->string('duration_total');
+            $table->boolean('certificate');
             $table->string('course_photo_path');
             $table->string('teacher');
+            $table->string('folder_id')->unique()->nullable();
             $table->integer('views')->default(0);
             $table->double('rating')->default(0);
-            $table->string('status')->default('Em Lançamento');
-            $table->string('drive_folder_id')->unique();
-            $table->string('slug')->unique();
+            $table->string('status')->default('inactivo');
             $table->timestamps();
         });
     }

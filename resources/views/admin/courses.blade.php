@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
-@section('title', 'Courses | Admin')
+@section('title', 'Cursos | Admin')
 
-@section('page', 'Listagem de Cursos')
+@section('page', 'Lista de Cursos')
 
 @section('content')
 
 <div class="p-3">
     <div class="panel card shadow border border-0">
-        <form action="{{ route('profile.courses') }}" method="get">
+        <form action="{{ route('admin.courses') }}" method="get">
             <div class="row p-3">
                 <div class="col-sm-4 mb-1">
                     <input type="text" name="search" class="form-control form-control-sm" placeholder="pesquisar por nome...">

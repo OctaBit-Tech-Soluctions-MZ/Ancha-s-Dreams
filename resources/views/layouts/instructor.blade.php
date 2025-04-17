@@ -19,9 +19,11 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
 
+    <!-- Trix Editor CSS -->
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
 
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
     <!-- Sidebar CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/sidebar.css') }}">
@@ -56,14 +58,14 @@
                             <span>Dashboard</span></a>
                     </li>
                     <li class="nav-item m-2">
-                        <a class="nav-link p-2" aria-current="page" href="{{ route('instructor.books') }}">
-                            <i class="fas fa-fw fa-book me-2"></i>
-                            <span>Livros</span></a>
-                    </li>
-                    <li class="nav-item m-2">
                         <a class="nav-link p-2" aria-current="page" href="{{ route('instructor.courses')}}">
                             <i class="fas fa-fw fa-certificate me-2"></i>
                             <span>Cursos</span></a>
+                    </li>
+                    <li class="nav-item m-2">
+                        <a class="nav-link p-2" aria-current="page" href="{{ route('instructor.recipes') }}">
+                            <i class="fas fa-fw fa-book me-2"></i>
+                            <span>Receitas</span></a>
                     </li>
                 </ul>
             </nav>
@@ -99,7 +101,10 @@
                     <!-- Content Row -->
                     <div class="row">
                         <div class="pt-2 pb-2 ps-5 pe-5 d-flex justify-content-between">
-                            <a href="{{ url()->previous() }}" class="btn btn-primary">Voltar</a>
+                            @php
+                            $backUrl = getBackUrl();
+                            @endphp
+                            <a href="{{ $backUrl }}" class="btn btn-primary">Voltar</a>
                             <h3>@yield('page')</h3>
                         </div>
                         @yield('content')
@@ -123,6 +128,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+
+    <!-- Trix Editor JS -->
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
 
     <!-- Custom JS -->
     <script src="{{ asset('assets/js/app.js') }}"></script>

@@ -13,7 +13,7 @@ class ProfileController extends Controller
 {
     public function index(Request $request)
     {
-        $role = Role::find(Auth::user()->role,['name']);
+        $role = Role::where('role_key',Auth::user()->role)->first();
 
         return view('profile.show', [
             'request' => $request,

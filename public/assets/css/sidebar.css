@@ -1,3 +1,43 @@
+#wrapper {
+  display: flex;
+}
+
+:root {
+  --sidebar-width: 14rem;
+  --sidebar-width-sm: 6.8rem;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 1000;
+  overflow-y: auto;
+  transition: width 0.3s ease;
+}
+#content-wrapper {
+  margin-left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+  height: 100vh;
+  overflow-y: auto;
+  transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+#sidebar.collapse:not(.show) {
+  width: 0 !important;
+  overflow: hidden;
+}
+
+#sidebar.collapse:not(.show) ~ #content-wrapper {
+  margin-left: 0;
+  width: 100%;
+}
+
+#wrapper #content-wrapper #content {
+  flex: 1 0 auto;
+}
 .sidebar {
   min-height: 100vh;
 }
@@ -167,6 +207,15 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
+@media (max-width: 568px) {
+  #sidebar {
+    width: var(--sidebar-width-sm);
+  }
+  #content-wrapper {
+    margin-left: var(--sidebar-width-sm);
+  }
+}
+
 @media (min-width: 768px) {
   .sidebar {
     width: 14rem !important;
@@ -283,6 +332,9 @@
   .sidebar.toggled .sidebar-heading {
     text-align: center;
   }
+}
+trix-editor {
+  height: 200px;
 }
 #wrapper {
   display: flex;

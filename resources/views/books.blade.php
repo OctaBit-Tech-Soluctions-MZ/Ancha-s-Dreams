@@ -2,6 +2,10 @@
 
 @section('title', 'Livros | ')
 
+@section('subheading', 'Livros que Temperam o Conhecimento')
+
+@section('headingtext', 'Sabores e saberes em cada página.')
+
 @section('content')
 
 <div class="container p-5">

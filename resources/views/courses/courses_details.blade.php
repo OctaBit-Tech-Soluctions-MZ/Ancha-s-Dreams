@@ -28,17 +28,17 @@
                                 <a href="#"><i class="fa fa-star"></i></a>
                                 <a href="#"><i class="fa fa-star"></i></a>
                                 <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star-half-o"></i></a>
+                                <a href="#"><i class="fa fa-star half-o"></i></a>
                             </div>
                         </div>
-                        <p>{{ $course->description }}</p>
+                        <p>{!! $course->description !!}</p>
                         <div class="course__details__widget">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
                                     <ul>
                                         <li><span>Lancado em:</span> {{ $course->created_at->format('Y-m-d') }}</li>
                                         <li><span>Status:</span> {{ $course->status }}</li>
-                                        <li><span>Categoria:</span> {{ $course->categoria }}</li>
+                                        <li><span>Categoria:</span> {{ $course->category }}</li>
                                     </ul>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
@@ -51,8 +51,7 @@
                             </div>
                         </div>
                         <div class="course__details__btn">
-                            <a href="#" class="buy-btn btn-success"><i class="fa fa-shopping-cart"></i> Comprar</a>
-                            <a href="{{ route('courses.watch', ['slug' => $course->slug]) }}" class="watch-btn"><span class=" bg-primary">Aprenda Agora</span> <i
+                            <a href="{{ route('courses.watch', ['slug' => $course->slug]) }}" class="buy-btn"><span>Aprenda Agora</span> <i
                                 class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
@@ -81,7 +80,7 @@
                             <h5>Seu Comentario</h5>
                         </div>
                         <form action="#">
-                            <textarea placeholder="Seu comentario" class="card "></textarea>
+                            <textarea placeholder="Seu comentario" class="card border"></textarea>
                             <button type="submit" class="bg-primary"><i class="fa fa-location-arrow"></i> Comentar</button>
                         </form>
                     </div>
