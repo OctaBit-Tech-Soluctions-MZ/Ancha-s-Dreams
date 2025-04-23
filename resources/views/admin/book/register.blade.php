@@ -2,13 +2,12 @@
 
 @section('title', 'Registo de Livros')
 
+@section('page', 'Formulario de Registo de Livros')
+
 @section('content')
 
 
 <div class="p-4">
-    <div class="panel card shadow-sm border border-0 mb-3 p-3">
-        <h1 class="h3 mb-0 text-gray-800 text-center">Formulario de Registo de Livros</h1>
-    </div>
     <div class="panel card shadow-sm border border-0">
         <div class="panel-body bio-graph-info p-3">
             <div class="card-body">
@@ -35,10 +34,17 @@
                 
                 <form method="POST" action="{{ route('admin.books.store') }}" enctype="multipart/form-data">
                     @csrf
-                    <div class="mb-3">
-                        <label class="form-label" for="title">Titulo do Livro</label>
-                        <input type="text" class="form-control" placeholder="informe o Titulo do Livro" id="title"
-                            name="title" :value="old('title')">
+                    <div class="form-group row">
+                        <div class="mb-3 col-sm-6">
+                            <label class="form-label" for="title">Titulo do Livro</label>
+                            <input type="text" class="form-control" placeholder="informe o Titulo do Livro" id="title"
+                                name="title" :value="old('title')">
+                        </div>
+                        <div class="mb-3 col-sm-6">
+                            <label class="form-label" for="author">Autor do Livro</label>
+                            <input type="text" class="form-control" placeholder="informe o autor do Livro" id="author"
+                                name="author" :value="old('author')">
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="description">Descricao do Livro</label>
@@ -46,9 +52,17 @@
                         <trix-editor input="description"></trix-editor>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label" for="author">Autor do Livro</label>
-                        <input type="text" class="form-control" placeholder="informe o autor do Livro" id="author"
-                            name="author" :value="old('author')">
+                        <label for="price" class="form-label">Preço do Livro</label>
+                        <div class="range">
+                            <div class="sliderValue">
+                                <span>100</span>
+                            </div>
+                            <div class="field">
+                                <div class="value left">0</div>
+                                <input type="range" min="10" max="200" value="100" steps="1" name="price" id="price">
+                                <div class="value right">200</div>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3">

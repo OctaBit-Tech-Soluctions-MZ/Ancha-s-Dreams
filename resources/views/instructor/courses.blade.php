@@ -42,11 +42,11 @@
                             {{ session('success') }}
                         </div>
                     @endif
+                    <div class="d-flex justify-content-start p-4">
+                        <a href="{{ route('instructor.courses.register') }}" class="btn btn-success btn-sm">Registar Curso</a>
+                    </div>
                     
-                    <div class="panel card shadow border border-0">
-                        <div class="d-flex justify-content-start p-2">
-                            <a href="{{ route('instructor.courses.register') }}" class="btn btn-success btn-sm">Registar Curso</a>
-                        </div>
+                    <div class="p-3">
                         
                     @if (count($courses) == 0 && $search)
                         <div class="p-3 text-center">
@@ -62,35 +62,18 @@
                         <!-- DataTales Example -->
                         <div class="panel-body bio-graph-info">
                             <div class="card-body">
-                                <div class="table-responsive d-flex gap-2">
+                                <div class="d-flex gap-2">
 
                                     @if(session('error'))
                                         <div class="alert alert-danger">
                                             {{ session('error') }}
                                         </div>
                                     @endif
-                                        @foreach ($courses as $course)
-
-                                            <div class="filter__gallery col-sm-4">
-                                                <div class="product__sidebar__view__item set-bg mix day years"
-                                                    data-setbg="{{ asset('assets/img/courses/'.$course->course_photo_path) }}">
-                                                    <div class="ep">{{ $course->price }} MZN</div>
-                                                    <div class="view"><i class="fa fa-eye"></i> {{ $course->views }}</div>
-                                                    <h5><a href="{{ route('instructor.courses.details',['slug' => $course->slug]) }}">{{ $course->name }}</a></h5>
-                                                    <div class="action"> 
-                                                        <a class="btn btn-success btn-sm"  href="{{ route('instructor.courses.details',['slug' => $course->slug]) }}"><i class="fas fa-eye"></i></a>
-                                                        <a href="{{ route('instructor.courses.update', ['slug' => $course->slug]) }}" 
-                                                            class="btn btn-primary btn-sm m-1"><i class="fas fa-edit"></i></a>
-                                                        <a class="btn btn-danger btn-sm" 
-                                                            data-bs-toggle="modal" 
-                                                            data-bs-target="#deleteModal" 
-                                                            data-action="{{ route('profile.courses.delete', ['slug' => $course->slug]) }}"
-                                                            href="#"><i class="fas fa-trash"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endforeach
+                                        
+                                    <div class="row g-5">
+                                        {{-- Course Card Blade Component. resources/components/course-card-instructor.blade.php --}}
+                                        <x-course-card-instructor :courses="$courses"  />
+                                    </div>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center p-2">

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('experience')->after('specialty')->nullable();
             $table->longText('certificate')->after('experience')->nullable();
             $table->string('status')->after('certificate')->nullable()->default('activo');
+            $table->string('slug')->after('status')->nullable();
         });
     }
 

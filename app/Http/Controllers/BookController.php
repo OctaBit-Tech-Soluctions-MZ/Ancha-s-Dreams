@@ -4,14 +4,37 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BookRequest;
 use App\Models\Book;
+use App\Models\Category;
 use App\Services\GoogleDriveService;
 use App\Services\UploadService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
-    public function list() {
-        return view('books');
+    public function index(Request $request) {
+        $search = $request->search;
+        $category = $request->categories;
+        $order_by = $request->order_by;
+
+        if($search || $category || $order_by){
+            $books = Book::when($search, function ($query, $search) {
+                        return $query->where([
+                            ['name', 'like', '%'.$search.'%'],
+                            //['categoria', $category]
+                        ]);
+                    })->when($request->order_by, function ($query, $orderBy) {
+                        $allowedColumns = ['name', 'created_at'];
+                        if (in_array($orderBy, $allowedColumns)) {
+                            return $query->orderBy($orderBy);
+                        }
+                        return $query;
+                    })->paginate(5);
+        }else {
+            $books = Book::paginate(5);
+        }
+        $categories = Category::all('name');
+        return view('books', compact('books', 'categories'));
     }
 
     public function register() {
@@ -38,6 +61,9 @@ class BookController extends Controller
         $book->description = $request->description;
         $book->author = $request->author;
         $book->pdf_book_url = $book_drive->webContentLink;
+        $book->associate_course = 0;
+        $book->create_by = Auth::id();
+        $book->price = $request->price;
         // $book->pdf_book_url = 'teste.pdf';
         $book->save();
 

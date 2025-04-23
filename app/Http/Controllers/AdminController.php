@@ -73,7 +73,6 @@ class AdminController extends Controller
         }else {
             $books = Book::paginate(5);
         }
-
         $categories = Category::all('name');
         return view('admin.books',compact('books','search','categories','order_by','category'));
     }

@@ -34,7 +34,7 @@ class GoogleDriveService
     {
         try {
             $files = $this->drive->files->listFiles(['pageSize' => 1]);
-            return $files ? 'Conexão OK ✅' : 'Falha na conexão ❌';
+            return $files ? 'Conexão OK' : 'Falha na conexão';
         } catch (Exception $e) {
             return 'Erro: ' . $e->getMessage();
         }

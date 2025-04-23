@@ -9,69 +9,129 @@
 @section('content')
 
         <!-- Seção de Cursos -->
-        <section class="p-3">
+        <section class="p-1">
             <div class="container mt-4">
                 <div class="container text-center">
                     <h5 class="mb-4 mt-4">
                         <i class="bi bi-chevron-right"></i> <strong>CONHEÇA OS CURSOS E VEJA O QUE VOCÊ VAI APRENDER</strong>
                     </h5>
-                    <div class="">
-                        <div class="panel card border border-0 mb-3">
-                            <form action="{{ route('courses') }}" method="get">
-                                <div class="row p-3">
-                                    <div class="col-sm-4 mb-1">
-                                        <input type="text" name="search" class="form-control form-control-sm" placeholder="pesquisar por nome...">
-                                    </div>
-                                    <div class="col-sm-4 mb-1">
-                                        <select name="categories" class="form-select form-select-sm">
-                                            <option value="" selected>Selecione uma categoria</option>
-                                            @foreach($categories as $category)
-                                                <option value="{{ $category->name }}">{{ $category->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-4 mb-1">
-                                        <select name="order_by" class="form-select form-select-sm">
-                                            <option value="" selected>Ordenar Por</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-4 mt-2 d-flex justify-content-start">
-                                        <button type="submit" class="btn btn-primary btn-sm">Aplicar Filtros</button>
+
+
+                    <div class="rbt-course-top-wrapper mt--40 mt_sm--20 mb-5">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="rbt-sorting-list d-flex flex-wrap align-items-center justify-content-start justify-content-lg-end">
+                                        <div class="rbt-short-item">
+                                            <form action="{{route('courses')}}" class="rbt-search-style me-0">
+                                                <input type="text" placeholder="Pesquise o seu curso" name="search">
+                                                <button type="submit" class="rbt-search-btn rbt-round-btn">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                        <div class="rbt-short-item">
+                                            <div class="view-more-btn text-start text-sm-end">
+                                                <button class="discover-filter-button discover-filter-activation rbt-btn btn-md radius-round">Filtros<i class="fas fa-filter"></i></button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
+        
+                            <!-- Start Filter Toggle  -->
+                            <div class="default-exp-wrapper default-exp-expand" style="display: none;">
+                                <div class="filter-inner">
+                                    <div class="filter-select-option">
+                                        <div class="filter-select rbt-modern-select">
+                                            <span class="select-label d-block">Short By</span>
+                                            <div class="dropdown bootstrap-select"><select class="">
+                                                <option selected="selected">Default</option>
+                                                <option>Latest</option>
+                                                <option>Popularity</option>
+                                                <option>Trending</option>
+                                                <option>Price: low to high</option>
+                                                <option>Price: high to low</option>
+                                            </select><button type="button" tabindex="-1" class="btn dropdown-toggle btn-light" data-bs-toggle="dropdown" role="combobox" aria-owns="bs-select-1" aria-haspopup="listbox" aria-expanded="false" title="Default"><div class="filter-option"><div class="filter-option-inner"><div class="filter-option-inner-inner">Default</div></div> </div></button><div class="dropdown-menu "><div class="inner show" role="listbox" id="bs-select-1" tabindex="-1"><ul class="dropdown-menu inner show" role="presentation"></ul></div></div></div>
+                                        </div>
+                                    </div>
+        
+                                    <div class="filter-select-option">
+                                        <div class="filter-select rbt-modern-select">
+                                            <span class="select-label d-block">Short By Author</span>
+                                            <div class="dropdown bootstrap-select show-tick"><select data-live-search="true" title="Select Author" multiple="multiple" data-size="7" data-actions-box="true" data-selected-text-format="count &gt; 2" class="">
+                                                <option data-subtext="Experts">Janin Afsana</option>
+                                                <option data-subtext="Experts">Joe Biden</option>
+                                                <option data-subtext="Experts">Fatima Asrafy</option>
+                                                <option data-subtext="Experts">Aysha Baby</option>
+                                                <option data-subtext="Experts">Mohamad Ali</option>
+                                                <option data-subtext="Experts">Jone Li</option>
+                                                <option data-subtext="Experts">Alberd Roce</option>
+                                                <option data-subtext="Experts">Zeliski Noor</option>
+                                            </select><button type="button" tabindex="-1" class="btn dropdown-toggle bs-placeholder btn-light" data-bs-toggle="dropdown" role="combobox" aria-owns="bs-select-2" aria-haspopup="listbox" aria-expanded="false" title="Select Author"><div class="filter-option"><div class="filter-option-inner"><div class="filter-option-inner-inner">Select Author</div></div> </div></button><div class="dropdown-menu "><div class="bs-searchbox"><input type="search" class="form-control" autocomplete="off" role="combobox" aria-label="Search" aria-controls="bs-select-2" aria-autocomplete="list"></div><div class="bs-actionsbox"><div class="btn-group btn-group-sm"><button type="button" class="actions-btn bs-select-all btn btn-light">Select All</button><button type="button" class="actions-btn bs-deselect-all btn btn-light">Deselect All</button></div></div><div class="inner show" role="listbox" id="bs-select-2" tabindex="-1" aria-multiselectable="true"><ul class="dropdown-menu inner show" role="presentation"></ul></div></div></div>
+                                        </div>
+                                    </div>
+        
+                                    <div class="filter-select-option">
+                                        <div class="filter-select rbt-modern-select">
+                                            <span class="select-label d-block">Short By Offer</span>
+                                            <div class="dropdown bootstrap-select"><select class="">
+                                                <option selected="selected">Free</option>
+                                                <option>Paid</option>
+                                                <option>Premium</option>
+                                            </select><button type="button" tabindex="-1" class="btn dropdown-toggle btn-light" data-bs-toggle="dropdown" role="combobox" aria-owns="bs-select-3" aria-haspopup="listbox" aria-expanded="false" title="Free"><div class="filter-option"><div class="filter-option-inner"><div class="filter-option-inner-inner">Free</div></div> </div></button><div class="dropdown-menu "><div class="inner show" role="listbox" id="bs-select-3" tabindex="-1"><ul class="dropdown-menu inner show" role="presentation"></ul></div></div></div>
+                                        </div>
+                                    </div>
+        
+                                    <div class="filter-select-option">
+                                        <div class="filter-select rbt-modern-select">
+                                            <span class="select-label d-block">Short By Category</span>
+                                            <div class="dropdown bootstrap-select"><select data-live-search="true" class="">
+                                                <option selected="selected">Web Design</option>
+                                                <option>Graphic</option>
+                                                <option>App Development</option>
+                                                <option>Figma Design</option>
+                                            </select><button type="button" tabindex="-1" class="btn dropdown-toggle btn-light" data-bs-toggle="dropdown" role="combobox" aria-owns="bs-select-4" aria-haspopup="listbox" aria-expanded="false" title="Web Design"><div class="filter-option"><div class="filter-option-inner"><div class="filter-option-inner-inner">Web Design</div></div> </div></button><div class="dropdown-menu "><div class="bs-searchbox"><input type="search" class="form-control" autocomplete="off" role="combobox" aria-label="Search" aria-controls="bs-select-4" aria-autocomplete="list"></div><div class="inner show" role="listbox" id="bs-select-4" tabindex="-1"><ul class="dropdown-menu inner show" role="presentation"></ul></div></div></div>
+                                        </div>
+                                    </div>
+        
+                                    <div class="filter-select-option">
+                                        <div class="filter-select">
+                                            <span class="select-label d-block">Price Range</span>
+        
+                                            <div class="price_filter s-filter clear">
+                                                <form action="#" method="GET">
+                                                    <div id="slider-range" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 18.3673%; width: 40.8163%;"></div><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 18.3673%;"></span><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 59.1837%;"></span></div>
+                                                    <div class="slider__range--output">
+                                                        <div class="price__output--wrap">
+                                                            <div class="price--output">
+                                                                <span>Price :</span><input type="text" id="amount" value="$100 - $300">
+                                                            </div>
+                                                            <div class="price--filter">
+                                                                <a class="rbt-btn btn-gradient btn-sm" href="#">Filter</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+        
+        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Filter Toggle  -->
                         </div>
                     </div>
+                    <!-- End Course Top  -->
                     @if (empty($courses))
                         <div class="alert alert-danger">
                             Nenhum Curso foi registado
                         </div>
                     @else
-                        <div class="row row-cols-1 row-cols-md-3 g-4">
-                        @foreach ($courses as $course)
-                            <div class="col">
-                                <div class="card h-100 shadow-sm">
-                                <img src="{{ asset('assets/img/courses/'.$course->course_photo_path)}}" class="card-img-top" alt="{{ $course->name }}">
-                                    <div class="card-body">
-                                        <h6 class="text-uppercase fw-bold">{{ $course->name }}</h6>
-                                        {{-- <ul class="mt-3">
-                                            {{ $course->description }}
-                                        </ul> --}}
-                                        <p class="text-primary fw-bold mt-3 mb-1">{{ $course->price }} MZN</p>
-                                    </div>
-                                    <div class="card-footer d-flex justify-content-between">
-                                        <button class="btn btn-info add-to-cart-btn"
-                                            data-id="{{ $course->id }}"
-                                            data-name="{{ $course->name }}"
-                                            data-price="{{ $course->price }}"
-                                            data-photo="{{ $course->course_photo_path }}">
-                                            <i class="fas fa-shopping-cart me-2"></i> Adicionar ao Carrinho
-                                        </button>
-                                        <a href="{{ route('courses.details', ['slug' => $course->slug]) }}" class="btn btn-outline-dark">+ Info</a>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
+                        <div class="row g-5">
+                            {{-- Courses Card Blade Components path:resource/components/course-card.blade.php --}}
+                            <x-course-card :courses="$courses"  />
                         </div>
                         <div class="d-flex justify-content-center p-4">
                             {{ $courses->links() }}
@@ -79,108 +139,5 @@
                     @endif
                 </div>
             </div>
-    </section><br><br>
-
-    <section class="py-5">
-    <div class="container">
-        {{-- Título --}}
-        <div class="mb-5">
-            <h2 class="h4">
-                <i class="bi bi-chevron-right"></i> O QUE OS ALUNOS FALAM
-            </h2>
-        </div>
-
-        {{-- Depoimentos --}}
-        <div class="row">
-            {{-- Depoimento 1 --}}
-            <div class="col-md-4 mb-4">
-                <div class="testimonial">
-                    <p class="quote">"Sempre gostei de ervas e especiarias, mas com o conhecimento aprendido no curso tenho ousado mais..."</p>
-                    <h6 class="mt-3 mb-0">FERNANDA MELO</h6>
-                    <small>aluna do curso Aprenda a temperar com ervas e especiarias</small>
-                </div>
-            </div>
-
-            {{-- Depoimento 2 --}}
-            <div class="col-md-4 mb-4">
-                <div class="testimonial">
-                    <p class="quote">"Curso bastante informativo e bem estruturado, gostei principalmente dos infográficos e do caderno..."</p>
-                    <h6 class="mt-3 mb-0">RAFAEL BATISTA</h6>
-                    <small>aluno do curso Aprenda a temperar com ervas e especiarias</small>
-                </div>
-            </div>
-
-            {{-- Depoimento 3 --}}
-            <div class="col-md-4 mb-4">
-                <div class="testimonial">
-                    <p class="quote">"O curso é muito bom, adorei. Aprendi e descobri novos sabores e técnicas. Recomendo."</p>
-                    <h6 class="mt-3 mb-0">CELIA TIMOTHEO</h6>
-                    <small>aluna do curso Aprenda a temperar com ervas e especiarias</small>
-                </div>
-            </div>
-
-            {{-- Depoimento 4 --}}
-            <div class="col-md-4 mb-4">
-                <div class="testimonial">
-                    <p class="quote">"Esse curso é espetacular! Aprendi muitas coisas que já estou colocando em prática."</p>
-                    <h6 class="mt-3 mb-0">DANI VELOSO</h6>
-                    <small>aluna do curso Pê-efe saudável: uma fórmula descomplicada para resolver a alimentação</small>
-                </div>
-            </div>
-
-            {{-- Depoimento 5 --}}
-            <div class="col-md-4 mb-4">
-                <div class="testimonial">
-                    <p class="quote">"Sou estudante de nutrição e gostei muito da didática da Rita..."</p>
-                    <h6 class="mt-3 mb-0">AMANDA LUIZA</h6>
-                    <small>aluna do curso Pê-efe saudável: uma fórmula descomplicada para resolver a alimentação</small>
-                </div>
-            </div>
-
-            {{-- Depoimento 6 --}}
-            <div class="col-md-4 mb-4">
-                <div class="testimonial">
-                    <p class="quote">"Fiz o primeiro curso e amei. Aprendi muito. Estou craque em ervas e especiarias. Façam que vocês vão amar!"</p>
-                    <h6 class="mt-3 mb-0">MARGARETH CASSAR</h6>
-                    <small>aluna do curso Aprenda a temperar com ervas e especiarias</small>
-                </div>
-            </div>
-        </div>
-
-        {{-- Nossos Livros --}}
-        <div class="mt-5">
-            <h2 class="h4">
-                <i class="bi bi-chevron-right"></i> NOSSOS LIVROS
-            </h2>
-            <div class="row text-center mt-4">
-                <div class="col-6 col-md-2 mb-4">
-                <img src="{{ asset('assets/img/bk-2545-novo-projeto-28.webp') }}" class="card-img-top" alt="Curso 1">
-                    <p class="small">Panelinha</p>
-                </div>
-                <div class="col-6 col-md-2 mb-4">
-                    <img src="{{ asset('assets/img/fotor_2023-4-16_9_15_5-768x1311.png') }}" class="card-img-top" alt="Curso 1">
-                    <p class="small">Cozinha a quatro mãos</p>
-                </div>
-                <div class="col-6 col-md-2 mb-4">
-                    <img src="{{ asset('assets/img/Sabores-e-E2-1-1536x1536.jpg') }}" class="card-img-top" alt="Curso 1">
-                    <p class="small">Direto ao pão</p>
-                </div>
-                <div class="col-6 col-md-2 mb-4">
-                    <img src="{{ asset('assets/img/Tsokosta-expo22-copiar-1536x1536.jpg') }}" class="card-img-top" alt="Curso 1">
-                    <p class="small">Comida de bebê</p>
-                </div>
-                <div class="col-6 col-md-2 mb-4">
-                    <img src="{{ asset('assets/img/Tsokosta-Sorvettes02-1-1536x1536.jpg') }}" class="card-img-top" alt="Curso 1">
-                    <p class="small">O que tem na geladeira?</p>
-                </div>
-                <div class="col-6 col-md-2 mb-4">
-                    <img src="{{ asset('assets/img/Tsokosta-Panificacao-1536x1024.jpg') }}" class="card-img-top" alt="Curso 1">
-                    <p class="small">Rita, Help!</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
+    </section>
 @endsection

@@ -45,15 +45,14 @@
                 {{-- so aparece quando o utilizador nao esta logado --}}
                 @guest
                 <!-- Botão de Cadastro/Login -->
-                <div class="d-flex gap-2">
+                <div class="d-flex">
                     <li class="nav-item">
-                        <a class="btn-tx btn btn-outline-primary rounded-sm" href="{{ route('login') }}">
+                        <a class="btn-sm btn btn-outline-light rounded-sm" href="{{ route('login') }}">
                             <span>Login</span>
                         </a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="btn-tx btn btn-primary rounded-sm" href="{{ route('register') }}">
+                        <a class="btn btn-primary btn-sm rounded-sm" href="{{ route('register') }}">
                             <span>Registo</span>
                         </a>
                     </li>

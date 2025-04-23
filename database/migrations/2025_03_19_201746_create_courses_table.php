@@ -19,9 +19,7 @@ return new class extends Migration
             $table->double('price');
             $table->string('slug')->unique();
             $table->string('nivel');
-            $table->integer('course_type');
-            $table->string('duration_total');
-            $table->boolean('certificate');
+            $table->boolean('certificate')->default(1);
             $table->string('course_photo_path');
             $table->string('teacher');
             $table->string('folder_id')->unique()->nullable();

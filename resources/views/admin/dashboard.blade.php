@@ -99,14 +99,22 @@
                             <td class="border border-0"><span> 4000 Mzn</span></td>
                             <td class="border border-0 d-flex justify-content-center"><div class="bg-warning rounded-circle p-2" style="width: 25%"></div></td>
                             <td class="border border-0">
-                                <form method="POST" action="{{ route('admin.dashboard') }}" class="d-flex justify-content-between gap-1">
+                                <form method="POST" action="{{ route('admin.dashboard') }}" class="d-flex align-items-center gap-2" id="statusForm">
                                     @csrf
                                     @method('PUT')
-                                    <input type="checkbox" name="check" id="check">
-                                    <input type="checkbox" name="cancel" id="cancel">
-                                    <label for="check" class="fa fa-check btn btn-success btn-sm"></label>
-                                    <label for="cancel" class="fa fa-cancel btn btn-danger btn-sm"></label>
+                                
+                                    <input type="checkbox" name="check" id="check" class="d-none">
+                                    <input type="checkbox" name="cancel" id="cancel" class="d-none">
+                                
+                                    <button type="button" class="btn btn-success btn-sm" onclick="submitWithCheck('check')">
+                                        <i class="fa fa-check"></i> Aprovar
+                                    </button>
+                                
+                                    <button type="button" class="btn btn-danger btn-sm" onclick="submitWithCheck('cancel')">
+                                        <i class="fa fa-times"></i> Cancelar
+                                    </button>
                                 </form>
+                            
                             </td>
                         </tr>
                         <tr>

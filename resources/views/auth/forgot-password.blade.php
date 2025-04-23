@@ -3,7 +3,8 @@
 @section('title','Recuperando a senha')
 
 @section('content')
-
+    
+    <div class="pt-3 mt-5">
         @session('status')
             <div class="mb-4 font-medium text-sm text-green-600">
                 {{ $value }}
@@ -32,4 +33,5 @@
                 </form>
             </div>
         </div>
+    </div>
 @endsection

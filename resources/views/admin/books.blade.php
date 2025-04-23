@@ -84,17 +84,16 @@
                                             @foreach ($books as $book)
                                             <tr>
                                                 <td> {{ $loop->index + 1 }} </td>
-                                                <td> {{ $book->name }} </td>
+                                                <td> {{ $book->title }} </td>
                                                 <td> {{ $book->category }} </td>
                                                 <td> {{ $book->price }} MZN</td>
                                                 <td> 
-                                                    <a class="btn btn-success btn-sm"  href="{{ route('instructor.courses.details',['slug' => $book->slug]) }}"><i class="fas fa-eye"></i></a>
-                                                    <a href="{{ route('instructor.courses.update', ['slug' => $book->slug]) }}" 
+                                                    <a href="{{$book->slug}}" 
                                                         class="btn btn-primary btn-sm m-1"><i class="fas fa-edit"></i></a>
                                                     <a class="btn btn-danger btn-sm" 
                                                         data-bs-toggle="modal" 
                                                         data-bs-target="#deleteModal" 
-                                                        data-action="{{ route('profile.courses.delete', ['slug' => $book->slug]) }}"
+                                                        data-action=""
                                                         href="#"><i class="fas fa-trash"></i></a>
                                                 </td>
                                             </tr>

@@ -47,7 +47,7 @@ class CourseController extends Controller
                     ->where('slug', $slug)
                     ->first();
 
-        return view('courses.courses_details', compact('course'));
+        return view('courses.details', compact('course'));
     }
 
     public function watch(){
@@ -56,7 +56,7 @@ class CourseController extends Controller
 
     public function register(){
         $categories = Category::all('name');
-        return view('instructor.courses.register',compact('categories'));
+        return view('courses.register',compact('categories'));
     }
 
     public function moreInfo($slug){
@@ -84,6 +84,7 @@ class CourseController extends Controller
             $path = 'assets/img/courses';
             $fileDefault = 'default.png';
             $imageName = UploadService::upload($requestPhoto,$path,$fileDefault, $allowedExtensions);
+            
         }
         
         // Criação da pasta no Google Drive
@@ -98,7 +99,7 @@ class CourseController extends Controller
         $course->category = $request->categories;
         $course->description = $request->description;
         $course->course_photo_path = $imageName;
-        $course->teacher = Auth::id(); // mesma coisa que Auth::user()->id
+        $course->teacher = Auth::id();
         $course->folder_id = $folderId;
         $course->save();
     

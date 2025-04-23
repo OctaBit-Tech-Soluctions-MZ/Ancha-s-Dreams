@@ -7940,7 +7940,6 @@ textarea.form-control-lg {
 .fs-4 {
   font-size: calc(1.275rem + 0.3vw) !important;
 }
-
 .fs-5 {
   font-size: 1.25rem !important;
 }
@@ -7949,6 +7948,9 @@ textarea.form-control-lg {
   font-size: 1rem !important;
 }
 
+.fs-7 {
+  font-size: 0.85rem !important;
+}
 .fst-italic {
   font-style: italic !important;
 }

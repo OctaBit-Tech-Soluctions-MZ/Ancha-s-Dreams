@@ -10,6 +10,7 @@ use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RecipeController;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -28,6 +29,9 @@ Route::get('/contactos',function () {return view('contacts');})->name('contacts'
 Route::get('/receitas', function () {return view('receita');})->name('receita');
 Route::get('/registo',[UserController::class, 'register'])->name('register');
 Route::post('/registo', [UserController::class, 'store'])->name('register');
+Route::get('/instrutor/front-teste', function () {
+    return view('courses.register');
+});
 
 /**
  * Rotas Protegidas com Middleware auth
@@ -44,7 +48,7 @@ Route::middleware([
     Route::get('/aluno/foto', [ProfileController::class, 'image'])->name('profile.image');
     Route::put('/aluno/editar',[ProfileController::class, 'update'])->name('profile.update');
     Route::put('/aluno/senha', [ProfileController::class, 'updatePassword'])->name('profile.password.update');
-    Route::post('/add-to-cart', [CartController::class, 'add'])->name('cart.add');
+    Route::post('/add-to-curt', [CartController::class, 'add'])->name('cart.add');
 });
 
 /**  
@@ -65,12 +69,12 @@ Route::middleware([
         Route::get('/instrutor/cursos/aula/{slug}', [ContentController::class, 'index'])->name('instructor.courses.lesson');
         Route::get('/instrutor/cursos/registar', [CourseController::class, 'register'])->name('instructor.courses.register');
         Route::get('/instrutor/cursos/aula/{slug}/adicionar', [ContentController::class, 'add'])->name('instructor.courses.lesson.add');
-        Route::get('/instrutor/receitas', [InstructorController::class, 'recipes'])->name('instructor.recipes');
+        Route::get('/instrutor/receitas', [RecipeController::class, 'list'])->name('instructor.recipes');
         Route::get('/instructor/perfil', [ProfileController::class, 'instructor'])->name('instructor.profile');
         Route::post('/instrutor/cursos/registar', [CourseController::class, 'store'])->name('instructor.courses.store');
         Route::post('/instrutor/cursos/aula/{slug}/adicionar', [ContentController::class, 'store'])->name('instructor.courses.lesson.store');
         Route::put('/instrutor/cursos/editar/{slug}', [CourseController::class, 'update'])->name('instructor.courses.update');
-        Route::delete('/instrutor/cursos/excluir/{slug}',[CourseController::class, 'destroy'])->name('profile.courses.delete');
+        Route::delete('/instrutor/cursos/excluir/{slug}',[CourseController::class, 'destroy'])->name('courses.delete');
     });
 
 // Rotas do admin
@@ -104,22 +108,22 @@ Route::middleware([
 });
 
 // google drive api route test connection
-// Route::get('/teste-drive', function (\App\Services\GoogleDriveService $gds) {
-//     return $gds->testConnection();
-// });
+ Route::get('/teste-drive', function (\App\Services\GoogleDriveService $gds) {
+     return $gds->testConnection();
+ });
 
 // // google drive api upload route test
-// Route::get('/upload-teste', function (\App\Services\GoogleDriveService $gds) {
-//     $localPath = storage_path('app/teste.pdf'); // ou qualquer arquivo local
-//     $fileId = $gds->uploadFile($localPath, 'MeuArquivo.pdf', 'application/pdf');
-//     return 'Upload feito! ID: ' . $fileId;
-// });
+ Route::get('/upload-teste', function (\App\Services\GoogleDriveService $gds) {
+     $localPath = storage_path('app/teste.pdf'); // ou qualquer arquivo local
+     $fileId = $gds->uploadFile($localPath, 'MeuArquivo.pdf', 'application/pdf');
+     return 'Upload feito! ID: ' . $fileId->id;
+ });
 
-// Route::get('/list-drive', function ()  {
-//     $gds = new \App\Services\GoogleDriveService();
-//     echo '<pre>';
-//         $gds->listarArquivos();echo '</pre>';
-// });
+ Route::get('/list-drive', function ()  {
+     $gds = new \App\Services\GoogleDriveService();
+     echo '<pre>';
+        var_dump($gds->listArchives());echo '</pre>';
+ });
 
 // Mpesa Api Rota de Teste
 

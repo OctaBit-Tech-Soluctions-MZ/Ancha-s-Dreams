@@ -3,29 +3,35 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="cartModalLabel">Seu Carrinho</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    @php $cart = session('cart', []); @endphp
-                    @if($cart)
-                        <ul>
-                            @foreach($cart as $id => $item)
-                                <li>
-                                    <img src="{{ asset('assets/img/courses/'.$item['photo']) }}" alt="" srcset=""><strong>{{ $item['name'] }}</strong> - {{ $item['quantity'] }} x {{ $item['price'] }} MZN
-                                </li>
-                            @endforeach
-                        </ul>
-                    @else
-                        <p>Carrinho vazio.</p>
-                    @endif
-                </div>
-                <div class="modal-footer">
-                    <form id="cartForm" method="POST">
-                        @csrf
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-success">Fazer Pedido</button>
-                    </form>
+                    <div class="container">
+                        <h2 class="mb-4">Seu Carrinho</h2>
+                      
+                        <div class="mb-4">
+                          <button class="btn btn-outline-danger" onclick="confirmClearCart()">🗑️ Esvaziar Carrinho</button>
+                        </div>
+                      
+                        <table class="table table-bordered" id="cart-table">
+                          <thead>
+                            <tr>
+                              <th>Produto</th>
+                              <th>Preço</th>
+                              <th>Quantidade</th>
+                              <th>Total</th>
+                              <th>Ações</th>
+                            </tr>
+                          </thead>
+                          <tbody id="cart-body">
+                            <!-- Conteúdo será inserido via JS -->
+                          </tbody>
+                        </table>
+                      
+                        <div class="text-end mt-3">
+                          <h4>Total Geral: <span id="cart-total">0.00</span> MZN</h4>
+                          <button class="btn btn-success mt-2" onclick="enviarPedido()">🛒 Finalizar Compra</button>
+                        </div>
                 </div>
             </div>
         </div>

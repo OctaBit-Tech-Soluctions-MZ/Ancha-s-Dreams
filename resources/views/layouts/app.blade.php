@@ -5,13 +5,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>@yield('title') | @auth {{ Auth::user()->name }} @endauth</title>
+        <title>@yield('title')</title>
 
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{{ asset('assets/favicon.ico') }}" />
 
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+        
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-select.min.css') }}">
+
+        <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}">
         
         <script src="https://unpkg.com/scrollreveal"></script>
         
@@ -21,6 +27,8 @@
 
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{ asset('assets/css/css.css') }}" rel="stylesheet" />
+        
+        {{-- <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}"> --}}
 
         {{-- Custom CSS --}}
         <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
@@ -75,47 +83,38 @@
         @Auth
             @include('components.modals.logout')
             @include('components.modals.cart')
+            <script src="{{ asset('assets/js/cart.js') }}"></script>
         @endauth
-
-        {{-- custom js --}}
-        <script src="{{ asset('assets/js/app.js') }}"></script>
-
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="{{ asset('assets/js/scripts.js') }}"></script>
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-        @auth
-        <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-        <script>
-            $('.add-to-cart-btn').click(function (e) {
-                e.preventDefault();
-                let btn = $(this);
-            
-                $.ajax({
-                    url: '{{ route('cart.add') }}',
-                    method: 'POST',
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        id: btn.data('id'),
-                        name: btn.data('name'),
-                        price: btn.data('price'),
-                        photo: btn.data('photo')
-                    },
-                    beforeSend: function () {
-                        btn.text('Adicionando...');
-                    },
-                    success: function (response) {
-                        alert(response.success);
-                        btn.text('Adicionar ao Carrinho');
-                    },
-                    error: function () {
-                        alert('Erro ao adicionar. Tente novamente.');
-                        btn.text('Adicionar ao Carrinho');
-                    }
-                });
-            });
-            </script>
-            @endauth
+        <!-- Swiper JS -->
+        <script src="{{ asset('assets/js/swiper.js') }}"></script>
+        <!-- jQuery JS -->
+        <script src="{{ asset('assets/js/jquery.js') }}"></script>
+        <!-- Image Loader JS -->
+        <script src="{{ asset('assets/js/imageloaded.js') }}"></script>
+        <!-- Isotop JS -->
+        <script src="{{ asset('assets/js/isotop.js')}}"></script>
+        <!-- Magnify-popup -->
+        <script src="{{ asset('assets/js/magnify-popup.min.js') }}"></script>
+        <!-- sal.js -->
+        <script src="{{ asset('assets/js/sal.js') }}"></script>
+        <!-- Wow JS -->
+        <script src="{{ asset('assets/js/wow.js')}}"></script>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{{ asset('assets/js/bootstrap-select.min.js') }}"></script>
+        <!-- -->
+        <script src="{{ asset('assets/js/jquery-one-page-nav.js')}}"></script>
+        <!-- Custom JS -->
+        <script src="{{ asset('assets/js/app.js') }}"></script>
+        <!-- Main JS -->
+        <script src="{{ asset('assets/js/main.js') }}"></script>
+
+        
+
+
+</body>
+        
 </body>
 </html>
