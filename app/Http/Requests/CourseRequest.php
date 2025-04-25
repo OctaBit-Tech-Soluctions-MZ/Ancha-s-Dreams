@@ -38,7 +38,7 @@ class CourseRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required'         => 'O nome do curso é obrigatório.',
+            'name.required'         => 'O titulo é obrigatório.',
             'categories.required'   => 'A categoria do curso é obrigatória.',
             'price.required'        => 'O preço do curso é obrigatório.',
             'price.numeric'         => 'O preço deve ser um número.',

@@ -11,7 +11,13 @@ use Illuminate\Http\Request;
 
 class ContentController extends Controller
 {
-    public function index($slug){
+
+    public function index($slug) {
+        $content = Content::with('courses')->where('slug', $slug)->firstOrFail();
+        return view('lesson', compact('content'));
+    }
+
+    public function lessons($slug){
 
         Course::where('slug', $slug)->firstOrFail();
         $contents = Content::all();
@@ -19,14 +25,7 @@ class ContentController extends Controller
     }
     public function add($slug){
         Course::where('slug', $slug)->firstOrFail();
-        return view('instructor.add_lesson', ['slug' => $slug]);
-    }
-
-    public function watch($slug) {
-        $course = Course::where('slug', $slug)->firstOrFail();
-        $contents = Content::where('course_id', $course->course_id)->get();
-        $contentFirst = $contents->first();
-        return view('courses.courses_watch', compact('contents', 'contentFirst'));
+        return view('instructor.lesson.add', ['slug' => $slug]);
     }
 
     public function store(ContentRequest $request, $slug) {

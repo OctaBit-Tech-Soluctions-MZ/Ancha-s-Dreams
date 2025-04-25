@@ -11,32 +11,32 @@
             <ul class="navbar-nav text-uppercase d-flex gap-5 w-auto">
                 <div class="d-sm-flex justify-content-center px-1 me-1 ms-3 pe-1 ps-3">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">
+                        <a class="nav-link fs-7" href="{{ route('home') }}">
                             <span>Inicio</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('courses') }}">
+                        <a class="nav-link fs-7" href="{{ route('courses') }}">
                             <span>Cursos</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('book') }}">
+                        <a class="nav-link fs-7" href="{{ route('book') }}">
                             <span>Livros</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('receita') }}">
-                            <span>Receita</span>
+                        <a class="nav-link fs-7" href="{{ route('receita') }}">
+                            <span>Receitas</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('about') }}" class="nav-link">
+                        <a href="{{ route('about') }}" class="nav-link fs-7">
                             <span>Sobre Nós</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('contacts') }}" class="nav-link">
+                        <a href="{{ route('contacts') }}" class="nav-link fs-7">
                             <span>Contactos</span>
                         </a>
                     </li>
@@ -47,13 +47,12 @@
                 <!-- Botão de Cadastro/Login -->
                 <div class="d-flex">
                     <li class="nav-item">
-                        <a class="btn-tx btn btn-outline-primary rounded-sm" href="{{ route('login') }}">
+                        <a class="btn-sm btn btn-outline-light rounded-sm fs-7" href="{{ route('login') }}">
                             <span>Login</span>
                         </a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="btn-tx btn btn-primary rounded-sm" href="{{ route('register') }}">
+                        <a class="btn btn-primary btn-sm rounded-sm fs-7" href="{{ route('register') }}">
                             <span>Registo</span>
                         </a>
                     </li>

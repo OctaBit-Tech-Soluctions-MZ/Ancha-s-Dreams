@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('pdf_book_url');
             $table->string('author');
-            $table->boolean('associate_course');
+            $table->boolean('associate_course')->default(0);
             $table->integer('course_id')->nullable();
             $table->timestamps();
         });

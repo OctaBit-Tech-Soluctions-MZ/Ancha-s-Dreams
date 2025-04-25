@@ -5,13 +5,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>@yield('title') | @auth {{ Auth::user()->name }} @endauth</title>
+        <title>@yield('title')</title>
 
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{{ asset('assets/favicon.ico') }}" />
 
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+        
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-select.min.css') }}">
+
+        <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}">
         
         <script src="https://unpkg.com/scrollreveal"></script>
         
@@ -21,19 +27,14 @@
 
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{ asset('assets/css/css.css') }}" rel="stylesheet" />
+        
+        {{-- <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}"> --}}
 
         {{-- Custom CSS --}}
         <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
 
         <!-- Loader CSS -->
         <link rel="stylesheet" href="{{ asset('assets/css/loader.css') }}">
-
-
-        <style>
-            .nav-link span, .btn-tx span{
-                font-size: 0.78rem
-            }
-        </style>
 
         @auth
             <style>
@@ -74,16 +75,47 @@
 
         @Auth
             @include('components.modals.logout')
-            @include('components.scripts.get-id-to-delete')
+            @include('components.modals.cart')
+            <script src="{{ asset('assets/js/cart.js') }}"></script>
         @endauth
-
-        {{-- custom js --}}
-        <script src="{{ asset('assets/js/app.js') }}"></script>
-
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <!-- Core theme JS-->
         <script src="{{ asset('assets/js/scripts.js') }}"></script>
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <!-- Swiper JS -->
+        <script src="{{ asset('assets/js/swiper.js') }}"></script>
+        <!-- jQuery JS -->
+        <script src="{{ asset('assets/js/jquery.js') }}"></script>
+        <!-- Image Loader JS -->
+        <script src="{{ asset('assets/js/imageloaded.js') }}"></script>
+        <!-- Isotop JS -->
+        <script src="{{ asset('assets/js/isotop.js')}}"></script>
+        <!-- Magnify-popup -->
+        <script src="{{ asset('assets/js/magnify-popup.min.js') }}"></script>
+        <!-- sal.js -->
+        <script src="{{ asset('assets/js/sal.js') }}"></script>
+        <!-- Wow JS -->
+        <script src="{{ asset('assets/js/wow.js')}}"></script>
+        <!-- Bootstrap core JS-->
+        <script src="{{ asset('assets/js/bootstrap-select.min.js') }}"></script>
+        <!-- One Page Nav JS -->
+        <script src="{{ asset('assets/js/jquery-one-page-nav.js')}}"></script>
+        <!-- Modernizr JS -->
+        <script src="{{ asset('assets/js/modernizr.min.js')}}"></script>
+        <!-- JQuery UI JS-->
+        <script src="{{ asset('assets/js/jquery-ui.js')}}"></script>
+        <!-- Plyr JS -->
+        <script src="{{ asset('assets/js/plyr.js')}}"></script>
+        <!-- Jodit JS -->
+        <script src="{{ asset('assets/js/jodit.min.js')}}"></script>
+        <!-- Custom JS -->
+        <script src="{{ asset('assets/js/app.js') }}"></script>
+        <!-- Main JS -->
+        <script src="{{ asset('assets/js/main.js') }}"></script>
+
+
+
+</body>
+        
 </body>
 </html>

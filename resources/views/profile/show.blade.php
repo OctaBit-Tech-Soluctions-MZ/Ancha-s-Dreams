@@ -15,7 +15,7 @@
                     <h1>Perfil do Utilizador</h1>
                     <div class="row">
                         <div class="bio-row">
-                            <p><span>Nome Completo </span>: {{ Auth::user()->name }}</p>
+                            <p><span>Nome Completo </span>: {{ Auth::user()->name }} {{ Auth::user()->surname }}</p>
                         </div>
                         <div class="bio-row">
                             <p><span>Tipo de Conta </span>: {{ $role->role_name }}</p>

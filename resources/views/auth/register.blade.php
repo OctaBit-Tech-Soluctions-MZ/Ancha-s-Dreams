@@ -5,7 +5,8 @@
 @section('content')
 
         
-        
+    
+    <div class="pt-3 mt-5">    
         <div class="container d-flex justify-content-center align-items-center p-5 mt-2 bg-grey-200 ">
             <div class="p-4 col card  card-auth">
                 <h3 class="text-center">{{ __('Junte-se à Nossa Jornada Culinária') }}</h3>
@@ -61,7 +62,7 @@
                             </div>
                         </div>
 
-                        @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
+                        {{-- @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                             <div class="mt-4">
                                 <x-label for="terms">
                                     <div class="flex items-center">
@@ -76,7 +77,7 @@
                                     </div>
                                 </x-label>
                             </div>
-                        @endif
+                        @endif --}}
 
                         <div class="flex items-center justify-end mt-4">
                             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
@@ -90,4 +91,5 @@
                     </form>
             </div>
         </div>
+    </div>
 @endsection

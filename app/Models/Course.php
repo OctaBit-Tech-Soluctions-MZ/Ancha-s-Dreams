@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class Course extends Model
 {
-    protected $fillable = ['name', 'description', 'price', 'course_photo_path', 'teacher'];
+    protected $fillable = ['name','price','nivel','category','description','course_photo_path','teacher','folder_id'];
 
     public function instructor(){
 
