@@ -333,6 +333,10 @@
     text-align: center;
   }
 }
+
+tbody tr td span {
+  color: #4c4d52;
+}
 trix-editor {
   height: 200px;
 }

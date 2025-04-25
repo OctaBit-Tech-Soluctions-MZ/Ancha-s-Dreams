@@ -82,8 +82,6 @@
 
         @auth
             @include('components.modals.logout')
-            @include('components.modals.delete')
-            @include('components.scripts.get-id-to-delete')
         @endauth
 
         {{-- custom js --}}

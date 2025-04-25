@@ -42,7 +42,7 @@
     <div class="">
         <div id="wrapper">
             <!-- Sidebar -->
-            <nav class="col-3 bg-dark vh-100 sidebar" id="collapseSidebar">
+            <nav class="col-3 bg-dark vh-100 sidebar show collapse" id="sidebar">
                 <ul class="nav flex-column">
                      <!-- Sidebar - Brand -->
                     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin">

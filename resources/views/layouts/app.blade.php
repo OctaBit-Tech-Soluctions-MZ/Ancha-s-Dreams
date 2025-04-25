@@ -74,7 +74,7 @@
 
         @Auth
             @include('components.modals.logout')
-            @include('components.scripts.get-id-to-delete')
+            @include('components.modals.cart')
         @endauth
 
         {{-- custom js --}}
@@ -85,5 +85,37 @@
         <!-- Core theme JS-->
         <script src="{{ asset('assets/js/scripts.js') }}"></script>
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        @auth
+        <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+        <script>
+            $('.add-to-cart-btn').click(function (e) {
+                e.preventDefault();
+                let btn = $(this);
+            
+                $.ajax({
+                    url: '{{ route('cart.add') }}',
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        id: btn.data('id'),
+                        name: btn.data('name'),
+                        price: btn.data('price'),
+                        photo: btn.data('photo')
+                    },
+                    beforeSend: function () {
+                        btn.text('Adicionando...');
+                    },
+                    success: function (response) {
+                        alert(response.success);
+                        btn.text('Adicionar ao Carrinho');
+                    },
+                    error: function () {
+                        alert('Erro ao adicionar. Tente novamente.');
+                        btn.text('Adicionar ao Carrinho');
+                    }
+                });
+            });
+            </script>
+            @endauth
 </body>
 </html>

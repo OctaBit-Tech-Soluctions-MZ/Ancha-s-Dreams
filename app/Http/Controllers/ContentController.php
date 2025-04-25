@@ -19,7 +19,7 @@ class ContentController extends Controller
     }
     public function add($slug){
         Course::where('slug', $slug)->firstOrFail();
-        return view('instructor.add_lesson', ['slug' => $slug]);
+        return view('instructor.lesson.add', ['slug' => $slug]);
     }
 
     public function watch($slug) {

@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Category;
 use App\Models\Course;
 use App\Services\GoogleDriveService;
+use App\Services\UploadService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -73,25 +74,18 @@ class CourseController extends Controller
 
         return view('instructor.courses.edit', compact('course','categories'));
     }
+
     public function store(CourseRequest $request)
     {
-        // Tratamento da imagem
-        $imageName = 'noimage.png';
         
-        if ($request->hasFile('course_photo') && $request->file('course_photo')->isValid()) {
-            $requestPhoto = $request->file('course_photo');
-            $extension = $requestPhoto->extension();
-    
-            // Segurança extra (evita upload de arquivos maliciosos)
+        if ($request->hasFile('course_photo')) {
             $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
-            if (!in_array(strtolower($extension), $allowedExtensions)) {
-                return redirect()->back()->with('error', 'Formato de imagem inválido.');
-            }
-    
-            $imageName = md5($requestPhoto->getClientOriginalName() . time()) . '.' . $extension;
-
-            $requestPhoto->move(public_path('assets/img/courses'), $imageName);
+            $requestPhoto = $request->file('course_photo');
+            $path = 'assets/img/courses';
+            $fileDefault = 'default.png';
+            $imageName = UploadService::upload($requestPhoto,$path,$fileDefault, $allowedExtensions);
         }
+        
         // Criação da pasta no Google Drive
         $gds = new GoogleDriveService();
         $folderId = $gds->createFolder($request->name);

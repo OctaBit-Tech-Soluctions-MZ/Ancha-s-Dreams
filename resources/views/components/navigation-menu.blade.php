@@ -45,7 +45,7 @@
                 {{-- so aparece quando o utilizador nao esta logado --}}
                 @guest
                 <!-- Botão de Cadastro/Login -->
-                <div class="d-flex">
+                <div class="d-flex gap-2">
                     <li class="nav-item">
                         <a class="btn-tx btn btn-outline-primary rounded-sm" href="{{ route('login') }}">
                             <span>Login</span>

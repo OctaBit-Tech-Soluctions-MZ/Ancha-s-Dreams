@@ -254,6 +254,21 @@
                 border-radius: 5px;
                 margin-bottom: 20px;
             }
+            .product__sidebar__view__item::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background-color: rgba(0, 0, 0, 0.5); /* 0.5 = 50% escurecido */
+                border-radius: 5px;
+                z-index: 1;
+            }
+
+            /* Garante que o conteúdo fique acima do escurecimento */
+            .product__sidebar__view__item > * {
+                position: relative;
+                z-index: 2;
+            }
+
 
             .product__sidebar__view__item .ep {
                 font-size: 13px;
@@ -289,7 +304,7 @@
             .product__sidebar__view__item h5 {
                 position: absolute;
                 left: 0;
-                bottom: 25px;
+                bottom: 55px;
                 width: 100%;
                 padding: 0 30px 0 20px;
             }

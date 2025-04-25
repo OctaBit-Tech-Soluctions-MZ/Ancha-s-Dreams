@@ -4,6 +4,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\PaymentController;
@@ -43,6 +44,7 @@ Route::middleware([
     Route::get('/aluno/foto', [ProfileController::class, 'image'])->name('profile.image');
     Route::put('/aluno/editar',[ProfileController::class, 'update'])->name('profile.update');
     Route::put('/aluno/senha', [ProfileController::class, 'updatePassword'])->name('profile.password.update');
+    Route::post('/add-to-cart', [CartController::class, 'add'])->name('cart.add');
 });
 
 /**  
@@ -94,6 +96,7 @@ Route::middleware([
     Route::get('/admin/feedbacks', [AdminController::class, 'feedbacks'])->name('admin.feedbacks');
     Route::post('/admin/instrutores/registar', [InstructorController::class, 'store'])->name('admin.instructor.store');
     Route::post('/admin/utilizadores/registar', [UserController::class, 'store'])->name('admin.users.store');
+    Route::post('/admin/livros/registar', [BookController::class, 'store'])->name('admin.books.store');
     Route::delete('/admin/cursos', [CourseController::class, 'destroy'])->name('admin.courses.delete');
     Route::delete('/admin/utilizadores/{id}/excluir',[UserController::class, 'destroy'])->name('admin.users.destroy');
     Route::put('/admin/utilizadores/{slug}/editar', [UserController::class, 'update'])->name('admin.users.update');

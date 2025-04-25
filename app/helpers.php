@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Route;
 
     /**
@@ -72,6 +73,18 @@ use Illuminate\Support\Facades\Route;
         }
 
         return $phone;
+    }
+
+    /**
+     * Formata a data 
+     * ex: 1/1/25 - 1/2/25 formatada para 1 mes depois
+     * @param string $data ex: 01/01/01 01:01
+     * @return string
+     */
+    function humanTime($data)
+    {
+        Carbon::setLocale('pt'); // Define o idioma
+        return Carbon::parse($data)->diffForHumans();
     }
 
 

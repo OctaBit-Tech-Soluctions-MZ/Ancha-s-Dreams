@@ -36,16 +36,18 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
                                     <ul>
-                                        <li><span>Lancado em:</span> {{ $course->created_at->format('Y-m-d') }}</li>
+                                        <li><span>Lançado:</span>@php
+                                            echo humanTime($course->created_at->format('Y-m-d'));
+                                        @endphp </li>
                                         <li><span>Status:</span> {{ $course->status }}</li>
                                         <li><span>Categoria:</span> {{ $course->category }}</li>
                                     </ul>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <ul>
-                                        <li><span>Avaliacao:</span> {{ $course->rating}}</li>
+                                        <li><span>Avaliação:</span> {{ $course->rating}}</li>
                                         <li><span>Aulas:</span> 20</li>
-                                        <li><span>Visualizacoes:</span> {{ $course->views }}</li>
+                                        <li><span>Visualizaçoes:</span> {{ $course->views }}</li>
                                     </ul>
                                 </div>
                             </div>

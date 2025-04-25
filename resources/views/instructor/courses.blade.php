@@ -62,7 +62,7 @@
                         <!-- DataTales Example -->
                         <div class="panel-body bio-graph-info">
                             <div class="card-body">
-                                <div class="table-responsive">
+                                <div class="table-responsive d-flex gap-2">
 
                                     @if(session('error'))
                                         <div class="alert alert-danger">

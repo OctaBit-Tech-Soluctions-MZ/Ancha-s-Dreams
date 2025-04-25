@@ -60,9 +60,13 @@
                                         <p class="text-primary fw-bold mt-3 mb-1">{{ $course->price }} MZN</p>
                                     </div>
                                     <div class="card-footer d-flex justify-content-between">
-                                        <a href="#" class="btn btn-outline-info d-flex align-items-center">
-                                            <i class="bi bi-eye me-2"></i> Inscrever-se
-                                        </a>
+                                        <button class="btn btn-info add-to-cart-btn"
+                                            data-id="{{ $course->id }}"
+                                            data-name="{{ $course->name }}"
+                                            data-price="{{ $course->price }}"
+                                            data-photo="{{ $course->course_photo_path }}">
+                                            <i class="fas fa-shopping-cart me-2"></i> Adicionar ao Carrinho
+                                        </button>
                                         <a href="{{ route('courses.details', ['slug' => $course->slug]) }}" class="btn btn-outline-dark">+ Info</a>
                                     </div>
                                 </div>

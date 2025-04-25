@@ -1,4 +1,8 @@
-
+<!-- Botão Flutuante -->
+<button type="button" class="floating-btn border border-0" title="Carrinho" 
+    data-bs-toggle="modal" data-bs-target="#cartModal">
+    <i class="fas fa-shopping-cart"></i>
+</button>
 <footer class="footer py-4">
     <div class="container">
         <div class="row align-items-center">
