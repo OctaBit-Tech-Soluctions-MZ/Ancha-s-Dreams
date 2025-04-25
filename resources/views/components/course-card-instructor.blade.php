@@ -21,7 +21,7 @@
                         <span class="rating-count"> (3 Avaliações)</span>
                     </div>
                     <div class="rbt-bookmark-btn">
-                        <a class="rbt-round-btn" title="Favorito" href="#"><i class="fas fa-bookmark"></i></a>
+                        <a class="rbt-round-btn" title="Favorito2" href="#"><i class="fas fa-bookmark"></i></a>
                     </div>
                 </div>
                 <h4 class="rbt-card-title text-start">
