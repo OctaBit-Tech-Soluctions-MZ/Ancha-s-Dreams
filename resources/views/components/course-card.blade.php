@@ -29,7 +29,7 @@
                         {{ $course->name }}</a>
                 </h4>
                 <ul class="rbt-meta text-start">
-                    <li><i class="fa fa-book me-2"></i>20 Aulas</li>
+                    <li><i class="fa fa-book me-2"></i>{{ $course->contents->count() }} Aulas</li>
                     <li><i class="fa fa-user-graduate me-2"></i>30 Alunos</li>
                 </ul>
                 <x-short-text class="" :text="$course->description" :limit="70"/>

@@ -36,6 +36,14 @@
 
 </head>
 <body>
+    <!-- Loader -->
+    <div class="loader-container" id="loader">
+        <div class="lds-roller">
+            <div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div>
+        </div>
+    </div>
+    
     <div class="">
         <div id="wrapper">
             <!-- Sidebar -->
@@ -97,13 +105,6 @@
                             
                     <!-- Content Row -->
                     <div class="row">
-                        <div class="pt-2 pb-2 ps-5 pe-5 d-flex justify-content-between">
-                            @php
-                            $backUrl = getBackUrl();
-                            @endphp
-                            <a href="{{ $backUrl }}" class="btn btn-primary">Voltar</a>
-                            <h3>@yield('page')</h3>
-                        </div>
                         @yield('content')
 
                     </div>

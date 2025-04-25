@@ -22,6 +22,8 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{ asset('assets/css/css.css') }}" rel="stylesheet" />
 
+        <link rel="stylesheet" href="{{ asset('assets/css/plyr.css') }}">
+
         {{-- Plans Custom CSS --}}
         <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}">
 
@@ -31,13 +33,7 @@
         {{-- Profile Custom css --}}
         <link rel="stylesheet" href="{{asset('assets/css/profile.css') }}">
 
-        <!-- Course Details CSS -->
-        @include('components.styles.courses')
-
         <style>
-            .nav-link span, .btn-tx span{
-                font-size: 0.78rem
-            }
             .bg-nav {
                 background: #484b4e !important;
                 /* background: linear-gradient(135deg, #f9f9f9, #212529) !important; */
@@ -85,8 +81,8 @@
             @include('components.modals.cart')
             <script src="{{ asset('assets/js/cart.js') }}"></script>
         @endauth
-
-        
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <!-- Core theme JS-->
         <script src="{{ asset('assets/js/scripts.js') }}"></script>
         <!-- Swiper JS -->
@@ -104,13 +100,21 @@
         <!-- Wow JS -->
         <script src="{{ asset('assets/js/wow.js')}}"></script>
         <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="{{ asset('assets/js/bootstrap-select.min.js') }}"></script>
-        <!-- -->
+        <!-- One Page Nav JS -->
         <script src="{{ asset('assets/js/jquery-one-page-nav.js')}}"></script>
+        <!-- Modernizr JS -->
+        <script src="{{ asset('assets/js/modernizr.min.js')}}"></script>
+        <!-- JQuery UI JS-->
+        <script src="{{ asset('assets/js/jquery-ui.js')}}"></script>
+        <!-- Plyr JS -->
+        <script src="{{ asset('assets/js/plyr.js')}}"></script>
+        <!-- Jodit JS -->
+        <script src="{{ asset('assets/js/jodit.min.js')}}"></script>
         <!-- Custom JS -->
         <script src="{{ asset('assets/js/app.js') }}"></script>
         <!-- Main JS -->
         <script src="{{ asset('assets/js/main.js') }}"></script>
+
 </html>
 

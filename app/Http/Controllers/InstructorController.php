@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\UserRequest;
-use App\Models\Book;
 use App\Models\Category;
 use App\Models\Course;
 use App\Models\User;
@@ -17,7 +16,7 @@ use Illuminate\Support\Facades\Mail;
 class InstructorController extends Controller
 {
     public function dashboard() {
-        $courses = Course::where('teacher',Auth::user()->id)->count();
+        $courses = Course::with('contents')->where('teacher',Auth::user()->id)->get();
         return view('instructor.dashboard', compact('courses'));
     }
 

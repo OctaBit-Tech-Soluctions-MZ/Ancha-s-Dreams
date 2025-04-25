@@ -1,15 +1,17 @@
 @extends('layouts.instructor')
 
-@section('title', 'Registar Curso')
+@section('title', 'Edição do Curso: '.$course->name)
 
 @section('content')
-<x-back-button :page="'Formulario de Registo de Curso'"/>
+
+<x-back-button :page="'Formulario de Edição de cursos'" />
 <div class="p-4">
     {{-- Alert blade component --}}
     <x-show-alert/>
-    <form class="rbt-main-wrapper p-2" method="POST" action="{{ route('instructor.courses.store') }}" 
+    <form class="rbt-main-wrapper p-2" method="POST" action="{{ route('instructor.courses.update', ['slug' => $course->slug ]) }}" 
                 enctype="multipart/form-data">
         @csrf
+        @method('PUT')
         <div class="rbt-create-course-area rbt-section-gap">
             <div class="container">
                 <div class="row g-5">
@@ -29,12 +31,12 @@
                                             <div class="rbt-course-field-wrapper rbt-default-form">
                                                 <div class="course-field mb--15">
                                                     <label for="field-1">Titulo do Curso</label>
-                                                    <input id="field-1" type="text" placeholder="Novo Curso" name="name">
+                                                    <input id="field-1" type="text" placeholder="Novo Curso" name="name" value="{{ $course->name }}">
                                                 </div>
 
                                                 <div class="course-field mb--15">
                                                     <label for="aboutCourse">Sobre o curso</label>
-                                                    <textarea id="aboutCourse" rows="10" name="description" placeholder="Descreva o curso"></textarea>
+                                                    <textarea id="aboutCourse" rows="10" name="description" placeholder="Descreva o curso">{{ $course->description }}</textarea>
                                                 </div>
 
                                                 <div class="course-field mb--15 edu-bg-gray">
@@ -66,9 +68,9 @@
                                                                                 <div class="dropdown bootstrap-select w-100 dropup">
                                                                                     <select class="w-100" id="field-5" tabindex="null" name="nivel">
                                                                                         <option value="" disabled="disabled">Selecione o nivel de dificuldade</option>
-                                                                                        <option value="profissional">Profissional</option>
-                                                                                        <option value="intermediario">Intermediario</option>
-                                                                                        <option value="iniciante" selected="selected">Iniciante</option>
+                                                                                        <option value="profissional" {{ $course->nivel == 'profissional' ? 'selected="select"' : "" }}>Profissional</option>
+                                                                                        <option value="intermediario" {{ $course->nivel == 'intermediario' ? 'selected="select"' : "" }}>Intermediario</option>
+                                                                                        <option value="iniciante" {{ $course->nivel == 'iniciante' ? 'selected="select"' : "" }}>Iniciante</option>
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
@@ -101,7 +103,7 @@
                                                                         <div class="course-field mb--15">
                                                                             <label for="regularPrice-1">Preço Normal
                                                                                 (mzn)</label>
-                                                                            <input id="regularPrice-1" name="price" type="number" placeholder="mzn preço normal">
+                                                                            <input id="regularPrice-1" name="price" type="number" value="{{ $course->price }}" placeholder="mzn preço normal">
                                                                         </div>
 
                                                                     </div>
@@ -118,7 +120,7 @@
                                                             <select class="w-100" id="field-5" tabindex="null" name="categories">
                                                                 <option value="" disabled>Selecione a categoria do curso</option>
                                                                 @foreach ($categories as $category)    
-                                                                    <option value="{{ $category->name }}">{{ $category->name }}</option>
+                                                                    <option value="{{ $category->name }}" {{ $category->name == $course->category ? 'selected="select"' : '"" '}}>{{ $category->name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -132,7 +134,7 @@
                                                             <div class="brows-file-wrapper" data-black-overlay="9">
                                                                 <!-- actual upload which is hidden -->
                                                                 <input name="course_photo" id="createinputfile" type="file" class="inputfile">
-                                                                <img id="createfileImage" src="{{ asset('assets/img/thumbnail-placeholder.svg') }}" alt="file image">
+                                                                <img id="createfileImage" src="{{ asset('assets/img/courses/'.$course->course_photo_path) }}" alt="file image">
                                                                 <!-- our custom upload button -->
                                                                 <label class="d-flex" for="createinputfile" title="Ficheiro nenhum escolhido">
                                                                     <i class="fas fa-upload"></i>
@@ -153,30 +155,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="accordion-item card">
-                                    <h2 class="accordion-header card-header" id="accTwo">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accCollapseTwo" aria-expanded="false" aria-controls="accCollapseTwo">
-                                            Video de Introdução ao Curso
-                                        </button>
-                                    </h2>
-                                    <div id="accCollapseTwo" class="accordion-collapse collapse" aria-labelledby="accTwo" data-bs-parent="#tutionaccordionExamplea1" style="">
-                                        <div class="accordion-body card-body rbt-course-field-wrapper rbt-default-form">
-
-                                            <div class="course-field mb--20">
-                                                <label for="videotitle">Titulo do Video</label>
-                                                <input type="text" name="title_video" id="videotitle" placeholder="titulo do video">
-                                            </div>
-
-                                            <div class="course-field mb--15">
-                                                <label for="videoUrl">Carregue o Video</label>
-                                                <input id="videoUrl" type="file" class="form-control" name="intro_video">
-                                                <small class="d-block mt_dec--5">Pode ser a primeira aula ou um video de boas vindas ao curso</a></small>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
@@ -184,7 +162,7 @@
                             <div class="col-lg-12">
                                 <button type="submit" class="rbt-btn btn-gradient hover-icon-reverse w-100 text-center">
                                     <span class="icon-reverse-wrapper">
-                                        <span class="btn-text">Criar Curso</span>
+                                        <span class="btn-text">Editar Curso</span>
                                         <span class="btn-icon ms-1"><i class="fas fa-arrow-right"></i></span>
                                         <span class="btn-icon me-1"><i class="fas fa-arrow-right"></i></span>
                                     </span>

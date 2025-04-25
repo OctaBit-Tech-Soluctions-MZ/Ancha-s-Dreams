@@ -17,6 +17,10 @@
                         <li>
                             <div class="icon-right"><i class="fas fa-chevron-right"></i></div>
                         </li>
+                        <li class="rbt-breadcrumb-item"><a href="{{ route('courses') }}">Cursos</a></li>
+                        <li>
+                            <div class="icon-right"><i class="fas fa-chevron-right"></i></div>
+                        </li>
                         <li class="rbt-breadcrumb-item active">{{ $course->name }}</li>
                     </ul>
                     <h2 class="title">{{ $course->name }}</h2>
@@ -111,34 +115,33 @@
                             </div>
                             <div class="rbt-accordion-style rbt-accordion-02 accordion">
                                 <div class="accordion" id="accordionExampleb2">
-
-                                    <div class="accordion-item card">
-                                        <h2 class="accordion-header card-header" id="headingTwo1">
-                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo1" aria-expanded="true" aria-controls="collapseTwo1">
-                                                Intro to Course and Histudy <span class="rbt-badge-5 ml-1">1hr
-                                                    30min</span>
-                                            </button>
-                                        </h2>
-                                        <div id="collapseTwo1" class="accordion-collapse collapse show" aria-labelledby="headingTwo1" data-bs-parent="#accordionExampleb2">
-                                            <div class="accordion-body card-body pr--0">
-                                                <ul class="rbt-course-main-content list-unstyled">
-                                                    <li>
-                                                        <a href="https://histudy.pixcelsthemes.com/livepreview/histudy/lesson.html">
-                                                            <div class="course-content-left">
-                                                                <i class="fas fa-play-circle me-2"></i> <span class="text-grey">Course Intro</span>
-                                                            </div>
-                                                            <div class="course-content-right">
-                                                                <span class="min-lable">30 min</span>
-                                                                <span class="rbt-badge variation-03 bg-primary-opacity"><i class="fas fa-eye"></i> Preview</span>
-                                                            </div>
-                                                        </a>
-                                                    </li>
-
-                                                   
-                                                </ul>
+                                    @foreach($course->contents as $content)
+                                        <div class="accordion-item card">
+                                            <h2 class="accordion-header card-header" id="headingTwo1">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" 
+                                                data-bs-target="#collapseTwo{{ $loop->index + 1 }}" aria-expanded="true" aria-controls="collapseTwo{{ $loop->index + 1}}">{{$content->title}} <span class="rbt-badge-5 ml-1">
+                                                        {{ $content->duration}}</span>
+                                                </button>
+                                            </h2>
+                                            <div id="collapseTwo{{ $loop->index + 1 }}" class="accordion-collapse collapse show" aria-labelledby="headingTwo1" data-bs-parent="#accordionExampleb2">
+                                                <div class="accordion-body card-body pr--0">
+                                                    <ul class="rbt-course-main-content list-unstyled">
+                                                        <li>
+                                                            <a href="{{ route('lesson',['slug' => $content->slug]) }}">
+                                                                <div class="course-content-left">
+                                                                    <i class="fas fa-play-circle me-2"></i> <span class="text-grey">{{ $content->title}}</span>
+                                                                </div>
+                                                                <div class="course-content-right">
+                                                                    <span class="min-lable">{{ $content->duration }}</span>
+                                                                    <span class="rbt-badge variation-03 bg-primary-opacity"><i class="fas fa-eye"></i> Preview</span>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
