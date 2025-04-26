@@ -6,33 +6,33 @@
     <title>@yield('title')</title>
     
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/favicon.ico') }}" />
-
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- DataTables CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
-
     <!-- Trix Editor CSS -->
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
-
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-
-    <!-- Sidebar CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/sidebar.css') }}">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/app.css') }}">
-    
-    <!-- Loader Css -->
-    <link rel="stylesheet" href="{{ asset('assets/css/loader.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/slick-theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/sal.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/feather.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/euclid-circulara.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/swiper.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/odometer.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/animation.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/jquery-ui.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/magnigy-popup.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/plyr.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/jodit.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-select.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/sidebar.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}">
 
 </head>
 <body>

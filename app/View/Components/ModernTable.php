@@ -6,19 +6,15 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Filter extends Component
+class ModernTable extends Component
 {
-    public $categories;
-    public $route;
-    public $item;
+    public $title;
     /**
      * Create a new component instance.
      */
-    public function __construct($categories, $route, $item)
+    public function __construct($title)
     {
-        $this->categories = $categories;
-        $this->route = $route;
-        $this->item = $item;
+        $this->title = $title;
     }
 
     /**
@@ -26,6 +22,6 @@ class Filter extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.filter');
+        return view('components.modern-table');
     }
 }

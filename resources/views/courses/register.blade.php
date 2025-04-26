@@ -4,7 +4,7 @@
 
 @section('content')
 <x-back-button :page="'Formulario de Registo de Curso'"/>
-<div class="p-4">
+<div class="">
     {{-- Alert blade component --}}
     <x-show-alert/>
     <form class="rbt-main-wrapper p-2" method="POST" action="{{ route('instructor.courses.store') }}" 

@@ -15,17 +15,17 @@ class GoogleDriveService
 
     public function __construct()
     {
+        $keyPath = storage_path('app/google/google-drive-key.json');
+        
+        if (!file_exists($keyPath)) {
+            throw new Exception('Arquivo de credenciais Google não encontrado.');
+        }
+
         $this->client = new Client();
-
-        // Caminho para sua credencial da conta de serviço
-        $this->client->setAuthConfig(storage_path('app/google/google-drive-key.json'));
-
-        // Escopo necessário para manipular arquivos no Drive
+        $this->client->setAuthConfig($keyPath);
         $this->client->addScope(Drive::DRIVE);
-
-        // Usa credenciais padrão e garante que o token JWT é válido
         $this->client->useApplicationDefaultCredentials();
-        $this->client->fetchAccessTokenWithAssertion(); // <-- Importante!
+        $this->client->fetchAccessTokenWithAssertion();
 
         $this->drive = new Drive($this->client);
     }
@@ -36,31 +36,14 @@ class GoogleDriveService
             $files = $this->drive->files->listFiles(['pageSize' => 1]);
             return $files ? 'Conexão OK' : 'Falha na conexão';
         } catch (Exception $e) {
-            return 'Erro: ' . $e->getMessage();
+            throw new Exception('Erro ao testar conexão: ' . $e->getMessage(), 0, $e);
         }
     }
 
-    public function uploadVideo($filePath, $filename, $folderId)
+    public function uploadVideo($filePath, $filename, $folderId = null)
     {
-        try {
-            $fileMetadata = new DriveFile([
-                'name' => $filename,
-                'parents' => [$folderId],
-            ]);
-
-            $content = file_get_contents($filePath);
-
-            $file = $this->drive->files->create($fileMetadata, [
-                'data' => $content,
-                'mimeType' => mime_content_type($filePath),
-                'uploadType' => 'multipart',
-                'fields' => 'id, webViewLink, webContentLink'
-            ]);
-
-            return $file;
-        } catch (Exception $e) {
-            return 'Erro ao enviar vídeo: ' . $e->getMessage();
-        }
+        $mime = mime_content_type($filePath);
+        return $this->uploadFile($filePath, $filename, $mime, $folderId);
     }
 
     public function permission($fileId)
@@ -73,19 +56,22 @@ class GoogleDriveService
 
             $this->drive->permissions->create($fileId, $permission);
         } catch (Exception $e) {
-            return 'Erro ao definir permissões: ' . $e->getMessage();
+            throw new Exception('Erro ao definir permissões: ' . $e->getMessage(), 0, $e);
         }
     }
 
     public function uploadFile($path, $name, $mimeType, $parentFolderId = null)
     {
         try {
+            $content = @file_get_contents($path);
+            if ($content === false) {
+                throw new Exception('Não foi possível ler o conteúdo do arquivo: ' . $path);
+            }
+
             $file = new DriveFile([
                 'name' => $name,
-                'parents' => $parentFolderId ? [$parentFolderId] : null
+                'parents' => $parentFolderId ? [$parentFolderId] : null,
             ]);
-
-            $content = file_get_contents($path);
 
             $uploadedFile = $this->drive->files->create($file, [
                 'data' => $content,
@@ -93,9 +79,10 @@ class GoogleDriveService
                 'uploadType' => 'multipart',
                 'fields' => 'id, webViewLink, webContentLink'
             ]);
+
             return $uploadedFile;
         } catch (Exception $e) {
-            return 'Erro ao enviar arquivo: ' . $e->getMessage();
+            throw new Exception('Erro ao enviar arquivo: ' . $e->getMessage(), 0, $e);
         }
     }
 
@@ -113,7 +100,7 @@ class GoogleDriveService
 
             return $folder->id;
         } catch (Exception $e) {
-            return 'Erro ao criar pasta: ' . $e->getMessage();
+            throw new Exception('Erro ao criar pasta: ' . $e->getMessage(), 0, $e);
         }
     }
 
@@ -127,7 +114,7 @@ class GoogleDriveService
 
             return $results->getFiles();
         } catch (Exception $e) {
-            return 'Erro ao listar arquivos: ' . $e->getMessage();
+            throw new Exception('Erro ao listar arquivos: ' . $e->getMessage(), 0, $e);
         }
     }
 }

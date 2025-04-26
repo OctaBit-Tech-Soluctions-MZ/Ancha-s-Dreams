@@ -1,5 +1,7 @@
 <?php
 
+use FFMpeg\FFMpeg;
+use FFMpeg\FFProbe;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Route;
@@ -87,4 +89,27 @@ use Illuminate\Support\Facades\Route;
         return Carbon::parse($data)->diffForHumans();
     }
 
+    /**
+     * Obtem a duranção de um video
+     * @param string $fullPath ex: /tmp/csxy32/video.mp4
+     * @return string ex: "00:05:32"
+     */
+    function getDurationVideo($fullPath) {
 
+        $ffprobe = FFProbe::create();
+        $durationInSeconds = $ffprobe->format($fullPath)
+                                     ->get('duration');
+
+        $formatted = gmdate("H:i:s", $durationInSeconds);
+
+        return $formatted;
+    }
+
+    function generateThumbnail($videoPath, $thumbnailPath)
+    {
+        $ffmpeg = \FFMpeg\FFMpeg::create();
+        $video = $ffmpeg->open($videoPath);
+
+        $video->frame(\FFMpeg\Coordinate\TimeCode::fromSeconds(5))
+            ->save($thumbnailPath);
+    }

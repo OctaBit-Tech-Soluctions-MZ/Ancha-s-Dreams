@@ -14,9 +14,31 @@ class Content extends Model
         parent::boot();
 
         static::creating(function ($content) {
-            $content->slug = Str::slug($content->name, '-');
+            $content->slug = static::generateUniqueSlug($content->title);
+        });
+
+        static::updating(function ($content) {
+            if ($content->isDirty('title')) {
+                $content->slug = static::generateUniqueSlug($content->title, $content->id);
+            }
         });
     }
+
+    protected static function generateUniqueSlug($title, $excludeId = null)
+    {
+        $slug = Str::slug($title);
+        $originalSlug = $slug;
+        $count = 1;
+
+        while (static::where('slug', $slug)
+            ->when($excludeId, fn($query) => $query->where('id', '!=', $excludeId))
+            ->exists()) {
+            $slug = $originalSlug . '-' . $count++;
+        }
+
+        return $slug;
+    }
+
 
     public function courses() {
         return $this->belongsTo(Course::class, 'course_id');

@@ -9,9 +9,9 @@
                     
                     <div class="rbt-tutor-information-right">
                         <div class="d-flex justify-content-start p-4">
-                            <a class="rbt-btn btn-md hover-icon-reverse" href="{{ route('instructor.courses.register') }}">
+                            <a class="rbt-btn btn-border hover-icon-reverse rbt-sm-btn-2" href="{{ route('instructor.courses.register') }}">
                                 <span class="icon-reverse-wrapper">
-                                <span class="btn-text ms-2 me-2">Registar novo curso</span>
+                                <span class="btn-text ms-2 me-2">Novo curso</span>
                                 <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
                                 <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
                                 </span>
@@ -36,7 +36,9 @@
                                 <div class="d-flex gap-2">
                                     <div class="row g-5">
                                         {{-- Course Card Blade Component. resources/components/course-card-instructor.blade.php --}}
-                                        <x-course-card-instructor :courses="$courses"  />
+                                        @foreach($courses as $course)
+                                            <x-course-card :course="$course" :isInstructorPainel="true"  />
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>

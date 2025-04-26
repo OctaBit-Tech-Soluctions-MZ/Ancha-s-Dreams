@@ -14,18 +14,38 @@ class Course extends Model
         return $this->belongsTo(User::class, 'teacher');
     }
 
-    // Gera o slug automaticamente ao criar um curso
+    public function contents()
+    {   
+        return $this->hasMany(Content::class, 'course_id');
+    }
+    
     public static function boot()
     {
         parent::boot();
 
-        static::creating(function ($course) {
-            $course->slug = Str::slug($course->name, '-');
+        static::creating(function ($courses) {
+            $courses->slug = static::generateUniqueSlug($courses->name);
+        });
+
+        static::updating(function ($courses) {
+            if ($courses->isDirty('name')) {
+                $courses->slug = static::generateUniqueSlug($courses->name, $courses->id);
+            }
         });
     }
 
-    public function contents()
-    {   
-        return $this->hasMany(Content::class, 'course_id');
+    protected static function generateUniqueSlug($title, $excludeId = null)
+    {
+        $slug = Str::slug($title);
+        $originalSlug = $slug;
+        $count = 1;
+
+        while (static::where('slug', $slug)
+            ->when($excludeId, fn($query) => $query->where('id', '!=', $excludeId))
+            ->exists()) {
+            $slug = $originalSlug . '-' . $count++;
+        }
+
+        return $slug;
     }
 }

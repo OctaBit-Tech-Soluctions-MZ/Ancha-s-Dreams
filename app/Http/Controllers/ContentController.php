@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helper\GenerateID;
 use App\Http\Requests\ContentRequest;
+use App\Jobs\JobUploadVideoToCloud;
 use App\Models\Content;
 use App\Models\Course;
 use App\Services\GoogleDriveService;
@@ -19,9 +20,8 @@ class ContentController extends Controller
 
     public function lessons($slug){
 
-        Course::where('slug', $slug)->firstOrFail();
-        $contents = Content::all();
-        return view('instructor.lesson',compact('slug', 'contents'));
+        $course = Course::where('slug', $slug)->firstOrFail();
+        return view('instructor.lesson',compact('course'));
     }
     public function add($slug){
         Course::where('slug', $slug)->firstOrFail();
@@ -29,23 +29,24 @@ class ContentController extends Controller
     }
 
     public function store(ContentRequest $request, $slug) {
-
-        $course = Course::where('slug',$slug)->firstOrFail();
+        $course = Course::where('slug', $slug)->firstOrFail();
+        $maxOrder = $course->contents->max('order');
+        $newOrder = $maxOrder ? $maxOrder + 1 : 1;
+    
         $content = new Content();
         $content->title = $request->title;
         $content->description = $request->description;
-        $content->course_id = $course->course_id;
-        $googleDriveService = new GoogleDriveService();
-        $drive_file = $googleDriveService->uploadVideo($request->video->getPathName(), $request->title, 
-                                                        $course->drive_folder_id);
-        $googleDriveService->permission($drive_file->id);
-        $content->drive_file_id = $drive_file->id;
-        $content->url_view = $drive_file->webViewLink;
-        $content->url_download = $drive_file->webContentLink;
-        $content->url_preview = 'https://drive.google.com/file/d/' . $drive_file->id . '/preview';
-
+        $content->course_id = $course->id;
+        $content->order = $newOrder;
         $content->save();
-
-        return redirect()->back()->with('success', 'Video Aula adicionado com sucesso');
+    
+        // Salvar o vídeo num local seguro antes de mandar o Job
+        $path = $request->file('video')->store('tmp','tmp'); // salva em storage/app/tmp
+        $path = str_replace('tmp/','',$path);
+        // Agora sim, dispara o Job com o arquivo salvo
+        JobUploadVideoToCloud::dispatch($content->id, $path, $request->title)->onQueue('default');
+    
+        return redirect()->back()->with('success', 'Aula Criada com sucesso');
     }
+    
 }

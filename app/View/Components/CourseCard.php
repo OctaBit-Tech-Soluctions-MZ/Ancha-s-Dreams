@@ -9,14 +9,16 @@ use Illuminate\View\Component;
 class CourseCard extends Component
 {
 
-    public $courses;
+    public $course;
+    public $isInstructorPainel;
 
     /**
      * Create a new component instance.
      */
-    public function __construct($courses)
+    public function __construct($course, $isInstructorPainel = false)
     {
-        $this->courses = $courses;
+        $this->course = $course;
+        $this->isInstructorPainel = $isInstructorPainel;
     }
 
     /**

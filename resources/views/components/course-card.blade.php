@@ -1,5 +1,3 @@
-@foreach ($courses as $course)
-
     <!-- Start Single Course  -->
     <div class="col-lg-4 col-md-6 col-12">
         <div class="rbt-card variation-01 rbt-hover">
@@ -32,15 +30,45 @@
                     <li><i class="fa fa-book me-2"></i>{{ $course->contents->count() }} Aulas</li>
                     <li><i class="fa fa-user-graduate me-2"></i>30 Alunos</li>
                 </ul>
-                <x-short-text class="" :text="$course->description" :limit="70"/>
-                <div class="rbt-card-bottom">
-                    <div class="rbt-price">
-                        <span class="current-price fs-6">{{ $course->price }} mzn</span>
-                        <span class="off-price">{{ $course->price + $course->price * 0.25 }} mzn</span>
+                    {{-- Verifica se o card vai ser exibido no painel do instrutor ou 
+                    na secção de curso --}}
+                    
+                @if (!$isInstructorPainel)
+
+                    <x-short-text :text="$course->description" :limit="60"/>
+                    <div class="rbt-card-bottom">
+                        <div class="rbt-price">
+                            <span class="current-price fs-6">{{ $course->price }} mzn</span>
+                            <span class="off-price">{{ $course->price + $course->price * 0.25 }} mzn</span>
+                        </div>
+                        <a class="rbt-btn-link text-decoration-none" href="{{ route('courses.details', ['slug' => $course->slug]) }}">Ler Mais<i class="ms-2 fa fa-arrow-right"></i></a>
                     </div>
-                    <a class="rbt-btn-link text-decoration-none" href="{{ route('courses.details', ['slug' => $course->slug]) }}">Ler Mais<i class="ms-2 fa fa-arrow-right"></i></a>
-                </div>
+
+                @else
+
+                    <div class="rbt-card-bottom">
+                        <div class="rbt-price">
+                            <span class="current-price fs-6">{{ $course->price }} mzn</span>
+                            <span class="off-price">{{ $course->price + $course->price * 0.25 }} mzn</span>
+                        </div>
+                    </div>
+                    <div class="text-start d-flex gap-3 p-3">
+                        <div>
+                            <a class="rbt-btn-link text-decoration-none" href="{{ route('instructor.courses.edit', ['slug' => $course->slug]) }}">
+                            <i class="me-2 fa fa-edit"></i>Editar</a>
+                        </div>
+                        <div>
+                            <a class="rbt-btn-link text-decoration-none" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#deleteModal" 
+                            data-action="{{ route('courses.delete', ['slug' => $course->slug]) }}"
+                            href="#">
+                            <i class="me-2 fa fa-trash"></i>Excluir</a>
+                        </div>
+                        <div><a href="{{ route('instructor.lessons', ['slug' => $course->slug]) }}" 
+                            class="rbt-btn-link text-decoration-none"><i class="me-2 fas fa-video"></i>Aulas</a></div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
-@endforeach

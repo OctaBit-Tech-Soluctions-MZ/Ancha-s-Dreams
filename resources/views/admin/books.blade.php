@@ -80,7 +80,6 @@
                                             </tr>
                                         </thead>
                                         <tbody class="table-sm">
-                                            
                                             @foreach ($books as $book)
                                             <tr>
                                                 <td> {{ $loop->index + 1 }} </td>

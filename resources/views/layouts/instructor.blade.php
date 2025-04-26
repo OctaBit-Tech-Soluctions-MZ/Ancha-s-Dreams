@@ -11,29 +11,29 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Trix Editor CSS -->
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
-
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-
-    <!-- Pixcels Themes CSS -->
-    <link rel="stylesheet" href="{{asset('assets/css/styles.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/slick-theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/sal.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/feather.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/euclid-circulara.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/swiper.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/odometer.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/animation.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/jquery-ui.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/magnigy-popup.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/plyr.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/jodit.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-select.min.css') }}">
-
-    <!-- Sidebar CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/sidebar.css') }}">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/app.css') }}">
-
-    <!-- Profile Css -->
+    <link rel="stylesheet" href="{{ asset('assets/css/sidebar.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}">
-
 </head>
 <body>
     <!-- Loader -->
@@ -84,7 +84,7 @@
                         <div class="container-fluid">
                             <!-- Sidebar Toggle (Topbar) -->
                             <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3" 
-                            data-bs-toggle="collapse" href="#collapseSidebar" role="button" aria-expanded="false" aria-controls="collapseSidebar">
+                            data-bs-toggle="collapse" href="#sidebar" role="button" data-bs-target="#sidebar">
                                 <i class="fa fa-bars"></i>
                             </button>
                             <div class="dropdown justify-content-end">
@@ -116,42 +116,25 @@
     @include('components.modals.logout')
     @include('components.modals.delete')
     @include('components.scripts.get-id-to-delete')
-
-
-        <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <!-- Core theme JS-->
         <script src="{{ asset('assets/js/scripts.js') }}"></script>
-        <!-- Swiper JS -->
         <script src="{{ asset('assets/js/swiper.js') }}"></script>
-        <!-- jQuery JS -->
         <script src="{{ asset('assets/js/jquery.js') }}"></script>
-        <!-- Image Loader JS -->
         <script src="{{ asset('assets/js/imageloaded.js') }}"></script>
-        <!-- Isotop JS -->
         <script src="{{ asset('assets/js/isotop.js')}}"></script>
-        <!-- Magnify-popup -->
         <script src="{{ asset('assets/js/magnify-popup.min.js') }}"></script>
-        <!-- sal.js -->
         <script src="{{ asset('assets/js/sal.js') }}"></script>
-        <!-- Wow JS -->
         <script src="{{ asset('assets/js/wow.js')}}"></script>
-        <!-- Bootstrap core JS-->
         <script src="{{ asset('assets/js/bootstrap-select.min.js') }}"></script>
-        <!-- One Page Nav JS -->
         <script src="{{ asset('assets/js/jquery-one-page-nav.js')}}"></script>
-        <!-- Modernizr JS -->
         <script src="{{ asset('assets/js/modernizr.min.js')}}"></script>
-        <!-- JQuery UI JS-->
         <script src="{{ asset('assets/js/jquery-ui.js')}}"></script>
-        <!-- Plyr JS -->
         <script src="{{ asset('assets/js/plyr.js')}}"></script>
-        <!-- Jodit JS -->
         <script src="{{ asset('assets/js/jodit.min.js')}}"></script>
-        <!-- Custom JS -->
-        <script src="{{ asset('assets/js/app.js') }}"></script>
-        <!-- Main JS -->
+        <script src="{{ asset('assets/js/theme-idle_fingers.js') }}"></script>
+        <script src="{{ asset('assets/js/mode-html.js') }}"></script>
         <script src="{{ asset('assets/js/main.js') }}"></script>
+        <script src="{{ asset('assets/js/app.js') }}"></script>
 
 </body>
 </html>

@@ -81,13 +81,34 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
-    // Gera o slug automaticamente ao criar um utilizador
+    
     public static function boot()
     {
         parent::boot();
 
-        static::creating(function ($user) {
-            $user->slug = Str::slug($user->name, '-');
+        static::creating(function ($users) {
+            $users->slug = static::generateUniqueSlug($users->name);
         });
+
+        static::updating(function ($users) {
+            if ($users->isDirty('name')) {
+                $users->slug = static::generateUniqueSlug($users->name, $users->id);
+            }
+        });
+    }
+
+    protected static function generateUniqueSlug($title, $excludeId = null)
+    {
+        $slug = Str::slug($title);
+        $originalSlug = $slug;
+        $count = 1;
+
+        while (static::where('slug', $slug)
+            ->when($excludeId, fn($query) => $query->where('id', '!=', $excludeId))
+            ->exists()) {
+            $slug = $originalSlug . '-' . $count++;
+        }
+
+        return $slug;
     }
 }

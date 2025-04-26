@@ -45,7 +45,9 @@ function getCart() {
       name: button.dataset.name,
       price: parseFloat(button.dataset.price),
       path_photo: button.dataset.path_photo,
-      allow_multiple: button.dataset.allow_multiple === 'true'
+      allow_multiple: button.dataset.allow_multiple === 'true',
+      folder: button.dataset.folder,
+      type: button.dataset.type
     };
     addToCart(product);
   }
@@ -82,18 +84,18 @@ function getCart() {
       cart.forEach(item => {
         const total = item.price * item.quantity;
         totalGeral += total;
-
         cartBody.innerHTML += `
           <tr>
-            <td>${item.name}</td>
-            <td>${item.price.toFixed(2)} MZN</td>
-            <td>
+          <td class="pro-thumbnail"><img src="{{ asset('assets/img/${item.path_photo}" alt="Product"></a></td>
+            <td class="pro-title">${item.name}</td>
+            <td class="pro-price">${item.price.toFixed(2)} MZN</td>
+            <td class="pro-quantity">
               ${item.allow_multiple ? `
                 <input type="number" min="1" value="${item.quantity}" onchange="updateQuantity(${item.id}, this.value)">
               ` : item.quantity}
             </td>
-            <td>${total.toFixed(2)} MZN</td>
-            <td>
+            <td class="pro-subtotal">${total.toFixed(2)} MZN</td>
+            <td class="pro-remove">
               <button class="btn btn-danger btn-sm" onclick="removeFromCart(${item.id})">Remover</button>
             </td>
           </tr>

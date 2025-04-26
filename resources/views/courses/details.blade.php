@@ -89,22 +89,22 @@
                     <div class="rbt-course-feature-box rbt-shadow-box thuumbnail">
                         <img class="w-100" src="{{ asset('assets/img/courses/'.$course->course_photo_path)}}" alt="Card image">
                     </div>
-{{-- 
+
                     <div class="rbt-inner-onepage-navigation sticky-top mt-3">
                         <nav class="mainmenu-nav onepagenav">
                             <ul class="mainmenu">
                                 <li class="current">
-                                    <a href="#coursecontent">Conteudos do Curso</a>
+                                    <a href="#coursecontent">Aulas</a>
                                 </li>
                                 <li class="">
-                                    <a href="#intructor">Instrutor</a>
+                                    <a href="#intructor">Sobre o Instrutor</a>
                                 </li>
                                 <li class="">
-                                    <a href="#review">Reações</a>
+                                    <a href="#review">Avaliações</a>
                                 </li>
                             </ul>
                         </nav>
-                    </div> --}}
+                    </div>
 
                     
                     <!-- Start Course Content  -->
@@ -538,6 +538,7 @@
                                     data-name="{{ $course->name }}"
                                     data-price="{{ $course->price }}"
                                     data-type="curso"
+                                    data-folder="courses"
                                     data-allow_multiple="false"
                                     id="btn-add-{{ $course->id }}"
                                     data-photo="courses/{{ $course->course_photo_path }}"

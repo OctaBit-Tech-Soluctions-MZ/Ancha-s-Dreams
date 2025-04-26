@@ -91,12 +91,13 @@ class CourseController extends Controller
 
             // Upload e criação do conteúdo de introdução
             $fileId = $this->uploadIntroVideo($request->file('intro_video'), $request->title_video, $folderId, $gds);
+            $gds->permission($fileId);
 
             Content::create([
                 'title' => $request->title_video,
                 'url_preview' => 'https://drive.google.com/file/d/' . $fileId . '/preview',
                 'order' => 0,
-                'duration' => "2:00", // ← ajustar futuramente com duração real
+                'duration' => getDurationVideo($request->file('intro_video')->getPathname()),
                 'course_id' => $course->id,
             ]);
 

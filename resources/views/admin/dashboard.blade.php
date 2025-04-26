@@ -71,136 +71,46 @@
         </div>
     </div>
 </div>
-<div class="col-xl-12 col-md-6 mb-2">
-    <div class="card shadow border border-0">
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable">
-                    <thead class="table-light text-grey">
-                        <tr class="border border-0">
-                            <th class="border border-0">#</th>
-                            <th class="border border-0">Id Do Pedido</th>
-                            <th class="border border-0">Cliente</th>
-                            <th class="border border-0">Items do Pedido</th>
-                            <th class="border border-0">Valor Total</th>
-                            <th class="border border-0">Status</th>
-                            <th class="border border-0">Acção</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="border border-0 text-grey-500"><span>1</span></td>
-                            <td class="border border-0"><span>AUS245HSHBC877</span></td>
-                            <td class="border border-0"><span>Huren Vicente Pelembe</span></td>
-                            <td class="border border-0"><span>1 - Cursos de Culinaria X
-                                                        2 - Livro X
-                                                        3 - Utilisilio X </span>
-                            </td>
-                            <td class="border border-0"><span> 4000 Mzn</span></td>
-                            <td class="border border-0 d-flex justify-content-center"><div class="bg-warning rounded-circle p-2" style="width: 25%"></div></td>
-                            <td class="border border-0">
-                                <form method="POST" action="{{ route('admin.dashboard') }}" class="d-flex align-items-center gap-2" id="statusForm">
-                                    @csrf
-                                    @method('PUT')
-                                
-                                    <input type="checkbox" name="check" id="check" class="d-none">
-                                    <input type="checkbox" name="cancel" id="cancel" class="d-none">
-                                
-                                    <button type="button" class="btn btn-success btn-sm" onclick="submitWithCheck('check')">
-                                        <i class="fa fa-check"></i> Aprovar
-                                    </button>
-                                
-                                    <button type="button" class="btn btn-danger btn-sm" onclick="submitWithCheck('cancel')">
-                                        <i class="fa fa-times"></i> Cancelar
-                                    </button>
-                                </form>
-                            
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="border border-0"><span>2</span></td>
-                            <td class="border border-0"><span>AUS245HSHBC877</span></td>
-                            <td class="border border-0"><span>Huren Vicente Pelembe</span></td>
-                            <td class="border border-0"><span>1 - Cursos de Culinaria X
-                                                        2 - Livro X
-                                                        3 - Utilisilio X </span>
-                            </td>
-                            <td class="border border-0"><span> 4000 Mzn</span></td>
-                            <td class="border border-0 d-flex justify-content-center"><div class="bg-warning rounded-circle p-2" style="width: 25%"></div></td>
-                            <td class="border border-0">
-                                <div class="d-flex justify-content-between gap-1">
-                                    <a href="" class="fa fa-check btn btn-success btn-sm"></a>
-                                    <a href="" class="fa fa-cancel btn btn-danger btn-sm"></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="border border-0"><span>3</span></td>
-                            <td class="border border-0"><span>AUS245HSHBC877</span></td>
-                            <td class="border border-0"><span>Huren Vicente Pelembe</span></td>
-                            <td class="border border-0"><span>1 - Cursos de Culinaria X
-                                                        2 - Livro X
-                                                        3 - Utilisilio X </span>
-                            </td>
-                            <td class="border border-0"><span> 4000 Mzn</span></td>
-                            <td class="border border-0 d-flex justify-content-center"><div class="bg-danger rounded-circle p-2" style="width: 25%"></div></td>
-                            <td class="border border-0">
-                                <div class="d-flex justify-content-between gap-1">
-                                    <a href="" class="fa fa-check btn btn-success btn-sm"></a>
-                                    <a href="" class="fa fa-cancel btn btn-danger btn-sm"></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="border border-0"><span>4</span></td>
-                            <td class="border border-0"><span>AUS245HSHBC877</span></td>
-                            <td class="border border-0"><span>Huren Vicente Pelembe</span></td>
-                            <td class="border border-0"><span>1 - Cursos de Culinaria X
-                                                        2 - Livro X
-                                                        3 - Utilisilio X </span>
-                            </td>
-                            <td class="border border-0"><span> 4000 Mzn</span></td>
-                            <td class="border border-0 d-flex justify-content-center"><div class="bg-success rounded-circle p-2" style="width: 25%"></div></td>
-                            <td class="border border-0">
-                                <div class="d-flex justify-content-between gap-1">
-                                    <a href="" class="fa fa-check btn btn-success btn-sm"></a>
-                                    <a href="" class="fa fa-cancel btn btn-danger btn-sm"></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="border border-0"><span>5</span></td>
-                            <td class="border border-0"><span>AUS245HSHBC877</span></td>
-                            <td class="border border-0"><span>Huren Vicente Pelembe</span></td>
-                            <td class="border border-0"><span>1 - Cursos de Culinaria X
-                                                        2 - Livro X
-                                                        3 - Utilisilio X </span>
-                            </td>
-                            <td class="border border-0"><span> 4000 Mzn</span></td>
-                            <td class="border border-0 d-flex justify-content-center"><div class="bg-success rounded-circle p-2" style="width: 25%"></div></td>
-                            <td class="border border-0">
-                                <div class="d-flex justify-content-between gap-1">
-                                    <a href="" class="fa fa-check btn btn-success btn-sm"></a>
-                                    <a href="" class="fa fa-cancel btn btn-danger btn-sm"></a>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="d-flex gap-1 justify-content-start">
-                    <div class="mb-2">
-                        <span class="text-success rounded-cicle p-2"><strong> Confirmado</strong></span>
-                    </div>
-                    <div class="mb-2">
-                        <span class="text-danger rounded-cicle p-2 w-25"><strong>Cancelado</strong></span>
-                    </div>
-                    <div class="mb-2">
-                        <span class="text-warning rounded-cicle p-2 w-25"><strong>Pendente</strong></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
+<x-modern-table :title="'Historico de Pedidos'">
+    <x-slot:header>
+        <tr>
+            <th>Id</th>
+            <th>Cliente</th>
+            <th>Items</th>
+            <th>Valor</th>
+            <th>Status</th>
+            <th>Acção</th>
+        </tr>
+    </x-slot:header>
+    <tr>
+        <td><span>#P5HSHBC877</span></td>
+        <td><span>Huren Vicente Pelembe</span></td>
+        <td><span>1 - Cursos de Culinaria X<br>
+                                    2 - Livro X<br>
+                                    3 - Utilisilio X </span>
+        </td>
+        <td><span> 4000 Mzn</span></td>
+        <td><span class="rbt-badge-5 bg-primary-opacity">Em Processo</span></td>
+        <td>
+            <form method="POST" action="{{ route('admin.dashboard') }}" class="d-flex align-items-center gap-2" id="statusForm">
+                @csrf
+                @method('PUT')
+            
+                <input type="checkbox" name="check" id="check" class="d-none">
+                <input type="checkbox" name="cancel" id="cancel" class="d-none">
+            
+                <button type="button" class="btn btn-success btn-sm" onclick="submitWithCheck('check')">
+                    <i class="fa fa-check"></i> Aprovar
+                </button>
+            
+                <button type="button" class="btn btn-danger btn-sm" onclick="submitWithCheck('cancel')">
+                    <i class="fa fa-times"></i> Cancelar
+                </button>
+            </form>
+        
+        </td>
+    </tr>
+</x-modern-table>
 
 @endsection

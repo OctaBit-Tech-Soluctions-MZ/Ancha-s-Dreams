@@ -17,7 +17,7 @@
                     </h5>
                     {{-- Filter Blade Components path:resource/components/filter.blade.php --}}
                     {{-- Start --}}
-                        <x-filter :categories="$categories" :route="route('courses')"/>
+                        <x-filter :categories="$categories" :route="route('courses')" :item="'curso'"/>
                     {{-- End --}}
                     @if (empty($courses))
                         <div class="alert alert-danger">
@@ -27,7 +27,9 @@
                         <div class="row g-2">
                         {{-- Courses Card Blade Components path:resource/components/course-card.blade.php --}}
                         {{-- Start --}}
-                            <x-course-card :courses="$courses"/>
+                            @foreach($courses as $course)
+                                <x-course-card :course="$course"/>
+                            @endforeach
                         {{-- End --}}
                         </div>
                         <div class="d-flex justify-content-center p-4">

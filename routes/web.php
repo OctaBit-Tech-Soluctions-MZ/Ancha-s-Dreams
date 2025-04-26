@@ -10,6 +10,7 @@ use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuizController;
 use App\Http\Controllers\RecipeController;
 use Illuminate\Support\Facades\Route;
 
@@ -67,12 +68,13 @@ Route::middleware([
         Route::get('/instructor/courses/{slug}/edit', [CourseController::class, 'edit'])->name('instructor.courses.edit');
         Route::get('/instructor/courses/register', [CourseController::class, 'register'])->name('instructor.courses.register');
         Route::get('/instructor/courses/{slug}/lessons', [ContentController::class, 'lessons'])->name('instructor.lessons');
-        Route::get('/instructor/lessons/{slug}/register', [ContentController::class, 'add'])->name('instructor.courses.lesson.add');
+        Route::get('/instructor/lessons/{slug}/register', [ContentController::class, 'add'])->name('instructor.lessons.add');
+        Route::get('/instructor/lesson/{slug}/quiz', [QuizController::class, 'quiz'])->name('instructor.quiz');
         Route::get('/instructor/recipes', [RecipeController::class, 'list'])->name('instructor.recipes');
         Route::get('/instructor/profile', [ProfileController::class, 'instructor'])->name('instructor.profile');
         Route::put('/instructor/courses/{slug}/edit', [CourseController::class, 'update'])->name('instructor.courses.update');
         Route::post('/instructor/courses/register', [CourseController::class, 'store'])->name('instructor.courses.store');
-        Route::post('/instructor/lessons/{slug}/register', [ContentController::class, 'store'])->name('instructor.courses.lesson.store');
+        Route::post('/instructor/lessons/{slug}/register', [ContentController::class, 'store'])->name('instructor.lesson.store');
         Route::delete('/instructor/courses/{slug}/delete',[CourseController::class, 'destroy'])->name('courses.delete');
     });
 

@@ -9,30 +9,29 @@
 
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{{ asset('assets/favicon.ico') }}" />
-
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        
         <script src="https://unpkg.com/scrollreveal"></script>
-      
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{ asset('assets/css/css.css') }}" rel="stylesheet" />
-
+        <link rel="stylesheet" href="{{ asset('assets/css/slick.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/slick-theme.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/sal.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/feather.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/euclid-circulara.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/swiper.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/odometer.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/animation.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/jquery-ui.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/magnigy-popup.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/plyr.css') }}">
-
-        {{-- Plans Custom CSS --}}
+        <link rel="stylesheet" href="{{ asset('assets/css/jodit.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}">
-
-        {{-- Custom CSS --}}
         <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
-
-        {{-- Profile Custom css --}}
         <link rel="stylesheet" href="{{asset('assets/css/profile.css') }}">
-
         <style>
             .bg-nav {
                 background: #484b4e !important;
@@ -113,6 +112,20 @@
         <script src="{{ asset('assets/js/jodit.min.js')}}"></script>
         <!-- Custom JS -->
         <script src="{{ asset('assets/js/app.js') }}"></script>
+        <!-- Dark Mode Switcher -->
+        <script src="{{ asset('assets/js/js.cookie.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.style.switcher.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery-appear.js') }}"></script>
+        <script src="{{ asset('assets/js/odometer.js') }}"></script>
+        <script src="{{ asset('assets/js/backtotop.js') }}"></script>
+
+        <script src="{{ asset('assets/js/waypoint.min.js') }}"></script>
+        <script src="{{ asset('assets/js/easypie.js') }}"></script>
+        <script src="{{ asset('assets/js/text-type.js') }}"></script>
+        <script src="{{ asset('assets/js/paralax-scroll.js') }}"></script>
+        <script src="{{ asset('assets/js/paralax.min.js') }}"></script>
+        <script src="{{ asset('assets/js/countdown.js') }}"></script>
+        <script src="{{ asset('assets/js/Sortable.min.js') }}"></script>
         <!-- Main JS -->
         <script src="{{ asset('assets/js/main.js') }}"></script>
 

@@ -9,32 +9,30 @@
 
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{{ asset('assets/favicon.ico') }}" />
-
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        
-        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-        
+        <link rel="stylesheet" href="{{ asset('assets/css/css.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/loader.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-select.min.css') }}">
-
+        <link rel="stylesheet" href="{{ asset('assets/css/slick.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/slick-theme.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/sal.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/feather.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/euclid-circulara.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/swiper.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/odometer.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/animation.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/jquery-ui.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/magnigy-popup.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/plyr.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/jodit.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}">
-        
         <script src="https://unpkg.com/scrollreveal"></script>
-        
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{{ asset('assets/css/css.css') }}" rel="stylesheet" />
-        
-        {{-- <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}"> --}}
-
-        {{-- Custom CSS --}}
-        <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
-
-        <!-- Loader CSS -->
-        <link rel="stylesheet" href="{{ asset('assets/css/loader.css') }}">
 
         @auth
             <style>
@@ -47,7 +45,6 @@
         @endauth
     </head>
     <body id="page-top">
-
         <!-- Loader -->
         <div class="loader-container" id="loader">
             <div class="lds-roller">
@@ -55,10 +52,8 @@
                 <div></div><div></div><div></div><div></div>
             </div>
         </div>
-        
         <!-- Navigation-->
         @include('components.navigation-menu')
-
         <!-- Masthead-->
         <header class="masthead">
             <div class="overlay"></div>
@@ -67,17 +62,17 @@
                 <div class="masthead-heading text-uppercase">@yield('headingtext')</div>
             </div>
         </header>
-
+        <!-- content -->
         @yield('content')
-
         <!-- Footer-->
         @include('components.footer')
-
+        <!-- Modals -->
         @Auth
             @include('components.modals.logout')
             @include('components.modals.cart')
             <script src="{{ asset('assets/js/cart.js') }}"></script>
         @endauth
+        <!-- Scripts -->
         <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <!-- Core theme JS-->
@@ -112,10 +107,5 @@
         <script src="{{ asset('assets/js/app.js') }}"></script>
         <!-- Main JS -->
         <script src="{{ asset('assets/js/main.js') }}"></script>
-
-
-
-</body>
-        
-</body>
+    </body>
 </html>
