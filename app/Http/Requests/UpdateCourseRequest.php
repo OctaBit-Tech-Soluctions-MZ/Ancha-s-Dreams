@@ -37,14 +37,20 @@ class UpdateCourseRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required'         => 'O nome do curso é obrigatório.',
-            'categories.required'   => 'A categoria do curso é obrigatória.',
-            'price.required'        => 'O preço do curso é obrigatório.',
-            'price.numeric'         => 'O preço deve ser um número.',
-            'description.required'  => 'A descrição do curso é obrigatória.',
-            'course_photo.image'    => 'O arquivo enviado deve ser uma imagem.',
-            'course_photo.mimes'    => 'A imagem deve estar no formato: jpeg, png, jpg ou gif.',
-            'course_photo.max'      => 'O tamanho máximo permitido para a imagem é 2MB.',
+            'name.required' => 'O nome é obrigatório.',
+            'name.string' => 'O nome deve ser um texto.',
+            'name.max' => 'O nome não pode ter mais de 255 caracteres.',
+            'price.required' => 'O preço é obrigatório.',
+            'price.numeric' => 'O preço deve ser um número.',
+            'description.required' => 'A descrição é obrigatória.',
+            'description.string' => 'A descrição deve ser um texto.',
+            'course_photo.image' => 'O arquivo da foto do curso deve ser uma imagem.',
+            'course_photo.mimes' => 'A foto do curso deve ser do tipo: jpeg, png, jpg ou gif.',
+            'course_photo.max' => 'A foto do curso não pode ter mais de 2MB.',
+            'categories.required' => 'A categoria é obrigatória.',
+            'categories.string' => 'A categoria deve ser um texto.',
+            'nivel.required' => 'O nível é obrigatório.',
+            'nivel.string' => 'O nível deve ser um texto.',
         ];
     }
 }

@@ -43,14 +43,22 @@ class CourseController extends Controller
     }
 
     public function details($slug) {
-
-        
-        $course = Course::with('instructor')
-                    ->where('slug', $slug)
-                    ->first();
-
-        return view('courses.details', compact('course'));
+        // Carrega o curso com o instrutor
+        $course = Course::with(['instructor' => function($query) {
+                            $query->withCount('courses');
+                        }])->where('slug', $slug)
+                        ->firstOrFail();
+    
+        // Obtém os cursos do mesmo instrutor, excluindo o curso atual
+        $recommendedCourses = Course::where('teacher', $course->teacher)
+                                    ->where('slug', '!=', $slug)  // Exclui o curso atual
+                                    ->take(2)  // Limita a 2 cursos recomendados
+                                    ->get();
+        $totalCourses = Course::where('teacher', $course->instructor->id)->count();
+    
+        return view('courses.details', compact('course', 'recommendedCourses', 'totalCourses'));
     }
+    
 
     public function register(){
         $categories = Category::all('name');

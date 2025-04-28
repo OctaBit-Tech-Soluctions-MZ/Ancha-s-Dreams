@@ -2,12 +2,9 @@
 
 @section('title', 'Pagina Inicial')
 
-@section('subheading', 'Bem vindo a ALAGOANA!')
-
-@section('headingtext', 'PRAZER EM CONHECER TE')
-
 @section('content')
 
+    <x-masthead :subHeading="'Bem vindo a nossa Plataforma!'" :heading="'PRAZER EM CONHECER TE'"/>
         <section class="container my-5">
             <div class="row align-items-center">
                 <!-- Imagem ao lado (Reduzida) -->

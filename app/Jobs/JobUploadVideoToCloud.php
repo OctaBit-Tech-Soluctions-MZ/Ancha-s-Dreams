@@ -54,7 +54,7 @@ class JobUploadVideoToCloud implements ShouldQueue
             $this->videoPath = str_replace('tmp/tmp', 'tmp', $this->videoPath);
         }
         
-        $this->videoPath = storage_path( $this->videoPath);
+        $this->videoPath = storage_path('app/tmp/'.$this->videoPath);
         if (!file_exists($this->videoPath)) {
             Log::error('Arquivo de vídeo não encontrado', ['path' => $this->videoPath]);
             throw new Exception('Arquivo de vídeo não encontrado');

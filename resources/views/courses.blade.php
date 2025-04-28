@@ -2,12 +2,9 @@
 
 @section('title', 'Cursos')
 
-@section('subheading', 'Os nossos cursos de culinária')
-
-@section('headingtext', 'São 100% digitais e com um método inovador.')
-
 @section('content')
 
+    <x-masthead :subHeading="'Os nossos cursos de culinária'" :heading="'São 100% digitais e com um método inovador.'"/>
         <!-- Seção de Cursos -->
         <section class="p-1">
             <div class="container mt-4">
@@ -17,7 +14,7 @@
                     </h5>
                     {{-- Filter Blade Components path:resource/components/filter.blade.php --}}
                     {{-- Start --}}
-                        <x-filter :categories="$categories" :route="route('courses')" :item="'curso'"/>
+                        <x-filter :categories="$categories" :route="route('courses')" :placeholder="'o seu curso'" :person="'Instrutor'"/>
                     {{-- End --}}
                     @if (empty($courses))
                         <div class="alert alert-danger">

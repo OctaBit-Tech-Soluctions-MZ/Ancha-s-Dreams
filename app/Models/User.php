@@ -10,6 +10,8 @@ use Illuminate\Support\Str;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Livewire\Features\SupportModels\ModelSynth;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -20,6 +22,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -76,10 +79,6 @@ class User extends Authenticatable
         ];
     }
 
-    public function roles()
-    {
-        return $this->belongsTo(Role::class);
-    }
 
     
     public static function boot()
@@ -110,5 +109,9 @@ class User extends Authenticatable
         }
 
         return $slug;
+    }
+    public function courses()
+    {
+        return $this->hasMany(Course::class, 'teacher');
     }
 }

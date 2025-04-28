@@ -1,6 +1,8 @@
-@extends('layouts.auth')
+@extends('layouts.app')
 
 @section('title', 'Entre na Sua Cozinha Virtual')
+
+@section('header_bg', 'bg-dark')
 
 @section('content')
         <div class="pt-3 mt-5">
@@ -10,12 +12,11 @@
                 </div>
             @endsession
 
-            <x-validation-errors class="mb-4" />
             
             <div class="container d-flex justify-content-center align-items-center p-5 mt-2 bg-grey-200 ">
                 <div class="p-4 col-6 card shadow  card-auth">
                     <h3 class="text-center p-1">Acesse Sua Conta</h3>
-                    
+                    <x-validation-errors class="mb-4" />
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 

@@ -31,7 +31,7 @@ revelar.reveal('.texto',{
 
 //dcroll menu trasparent
 window.addEventListener("scroll", function(){
-    let header = document.querySelector('#header')
+    let header = document.querySelector('.header-scroll')
     header.classList.toggle('rolagem', window.scrollY > 0)
 })
 

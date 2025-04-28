@@ -13,15 +13,14 @@
                                 <img src="{{ asset('/assets/img/undraw_profile_1.svg') }}" alt="{{ $user->name }}">
                             </a>
                             <h1>{{ $user->name }}</h1>
-                            <p><a href="{{ route('profile.image') }}" class="__image__"><i class="fa-solid fa-camera"></i></a></p>
                         </div>
                         <ul class="nav flex-column nav-pills">
                             <li class="nav-item">
-                                <a class="nav-link rounded-0" href="{{ route('profile.edit') }}">
+                                <a class="nav-link rounded-0" href="{{ route('instructor.profile.edit') }}">
                                     <i class="fa fa-edit me-3"></i> Editar Perfil</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link rounded-0" href="{{ route('profile.password') }}">
+                                <a class="nav-link rounded-0" href="{{ route('instructor.profile.password') }}">
                                     <i class="fa fa-lock me-3"></i> Mudar Senha</a>
                             </li>
                         </ul>

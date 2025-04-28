@@ -458,4 +458,7 @@ body {
   .ard_dash{
     width: 300px;
   }
+  .page {
+    display: none;
+  }
 }

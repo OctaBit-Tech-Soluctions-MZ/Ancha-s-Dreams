@@ -13,8 +13,8 @@ class UserController extends Controller
 
     public function index() {
         $search = '';
-        $users = User::where('role', 'student')->paginate(10);
-        return view('admin.students', compact('users','search'));
+        $users = User::with('roles')->get();
+        return view('admin.users', compact('users','search'));
     }
 
     public function register(){
@@ -29,8 +29,8 @@ class UserController extends Controller
         $user->nivel = $request->nivel;
         $user->phone_number = $request->phone_number;
         $user->password = Hash::make($request->password);
-        $user->role = 'student';
         $user->save();
+        $user->assignRole('student');
         Auth::login($user);
         return redirect(route('home'));
     }

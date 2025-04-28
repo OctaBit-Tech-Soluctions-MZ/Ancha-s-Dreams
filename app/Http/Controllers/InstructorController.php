@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\UserRequest;
+use App\Jobs\JobSendEmail;
 use App\Models\Category;
 use App\Models\Content;
 use App\Models\Course;
+use App\Models\Recipe;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -18,10 +20,12 @@ class InstructorController extends Controller
 {
     public function dashboard() {
         $courses = Course::where('teacher',Auth::user()->id)->get();
+        $courses_list = $courses->take(5);
+        $recipes = Recipe::count();
         // echo '<pre>';var_dump($courses->name);exit;
 
         // $contents = Content::where('course_id',$courses->id)->get();
-        return view('instructor.dashboard', compact('courses'));
+        return view('instructor.dashboard', compact('courses', 'recipes', 'courses_list'));
     }
 
     public function courses(Request $request){
@@ -80,9 +84,6 @@ class InstructorController extends Controller
 
         $user = new User();
         $password = strtolower(Str::slug($request->name)).'-'.rand(1000, 9999);
-        $email = $request->email;
-        $name = $request->name;
-        $role = 'Instrutor';
         $user->name = $request->name;
         $user->surname = $request->surname;
         $user->email = $request->email;
@@ -94,13 +95,7 @@ class InstructorController extends Controller
         $user->experience = $request->experience;
         $user->certificate = $request->certificate;
         $user->save();
-
-        Mail::send('emails.account', compact('password','email', 'name', 'role'), 
-            function ($message) use($user){
-                $message->to($user->email, $user->name.' '.$user->surname)
-                        ->subject('Acesso à Plataforma de Culinária');
-        });
-
+        JobSendEmail::dispatch($user,$password);
         return redirect()->back()->with('success','Instructor Registado com sucesso');
     }
 

@@ -9,6 +9,8 @@ function getCart() {
 
   function clearCart() {
     localStorage.removeItem('cart');
+    btn.disabled = false;
+    btn.innerText = 'Adicionar no Carrinho';
   }
 
   function confirmClearCart() {
@@ -44,7 +46,7 @@ function getCart() {
       id: parseInt(button.dataset.id),
       name: button.dataset.name,
       price: parseFloat(button.dataset.price),
-      path_photo: button.dataset.path_photo,
+      path_photo: button.dataset.photo,
       allow_multiple: button.dataset.allow_multiple === 'true',
       folder: button.dataset.folder,
       type: button.dataset.type
@@ -84,9 +86,11 @@ function getCart() {
       cart.forEach(item => {
         const total = item.price * item.quantity;
         totalGeral += total;
+        console.log(baseUrl+'/' + item.folder+item.path_photo);
+        
         cartBody.innerHTML += `
           <tr>
-          <td class="pro-thumbnail"><img src="{{ asset('assets/img/${item.path_photo}" alt="Product"></a></td>
+          <td class="pro-thumbnail"><img src="${baseUrl}${item.folder}/${item.path_photo}')" alt="Product"></a></td>
             <td class="pro-title">${item.name}</td>
             <td class="pro-price">${item.price.toFixed(2)} MZN</td>
             <td class="pro-quantity">
@@ -113,14 +117,13 @@ function getCart() {
         const btn = document.getElementById(`btn-add-${item.id}`);
         if (btn) {
           btn.disabled = true;
-          btn.innerText = '✔️ Já no Carrinho';
+          btn.innerText = 'Já no Carrinho';
         }
       }
     });
   }
 
   async function enviarPedido() {
-    const cart = getCart();
     try {
       const response = await fetch('/checkout', {
         method: 'POST',
@@ -128,10 +131,10 @@ function getCart() {
           'Content-Type': 'application/json',
           'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
         },
-        body: JSON.stringify({ cart })
+        body: JSON.stringify({ cart: getCart() })
       });
-
-      const result = await response.json();
+      console.log(response);
+      
       if (response.ok) {
         alert('Pedido enviado com sucesso!');
         clearCart();
@@ -139,13 +142,16 @@ function getCart() {
         renderButtons();
         window.location.href = '/pedido/sucesso';
       } else {
-        alert(result.error || 'Erro ao processar pedido.');
+        alert('Erro ao processar pedido.');
       }
     } catch (error) {
-      alert('Erro ao enviar pedido.');
       console.error(error);
+      alert('Erro ao enviar pedido.');
     }
   }
+  
+  
+  
 
   document.addEventListener('DOMContentLoaded', () => {
     renderCart();

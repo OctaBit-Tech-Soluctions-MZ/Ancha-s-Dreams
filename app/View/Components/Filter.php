@@ -8,17 +8,12 @@ use Illuminate\View\Component;
 
 class Filter extends Component
 {
-    public $categories;
-    public $route;
-    public $item;
     /**
      * Create a new component instance.
      */
-    public function __construct($categories, $route, $item)
+    public function __construct(public $categories, public $route, public $placeholder, public $person)
     {
-        $this->categories = $categories;
-        $this->route = $route;
-        $this->item = $item;
+        //
     }
 
     /**

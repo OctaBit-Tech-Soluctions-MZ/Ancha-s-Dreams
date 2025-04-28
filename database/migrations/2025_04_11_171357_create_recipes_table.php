@@ -16,12 +16,12 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->string('image_path');
-            $table->longText('ingredients');
             $table->longText('preparation_method');
             $table->string('preparation_time');
             $table->string('rendimento');
-            $table->string('category');
-            $table->string('nivel');
+            $table->string('category')->nullable();
+            $table->boolean('is_associate_course')->default(0);
+            $table->integer('associate_by')->nullable();
             $table->timestamps();
         });
     }

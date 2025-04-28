@@ -6,29 +6,23 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function add(Request $request)
+    public function checkout(Request $request)
     {
-        $cart = session()->get('cart', []);
-        $id = $request->id;
-
-        if (isset($cart[$id])) {
-            $cart[$id]['quantity']++;
-        } else {
-            $cart[$id] = [
-                "name" => $request->name,
-                "price" => $request->price,
-                "photo" => $request->photo,
-                "quantity" => 1
-            ];
+        echo 'tw';
+        return response()->json(['message' => 'chegamos aqui'], 200);exit;
+        try {
+            // Lógica do pedido, processando o carrinho, validando etc.
+            // Verificando o que está sendo enviado
+            dd($request->json()->all()); // Aqui você verá o JSON enviado pelo JavaScript
+            
+            // Se o cart foi enviado corretamente, você pode processar a lógica
+            $cart = $request->json()->all(); // ou $request->input('cart') se o envio não for em JSON
+            // Exemplo de sucesso:
+            return response()->json(['message' => 'Pedido processado com sucesso!'], 200);
+        } catch (\Exception $e) {
+            // Captura o erro e retorna uma resposta JSON de erro
+            return response()->json(['error' => 'Erro ao processar pedido: ' . $e->getMessage()], 500);
         }
-
-        session()->put('cart', $cart);
-        return response()->json(['success' => 'Curso adicionado ao carrinho com sucesso!']);
-    }
-
-    public function viewCart()
-    {
-        return view('cart.view');
     }
 
 }

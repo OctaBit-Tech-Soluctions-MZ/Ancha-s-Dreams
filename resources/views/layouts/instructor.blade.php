@@ -59,17 +59,17 @@
 
                     <li class="nav-item m-2">
                         <a class="nav-link p-2" aria-current="page" href="{{ route('instructor.dashboard') }}">
-                            <i class="fas fa-fw fa-tachometer-alt me-2"></i>
+                            <i class="feather-home me-2"></i>
                             <span>Dashboard</span></a>
                     </li>
                     <li class="nav-item m-2">
                         <a class="nav-link p-2" aria-current="page" href="{{ route('instructor.courses')}}">
-                            <i class="fas fa-fw fa-certificate me-2"></i>
+                            <i class="feather-award me-2"></i>
                             <span>Cursos</span></a>
                     </li>
                     <li class="nav-item m-2">
                         <a class="nav-link p-2" aria-current="page" href="{{ route('instructor.recipes') }}">
-                            <i class="fas fa-fw fa-utensils me-2"></i>
+                            <i class="feather-pie-chart me-2"></i>
                             <span>Receitas</span></a>
                     </li>
                 </ul>
@@ -79,29 +79,23 @@
     
                 <!-- Main Content -->
                 <div id="content h-100">
-
-                    <nav class="navbar bg-body-tertiary">
+                    <div class="rbt-header-wrapper header-space-betwween header-sticky border border-bottom p-2 shadow-sm">
                         <div class="container-fluid">
-                            <!-- Sidebar Toggle (Topbar) -->
-                            <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3" 
-                            data-bs-toggle="collapse" href="#sidebar" role="button" data-bs-target="#sidebar">
-                                <i class="fa fa-bars"></i>
-                            </button>
-                            <div class="dropdown justify-content-end">
-                                <a class="nav-link dropdown-toggle bg-transparent"  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    
-                                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
-                                        <img class="img-profile rounded-circle"
-                                            src="/assets/img/undraw_profile_1.svg">
-                                </a>
-                                <ul class="dropdown-menu p-2 me-3 border border-0 shadow">
-                                    <li><a class="dropdown-item" href="{{ route('instructor.profile') }}">Perfil</a></li>
-                                    <li><a class="dropdown-item" href="#"
-                                        data-bs-toggle="modal" data-bs-target="#logoutModal">Terminar Sessao</a></li>
-                                </ul>
+                            <div class="mainbar-row rbt-navigation-center align-items-center">
+                                <div class="header-left rbt-header-content w-100">
+                                    <div class="header-info d-flex justify-content-between w-100">   
+                                        <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3" 
+                                        data-bs-toggle="collapse" href="#sidebar" role="button" data-bs-target="#sidebar">
+                                            <i class="fa fa-bars"></i>
+                                        </button>
+                                        <div class="mt-2">
+                                            <x-profile-dropdown :profileRoute="route('instructor.profile')"/>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </nav>
+                    </div>
                             
                     <!-- Content Row -->
                     <div class="row">
@@ -133,8 +127,8 @@
         <script src="{{ asset('assets/js/jodit.min.js')}}"></script>
         <script src="{{ asset('assets/js/theme-idle_fingers.js') }}"></script>
         <script src="{{ asset('assets/js/mode-html.js') }}"></script>
+        <script src="{{ asset('assets/js/editor.js') }}"></script>
         <script src="{{ asset('assets/js/main.js') }}"></script>
         <script src="{{ asset('assets/js/app.js') }}"></script>
-
 </body>
 </html>

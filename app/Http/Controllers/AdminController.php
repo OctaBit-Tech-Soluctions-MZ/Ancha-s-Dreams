@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Jobs\JobSendEmail;
 use App\Models\Book;
 use App\Models\Category;
 use App\Models\Course;
@@ -89,9 +90,6 @@ class AdminController extends Controller
     public function store(UserRequest $request) {
         $user = new User();
         $password = strtolower(Str::slug($request->name)).'-'.rand(1000, 9999);
-        $email = $request->email;
-        $name = $request->name;
-        $role = 'Administrador';
         $user->name = $request->name;
         $user->surname = $request->surname;
         $user->email = $request->email;
@@ -99,11 +97,7 @@ class AdminController extends Controller
         $user->phone_number = $request->phone_number;
         $user->role = 'admin';
         $user->save();
-        Mail::send('emails.account', compact('password','email', 'name', 'role'), 
-                function ($message) use($user){
-                    $message->to($user->email, $user->name.' '.$user->surname)
-                            ->subject('Acesso à Plataforma de Culinária');
-        });
+        JobSendEmail::dispatch($user,$password);
         return redirect()->back()->with('success','Administrador Criado com Sucesso');
     }
 }

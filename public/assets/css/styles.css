@@ -410,7 +410,7 @@ html.sr .widget {
 /* Estilo do botão flutuante */
 .floating-btn {
   position: fixed;
-  bottom: 25px;
+  bottom: 90px;
   right: 25px;
   background-color: #28a745;
   color: #fff;
@@ -418,7 +418,7 @@ html.sr .widget {
   border-radius: 50%;
   font-size: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  z-index: 999;
+  z-index: 1040S;
   text-align: center;
   transition: background 0.3s ease;
   text-decoration: none;

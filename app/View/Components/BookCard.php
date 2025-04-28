@@ -8,13 +8,12 @@ use Illuminate\View\Component;
 
 class BookCard extends Component
 {
-    public $book;
     /**
      * Create a new component instance.
      */
-    public function __construct($book)
+    public function __construct(public $book)
     {
-        $this->book = $book;
+        //
     }
 
     /**

@@ -64,3 +64,27 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## sobre a Aplicação
+
+## instalação e configuração da aplicação
+
+requisitos:
+php 8 ou mais
+apache 2.4 ou mais
+mysql/mariadb 7 ou mais
+composer 2.8.8 ou mais
+ffmpeg 7.1.1 ou mais
+
+
+Passo 1: clonar o repositorio
+Passo 2: composer install
+Rode esse comando na raiz do projecto para instalar a dependencias do laravel
+Passo 3: cp .env.example .env
+copie o arquivo .env para obter a configurações iniciais da aplicação
+Passo 4: php artisan key:generate
+Gera a chave da aplicação
+Passo 5: php artisan migrate
+Cria toda a estrutura de base de dados
+Passo 6: php artisan db:seed
+Insere os dados iniciais na base de dados

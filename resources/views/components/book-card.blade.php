@@ -1,34 +1,42 @@
-<!-- Start Single Course  -->
-<div class="col-lg-4 col-md-6 col-12">
-    <div class="rbt-card variation-01 rbt-hover">
-        <div class="rbt-card-img">
-            <a>
-                <img src="{{ asset('assets/img/books/'.$book->image_path)}}" alt="Card image">
-            </a>
-        </div>
-        <div class="rbt-card-body">
-            <h4 class="rbt-card-title text-start">
-                <span>
-                    {{ $book->title }}</span>
-            </h4>
-            <x-short-text class="" :text="$book->description" :limit="60"/>
-            <div class="rbt-card-bottom">
-                <div class="rbt-price">
-                    <span class="current-price fs-6">{{ $book->price }} mzn</span>
+            <!-- Start Single Product  -->
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="rbt-default-card style-three rbt-hover">
+                    <div class="inner">
+                        <div class="content pt--0 pb--10">
+                            <h2 class="title"><a href="#">{{ $book->title }}</a></h2>
+
+                            <span class="team-form">
+                                <span class="location">{{ $book->author }}</span>
+                            </span>
+                        </div>
+                        <div class="thumbnail"><a href="#"><img src="{{ asset('assets/img/books/'.$book->image_path)}}" alt="Histudy Book Image"></a></div>
+                        <div class="content">
+                            <div class="rbt-price justify-content-center mt--10">
+                                <span class="current-price theme-gradient">{{ $book->price }} mzn</span>
+                                <span class="off-price">{{ $book->price + $book->price+0.29 }} mzn</span>
+                            </div>
+                            <div class="addto-cart-btn mt--20">
+                                <a class="rbt-btn btn-gradient hover-icon-reverse" role="button"
+                                @auth
+                                    onclick="handleAddToCart(this)"
+                                    data-id="{{ $book->id }}"
+                                    data-name="{{ $book->title }}"
+                                    data-price="{{ $book->price }}"
+                                    data-type="Livros"
+                                    data-allow_multiple="false"
+                                    id="btn-add-{{ $book->id }}"
+                                    data-photo="books/{{ $book->image_path }}"
+                                @endauth
+                                >
+                                    <span class="icon-reverse-wrapper">
+                                        <span class="btn-text">Adici. no carinho</span>
+                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <a class="rbt-btn-link text-decoration-none" role="button"
-                @auth
-                    onclick="handleAddToCart(this)"
-                    data-id="{{ $book->id }}"
-                    data-name="{{ $book->title }}"
-                    data-price="{{ $book->price }}"
-                    data-type="Livros"
-                    data-allow_multiple="false"
-                    id="btn-add-{{ $book->id }}"
-                    data-photo="books/{{ $book->image_path }}"
-                @endauth
-                >Adici. no carinho<i class="ms-2 fa fa-shopping-cart"></i></a>
             </div>
-        </div>
-    </div>
-</div>
+            <!-- End Single Product  -->

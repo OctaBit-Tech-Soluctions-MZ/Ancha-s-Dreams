@@ -53,6 +53,7 @@
                             <input type="text" class="form-control" placeholder="informe o numero de telefone do novo administrador"
                                  id="phone_number" name="phone_number" :value="old('phone_number')">
                         </div>
+                        <input type="hidden" name="role" value="admin">
                         <div class="mt-4">
                             <button class="btn btn-primary btn-sm" type="submit">
                                 {{ __('Registar Administrador') }}

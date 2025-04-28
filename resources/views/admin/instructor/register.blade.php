@@ -33,7 +33,7 @@
                     
                     <form method="POST" action="{{ route('admin.instructor.store') }}">
                         @csrf
-                        <div class="form-group row">
+                        <div class="row">
                             <div class="col-sm-6 mb-3">
                                 <label class="form-label fw-bolder" for="name">Primeiros Nomes</label>
                                 <input type="text" class="form-control" placeholder="informe o nome do instrutor"
@@ -45,7 +45,7 @@
                                 placeholder="informe o apelido do instrutor">
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="row">
                             <div class="col-sm-6 mb-3">
                                 <label class="form-label fw-bolder" for="email">E-mail</label>
                                 <input type="text" class="form-control" placeholder="informe o email do instrutor" id="email"
@@ -57,7 +57,7 @@
                                     placeholder="informe o numero de telefone do instrutor" :value="old('phone_number')">
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="row">
                             <div class="col-sm-6 mb-3">
                                 <label for="specialty" class="form-label fw-bolder">Especialidade culinária</label>
                                 <select name="specialty" id="specialty" class="form-select">
@@ -73,7 +73,7 @@
                                     placeholder="informe os anos de experiência do instrutor">
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="row">
                             <div class="col-sm-12 mb-3">
                                 <label for="biography" class="form-label fw-bolder">Biografia (mini-curriculo)</label>
                                 <input type="hidden" id="biography" name="biography">

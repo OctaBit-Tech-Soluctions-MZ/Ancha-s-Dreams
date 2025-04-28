@@ -58,39 +58,32 @@
 
                     <li class="nav-item m-2">
                         <a class="nav-link p-2" aria-current="page" href="{{ route('admin.dashboard') }}">
-                            <i class="fas fa-fw fa-tachometer-alt me-2"></i>
+                            <i class="feather-home me-2"></i>
                             <span>Dashboard</span></a>
                     </li>
                     <li class="nav-item m-2">
                         <a class="nav-link p-2" aria-current="page" href="{{ route('admin.users') }}">
-                            <i class="fas fa-fw fa-users me-2"></i>
-                            <span>Administradores</span></a>
-                    </li>
-                    <li class="nav-item m-2">
-                        <a href="{{ route('admin.instructor')}}" class="nav-link p-2">
-                            <i class="fa-solid fa-fw fa-chalkboard-user me-2"></i>
-                            <span>Instrutores</span>
-                        </a>
-                    </li>
-                    <li class="nav-item m-2">
-                        <a href="{{ route('admin.students')}}" class="nav-link p-2">
-                            <i class="fa-solid fa-fw fa-user-graduate me-2"></i>
-                            <span>Alunos</span>
-                        </a>
+                            <i class="feather-users me-2"></i>
+                            <span>Utilizadores</span></a>
                     </li>
                     <li class="nav-item m-2">
                         <a class="nav-link p-2" aria-current="page" href="{{ route('admin.books') }}">
-                            <i class="fas fa-fw fa-book me-2"></i>
+                            <i class="feather-book me-2"></i>
                             <span>Livros</span></a>
                     </li>
                     <li class="nav-item m-2">
                         <a class="nav-link p-2" aria-current="page" href="{{ route('admin.courses')}}">
-                            <i class="fas fa-fw fa-certificate me-2"></i>
+                            <i class="feather-award me-2"></i>
                             <span>Cursos</span></a>
                     </li>
                     <li class="nav-item m-2">
+                        <a class="nav-link p-2" aria-current="page" href="{{ route('admin.courses')}}">
+                            <i class="feather-shopping-bag me-2"></i>
+                            <span>Produtos</span></a>
+                    </li>
+                    <li class="nav-item m-2">
                         <a class="nav-link p-2" aria-current="page" href="#">
-                            <i class="fas fa-fw fa-comments me-2"></i>
+                            <i class="feather-info me-2"></i>
                             <span>Feedbacks</span></a>
                     </li>
                 </ul>
@@ -101,40 +94,26 @@
                 <!-- Main Content -->
                 <div id="content">
 
-                    <nav class="navbar bg-body-tertiary">
+                    <div class="rbt-header-wrapper header-space-betwween header-sticky border border-bottom p-2 shadow-sm">
                         <div class="container-fluid">
-                            <!-- Sidebar Toggle (Topbar) -->
-                            <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3" 
-                            data-bs-toggle="collapse" href="#sidebar" role="button" data-bs-target="#sidebar">
-                                <i class="fa fa-bars"></i>
-                            </button>
-                            <div class="dropdown">
-                                <a class="nav-link dropdown-toggle bg-transparent"  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    
-                                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
-                                        <img class="img-profile rounded-circle"
-                                            src="/assets/img/undraw_profile_1.svg">
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-dark p-2 me-3">
-                                    <li><a class="dropdown-item active" href="#">Perfil</a></li>
-                                    <li><a class="dropdown-item" href="#"
-                                        data-bs-toggle="modal" data-bs-target="#logoutModal">Terminar Sessao</a></li>
-                                </ul>
+                            <div class="mainbar-row rbt-navigation-center align-items-center">
+                                <div class="header-left rbt-header-content w-100">
+                                    <div class="header-info d-flex justify-content-between w-100">   
+                                        <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3" 
+                                        data-bs-toggle="collapse" href="#sidebar" role="button" data-bs-target="#sidebar">
+                                            <i class="fa fa-bars"></i>
+                                        </button>
+                                        <div class="mt-2">
+                                            <x-profile-dropdown :profileRoute="route('instructor.profile')"/>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </nav>
-                            
+                    </div>        
                     <!-- Content Row -->
                     <div class="row p-2">
-                        <div class="pt-2 pb-2 ps-5 pe-5 d-flex justify-content-between">
-                            @php
-                            $backUrl = getBackUrl();
-                            @endphp
-                            <a href="{{ $backUrl }}" class="btn btn-primary">Voltar</a>
-                            <h3>@yield('page')</h3>
-                        </div>
                         @yield('content')
-
                     </div>
                 </div>
             </div>

@@ -23,10 +23,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/books', [BookController::class, 'index'])->name('book');
 Route::get('/courses', [CourseController::class, 'index'])->name('courses');
+Route::get('/recipes', [RecipeController::class, 'index'])->name('recipes');
 Route::get('/courses/{slug}/show', [CourseController::class, 'details'])->name('courses.details');
 Route::get('/about', function () { return view('about'); })->name('about');
 Route::get('/contacts',function () {return view('contacts');})->name('contacts');
-Route::get('/recipes', function () {return view('receita');})->name('receita');
 Route::get('/register',[UserController::class, 'register'])->name('register');
 Route::post('/register', [UserController::class, 'store'])->name('register');
 Route::get('/lesson', function () {
@@ -49,7 +49,7 @@ Route::middleware([
     Route::get('/photo', [ProfileController::class, 'image'])->name('profile.image');
     Route::put('/edit',[ProfileController::class, 'update'])->name('profile.update');
     Route::put('/password', [ProfileController::class, 'updatePassword'])->name('profile.password.update');
-    Route::post('/add-to-curt', [CartController::class, 'add'])->name('cart.add');
+    Route::post('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 });
 
 /**  
@@ -69,24 +69,33 @@ Route::middleware([
         Route::get('/instructor/courses/register', [CourseController::class, 'register'])->name('instructor.courses.register');
         Route::get('/instructor/courses/{slug}/lessons', [ContentController::class, 'lessons'])->name('instructor.lessons');
         Route::get('/instructor/lessons/{slug}/register', [ContentController::class, 'add'])->name('instructor.lessons.add');
+        Route::get('/instructor/lesson/{slug}/edit', [ContentController::class, 'edit'])->name('instructor.lesson.edit');
         Route::get('/instructor/lesson/{slug}/quiz', [QuizController::class, 'quiz'])->name('instructor.quiz');
         Route::get('/instructor/recipes', [RecipeController::class, 'list'])->name('instructor.recipes');
+        Route::get('/instructor/recipes/register', [RecipeController::class, 'register'])->name('instructor.recipes.register');
+        Route::get('/instructor/recipe/{slug}/edit', [RecipeController::class, 'edit'])->name('instructor.recipes.edit');
         Route::get('/instructor/profile', [ProfileController::class, 'instructor'])->name('instructor.profile');
+        Route::get('/instructor/profile/password', [ProfileController::class, 'password_instructor'])->name('instructor.profile.password');
+        Route::get('/instructor/profile/edit', [ProfileController::class, 'edit_instructor'])->name('instructor.profile.edit');
         Route::put('/instructor/courses/{slug}/edit', [CourseController::class, 'update'])->name('instructor.courses.update');
+        Route::put('/instructor/lesson/{slug}/edit', [ContentController::class, 'update'])->name('instructor.lesson.update');
+        Route::put('/instructor/recipes/{slug}/edit', [RecipeController::class , 'update'])->name('instructor.recipes.update');
         Route::post('/instructor/courses/register', [CourseController::class, 'store'])->name('instructor.courses.store');
         Route::post('/instructor/lessons/{slug}/register', [ContentController::class, 'store'])->name('instructor.lesson.store');
+        Route::post('/instructor/recipes/register', [RecipeController::class, 'store'])->name('instructor.recipes.store');
         Route::delete('/instructor/courses/{slug}/delete',[CourseController::class, 'destroy'])->name('courses.delete');
+        Route::delete('/instructor/lesson/{slug}/delete', [ContentController::class, 'destroy'])->name('lesson.delete');
+        Route::delete('/instructor/recipe/{slug}/delete', [RecipeController::class, 'destroy'])->name('recipes.delete');
     });
-
 // Rotas do admin
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
-    'role:admin',
+    'role:admin,super admin'
 ])->group(function () {
     Route::get('/admin/dashboard',[AdminController::class, 'dashboard'])->name('admin.dashboard');
-    Route::get('/admin/users', [AdminController::class, 'index'])->name('admin.users');
+    Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users');
     Route::get('/admin/users/register', [AdminController::class, 'register'])->name('admin.users.register');
     Route::get('/admin/users/{slug}/edit', [AdminController::class, 'edit'])->name('admin.users.edit');
     Route::get('/admin/instructors', [AdminController::class, 'instructor'])->name('admin.instructor');
@@ -102,7 +111,7 @@ Route::middleware([
     Route::put('/admin/users/{slug}/edit', [UserController::class, 'update'])->name('admin.users.update');
     Route::put('/admin/instructors/{slug}/edit', [InstructorController::class, 'update'])->name('admin.instructor.update');
     Route::post('/admin/instructors/register', [InstructorController::class, 'store'])->name('admin.instructor.store');
-    Route::post('/admin/users/register', [UserController::class, 'store'])->name('admin.users.store');
+    Route::post('/admin/users/register', [AdminController::class, 'store'])->name('admin.users.store');
     Route::post('/admin/books/register', [BookController::class, 'store'])->name('admin.books.store');
     Route::delete('/admin/courses', [CourseController::class, 'destroy'])->name('admin.courses.delete');
     Route::delete('/admin/users/{id}/delete',[UserController::class, 'destroy'])->name('admin.users.destroy');

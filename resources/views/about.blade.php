@@ -2,11 +2,8 @@
 
 @section('title', 'Sobre Nós')
 
-@section('subheading', 'Apaixonados por Sabores e Conhecimento')
-
-@section('headingtext', 'Ensinamos, cozinhamos e crescemos com você.')
-
 @section('content')
+<x-masthead :subHeading="'Apaixonados por Sabores e Conhecimento'" :heading="'Ensinamos, cozinhamos e crescemos com você'"/>
 <div class="container mt-5">
     <!-- Cabeçalho -->
     <div class="text-center mb-5">

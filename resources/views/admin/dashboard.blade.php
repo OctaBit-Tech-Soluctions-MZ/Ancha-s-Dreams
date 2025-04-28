@@ -100,13 +100,13 @@
                 <input type="checkbox" name="check" id="check" class="d-none">
                 <input type="checkbox" name="cancel" id="cancel" class="d-none">
             
-                <button type="button" class="btn btn-success btn-sm" onclick="submitWithCheck('check')">
-                    <i class="fa fa-check"></i> Aprovar
-                </button>
+                <a role="button" class="rbt-btn-link color-success text-center" onclick="submitWithCheck('check')">
+                    <i class="fa fa-check me-1"></i> Aprovar
+                </a>
             
-                <button type="button" class="btn btn-danger btn-sm" onclick="submitWithCheck('cancel')">
-                    <i class="fa fa-times"></i> Cancelar
-                </button>
+                <a role="button" class="rbt-btn-link color-danger text-center" onclick="submitWithCheck('cancel')">
+                    <i class="fa fa-times me-1"></i>Cancelar
+                </a>
             </form>
         
         </td>

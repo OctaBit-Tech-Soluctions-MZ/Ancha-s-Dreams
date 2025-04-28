@@ -32,7 +32,7 @@
                             <div class="course-content rbt-shadow-box coursecontent-wrapper mt-3" id="coursecontent">
                                 <div class="rbt-course-feature-inner">
                                     <div class="section-title">
-                                        <h4 class="rbt-title-style-3">{{ $course->name }} | Aulas</h4>
+                                        <h4 class="rbt-title-style-3">{{ $course->name }} - Aulas</h4>
                                     </div>
                                     <div class="rbt-accordion-style rbt-accordion-02 accordion">
                                         <div class="accordion" id="accordionExampleb2">
@@ -53,8 +53,12 @@
                                                                             <i class="fas fa-play-circle me-2"></i> <span class="text-grey fw-bolder">{{ $content->title}}</span>
                                                                         </div>
                                                                         <div class="course-content-right d-flex gap-2">
-                                                                            <a class="rbt-badge variation-03 bg-primary-opacity"><i class="fas fa-edit me-2"></i>   Editar</a>
-                                                                            <a class="rbt-badge variation-03 bg-primary-opacity"><i class="fas fa-trash me-2"></i>   Excluir</a>
+                                                                            <a href="{{ route('instructor.lesson.edit', ['slug' => $content->slug])}}" class="rbt-badge variation-03 bg-primary-opacity"><i class="fas fa-edit me-2"></i>   Editar</a>
+                                                                            <a  class="rbt-badge variation-03 bg-primary-opacity"
+                                                                                data-bs-toggle="modal" 
+                                                                                data-bs-target="#deleteModal" 
+                                                                                data-action="{{ route('lesson.delete', ['slug' => $course->slug]) }}"
+                                                                                role="button"><i class="fas fa-trash me-2"></i>   Excluir</a>
                                                                         </div>
                                                                     </span>
                                                                 </li>

@@ -2,14 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Helper\GenerateID;
 use App\Models\Category;
-use App\Models\Course;
-use App\Models\Role;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,11 +18,13 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        $this->add_roles();
+        $this->call([
+            RoleAndPermissionSeed::class
+        ]);
 
-        $this->add_fake_users();
+        // $this->add_super_admin();
 
-        $this->add_fake_categorys();
+        // $this->add_fake_categorys();
     }
 
     public function add_fake_categorys() {
@@ -43,43 +43,17 @@ class DatabaseSeeder extends Seeder
         ]);
     }
 
-    public function add_fake_users(){
+    public function add_super_admin(){
 
-        User::factory()->create([
+        $user = User::factory()->create([
             'name' => 'Admin User',
             'surname' => 'teste',
             'email' => 'admin@example.com',
             'password' => Hash::make('12345678'),
-            'role' => 'admin',
             'phone_number' => '841515705',
             'slug' => 'admin-user',
         ]);
-
-
-    }
-
-
-    public function add_roles(){
-
-        $role = new Role();
-        
-        $role->create([
-            'role_key' => 'admin',
-            'role_name' => 'administrador',
-            'route' => 'admin.dashboard',
-        ]);
-
-        $role->create([
-            'role_key' => 'student',
-            'role_name' => 'Aluno',
-            'route' => 'home',
-        ]);
-        
-        $role->create([
-            'role_key' => 'instructor',
-            'role_name' => 'Instrutor',
-            'route' => 'instructor.dashboard',
-        ]);
+        $user->assignRole('super admin');
 
     }
 }

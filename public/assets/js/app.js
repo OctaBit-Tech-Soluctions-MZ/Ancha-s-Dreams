@@ -26,3 +26,16 @@ document.addEventListener("DOMContentLoaded", function () {
 if (window.innerWidth <= 500) {
     sidebar.classList.add("collapse"); // Esconder sidebar
 }
+
+document.addEventListener('scroll', function () {
+    const stickyNav = document.getElementById('stickyNav');
+    if(stickyNav =! null){
+        if (window.scrollY > 1500) { // depois de rolar 500px
+            stickyNav.classList.remove('d-none');
+            stickyNav.classList.add('fixed-bottom');
+        } else {
+            stickyNav.classList.add('d-none');
+            stickyNav.classList.remove('fixed-bottom');
+        }
+    }
+});

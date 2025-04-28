@@ -1,6 +1,8 @@
-@extends('layouts.auth')
+@extends('layouts.app')
 
 @section('title','Recuperando a senha')
+
+@section('header_bg', 'bg-dark')
 
 @section('content')
     

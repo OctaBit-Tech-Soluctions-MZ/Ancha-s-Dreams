@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('layouts.app')
 
 @section('title', 'Aula')
 
@@ -247,8 +247,8 @@
                         </div>
                     </div>
                     <div class="inner">
-                        <div class="plyr__video-embed rbtplayer">
-                            <iframe src="{{ $content->url_preview }}" allowfullscreen allow="autoplay" style="height: 300px" class="w-100 h-100"></iframe>
+                        <div class="plyr__video-embed rbtplayer h-100">
+                            <iframe src="{{ $content->url_preview }}" allowfullscreen allow="autoplay" height="400px" class="w-100 h-100"></iframe>
                         </div>
                         <div class="content">
                             <div class="section-title">

@@ -2,11 +2,8 @@
 
 @section('title','Nossos Contactos')
 
-@section('subheading', 'Fale Connosco')
-
-@section('headingtext', 'Estamos aqui para ouvir e ajudar você.')
-
 @section('content')
+<x-masthead :subHeading="'Fale Connosco'" :heading="'Estamos aqui para ouvir e ajudar você'"/>
 <div class="container mt-5">
         <h2 class="text-center text-primary">Entre em Contato</h2>
         <div class="row mt-4">

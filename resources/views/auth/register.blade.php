@@ -1,11 +1,10 @@
-@extends('layouts.auth')
+@extends('layouts.app')
 
 @section('title', 'Junte-se à Nossa Jornada Culinária')
 
-@section('content')
+@section('header_bg', 'bg-dark')
 
-        
-    
+@section('content')
     <div class="pt-3 mt-5">    
         <div class="container d-flex justify-content-center align-items-center p-5 mt-2 bg-grey-200 ">
             <div class="p-4 col card  card-auth">
@@ -14,7 +13,7 @@
                     <x-validation-errors class="mb-4 alert alert-danger"/>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-                        <div class="form-group row">
+                        <div class="row">
                             <div class="col-sm-6 mb-3">
                                 <label class="form-label" for="name">Nome</label>
                                 <input type="text" class="form-control" placeholder="Digite seu nome" id="name"
@@ -26,15 +25,20 @@
                                     name="surname" :value="old('surname')">
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="row">
                             <div class="col-sm-6 mb-3">
                                 <label for="nivel" class="form-label">Nivel de Habilidade</label>
-                                <select name="nivel" id="nivel" class="form-select">
-                                    <option value="">Selecione o seu nivel de Habilidade em culinaria</option>
-                                    <option value="iniciante">Iniciante</option>
-                                    <option value="intermediario">Intermediario</option>
-                                    <option value="avançado">Avançado</option>
-                                </select>
+                                
+                                <div class="rbt-modern-select bg-transparent height-45 mb--10">
+                                    <div class="dropdown bootstrap-select w-100 dropup">
+                                        <select class="w-100" tabindex="null" name="nivel" id="nivel">
+                                            <option value="" disabled>Selecione o seu nivel de Habilidade em culinaria</option>
+                                            <option value="iniciante">Iniciante</option>
+                                            <option value="intermediario">Intermediario</option>
+                                            <option value="avançado">Avançado</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-sm-6 mb-3">
                                 <label for="phone_number" class="form-label">Telefone</label>
@@ -42,14 +46,14 @@
                                     placeholder="Digite o seu numero de telefone" :value="old('phone_number')">
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="row">
                             <div class="col-sm-12 mb-3">
                                 <label class="form-label" for="email">Email</label>
                                 <input type="email" class="form-control" placeholder="Digite seu email" id="email"
                                     name="email" :value="old('email')">
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="row">
                             <div class="col-sm-6 mb-3">
                                 <label class="form-label" for="password">Senha</label>
                                 <input type="password" class="form-control" id="password" placeholder="Digite sua senha" name="password"
