@@ -15,16 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->string('image_path');
+            $table->string('cover');
             $table->text('description');
-            $table->string('pdf_book_url')->nullable();
+            $table->string('url')->nullable();
             $table->string('author');
-            $table->boolean('associate_course')->default(0);
-            $table->integer('course_id')->nullable();
-            $table->integer('create_by');
             $table->double('price');
+            $table->integer('qtd')->nullable();
             $table->boolean('is_digital')->default(1);
-            $table->enum('book_status',['pendente', 'processando', 'concluido', 'falhou'])
+            $table->enum('status',['pendente', 'processando', 'concluido', 'falhou'])
                   ->default('pendente');
             $table->timestamps();
         });

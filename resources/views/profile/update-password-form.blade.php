@@ -1,61 +1,39 @@
-@extends('layouts.profile')
+<x-form-section submit="updatePassword">
+    <x-slot name="title">
+        {{ __('Update Password') }}
+    </x-slot>
 
-@section('title', 'Mudar Senha |')
+    <x-slot name="description">
+        {{ __('Ensure your account is using a long, random password to stay secure.') }}
+    </x-slot>
 
-@section('profile-content')
+    <x-slot name="form">
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="current_password" value="{{ __('Current Password') }}" />
+            <x-input id="current_password" type="password" class="mt-1 block w-full" wire:model="state.current_password" autocomplete="current-password" />
+            <x-input-error for="current_password" class="mt-2" />
+        </div>
 
-            <div class="panel card shadow border border-0 mb-3 p-3">
-                <h1 class="h3 mb-0 text-gray-800 text-center">Formulario de Mudança de Senha</h1>
-            </div>
-                <div class="panel card shadow border border-0">
-                    <div class="panel-body bio-graph-info p-3">
-                        <div class="card-body">
-                            @if($errors->any())
-                                <div style="color:red">
-                                    <ul>
-                                        @foreach($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
-                            @if(session('success'))
-                                <div class="alert alert-success">
-                                    {{ session('success') }}
-                                </div>
-                            @endif
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="password" value="{{ __('New Password') }}" />
+            <x-input id="password" type="password" class="mt-1 block w-full" wire:model="state.password" autocomplete="new-password" />
+            <x-input-error for="password" class="mt-2" />
+        </div>
 
-                            @if(session('error'))
-                                <div class="alert alert-success">
-                                    {{ session('success') }}
-                                </div>
-                            @endif
-                            <form method="post" action="{{ route('profile.password.update') }}">
-                                @csrf
-                                @method('PUT')
-                                <div class="row p-2">
-                                    <div class="col-sm-12 mb-3 mb-sm-0 p-1">
-                                        <label for="oldPassowrd" class="form-label fw-bolder">Senha Actual</label>
-                                        <input type="password" class="form-control" id="oldPassword" name="oldPassword"
-                                            placeholder="Informe a senha actual">
-                                    </div>
-                                    <div class="col-sm-12 p-1">
-                                        <label for="password" class="form-label fw-bolder">Nova Senha</label>
-                                        <input type="password" class="form-control" id="password" name="password"
-                                            placeholder="Informe a nova senha">
-                                    </div>
-                                    <div class="col-sm-12 p-1">
-                                        <label for="password_confirmation" class="form-label fw-bolder">Confirmação da Senha</label>
-                                        <input type="password_confirmation" name="password_confirmation" id="password_confirmation" 
-                                            class="form-control" placeholder="Informe de novo a nova senha">
-                                    </div>
-                                    <div class="col-sm-12 p-1">
-                                        <button type="submit" class="btn btn-primary fw-bolder">Actualizar</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
+            <x-input id="password_confirmation" type="password" class="mt-1 block w-full" wire:model="state.password_confirmation" autocomplete="new-password" />
+            <x-input-error for="password_confirmation" class="mt-2" />
+        </div>
+    </x-slot>
 
-@endsection
+    <x-slot name="actions">
+        <x-action-message class="me-3" on="saved">
+            {{ __('Saved.') }}
+        </x-action-message>
+
+        <x-button>
+            {{ __('Save') }}
+        </x-button>
+    </x-slot>
+</x-form-section>

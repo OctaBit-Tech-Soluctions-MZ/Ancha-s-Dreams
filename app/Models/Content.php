@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class Content extends Model
 {
-    protected $fillable = ['title', 'description', 'url_preview', 'file_id','duration', 'order', 'course_id'];
+    protected $fillable = ['title', 'description', 'url', 'order', 'file_id', 'course_id'];
     
     public static function boot()
     {

@@ -15,18 +15,17 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->string('category');
             $table->double('price');
             $table->string('slug')->unique();
-            $table->string('nivel');
             $table->boolean('certificate')->default(1);
-            $table->string('course_photo_path');
-            $table->string('teacher');
+            $table->string('cover');
+            $table->unsignedBigInteger('user_id');
             $table->string('folder_id')->unique()->nullable();
             $table->integer('views')->default(0);
             $table->double('rating')->default(0);
             $table->string('status')->default('inactivo');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

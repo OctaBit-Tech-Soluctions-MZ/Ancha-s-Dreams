@@ -7,11 +7,21 @@ use Illuminate\Support\Str;
 
 class Course extends Model
 {
-    protected $fillable = ['name','price','nivel','category','description','course_photo_path','teacher','folder_id'];
-
+    protected $fillable = [
+        'name',
+        'description',
+        'category',
+        'price',
+        'slug',
+        'certificate',
+        'cover',
+        'folder_id',
+        'status',
+    ];
+    
     public function instructor(){
 
-        return $this->belongsTo(User::class, 'teacher');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function contents()

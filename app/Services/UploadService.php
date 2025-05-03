@@ -2,35 +2,41 @@
 
 namespace App\Services;
 
-class UploadService {
+class UploadService
+{
+    public $path = null;
 
     /**
-     * Upload de arquivos no servidor local
-     * @param $file
-     * @param string $path ex: /assets/example
-     * @param string $fileDefault ex: 'imageDefault.png'
-     * @param array $allowedExtensions ex: [pdf,docx,txt,csv]
-     * @param string $messageError ex: 'formato do arquivo invalido'
-     * @return string
+     * Create a new class instance.
      */
-    public static function upload($file, $path, $fileDefault, $allowedExtensions, 
-                                    $messageError = 'formato do arquivo invalido') : string {
+    public function __construct(public $file, public $filename = 'default.png')
+    {
+        //
+    }
 
-        $fileName = $fileDefault;
-        
-        if ($file->isValid()) {
-            $extension = $file->extension();
-    
-            // Segurança extra (evita upload de arquivos maliciosos)
-            if (!in_array(strtolower($extension), $allowedExtensions)) {
-                return redirect()->back()->with('error', $messageError);
+    public function upload($folder, $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'])
+    {
+
+        if ($this->file && $this->file->isValid()) {
+            $extension = strtolower($this->file->extension());
+
+            if (!in_array($extension, $allowedExtensions)) {
+                // Apenas retorna erro (o controller decide o que fazer)
+                return [
+                    'error' => true,
+                    'message' => 'Formato do arquivo inválido.',
+                ];
             }
-    
-            $fileName = md5($file->getClientOriginalName() . time()) . '.' . $extension;
 
-            $file->move(public_path($path), $fileName);
+            $this->filename = md5(uniqid()) . '.' . $extension;
+            $this->path = $this->file->storeAs($folder, $this->filename, 'public');
         }
 
-        return $fileName;
+        return [
+            'name' => $this->filename,
+            'path' => $this->path,
+            'error' => false,
+        ];
     }
+
 }

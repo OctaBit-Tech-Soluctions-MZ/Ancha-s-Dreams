@@ -1,142 +1,84 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title')</title>
-    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Ancha´s Dream Taste') }}</title>
+
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/favicon.ico') }}" />
-    <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Trix Editor CSS -->
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
-    <!-- Font Awesome icons (free version)-->
+
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{{ asset('assets/css/slick.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/slick-theme.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/sal.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/feather.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/euclid-circulara.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/swiper.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/odometer.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/animation.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/jquery-ui.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/magnigy-popup.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/plyr.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/jodit.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-select.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/sidebar.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}">
-
+    <link href="{{ asset('assets/css/all.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('admin/css/vendor/dataTables.bootstrap5.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('admin/css/vendor/responsive.bootstrap5.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('admin/css/vendor/select.bootstrap5.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('admin/css/vendor/buttons.bootstrap5.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin/jodit/jodit.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('admin/css/icons.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('admin/css/app.min.css') }}" rel="stylesheet" type="text/css" id="light-style">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+
 <body>
-        <!-- Loader -->
-        <div class="loader-container" id="loader">
-            <div class="lds-roller">
-                <div></div><div></div><div></div><div></div>
-                <div></div><div></div><div></div><div></div>
-            </div>
-        </div>
 
-        <div id="wrapper">
-            <!-- Sidebar -->
-            <nav class="col-3 bg-dark vh-100 sidebar show collapse" id="sidebar">
-                <ul class="nav flex-column">
-                     <!-- Sidebar - Brand -->
-                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin">
-                        <div class="sidebar-brand-icon rotate-n-15">
-                            <img src="{{ asset('assets/img/navbar-logo.svg') }}" alt="">
-                        </div>
-                        <div class="sidebar-brand-text mx-2 text-white">Escola de Culinaria</div>
-                    </a>
+    <div class="">
+        <div class="wrapper">
+            @persist('sidebar')
+            <x-ancha-dreams-taste.sidebar>
+                <x-slot:nav_item>
+                    <x-ancha-dreams-taste.side-nav-item :route="route('admin')" :icon="'uil-home'"
+                        :name="'Dashboard'" />
+                    <x-ancha-dreams-taste.side-nav-item-toggle :icon="'uil-users-alt'"
+                        :keyname="'Utilizadores'">
+                        <li><a href="{{route('users.list')}}" wire:navigate>Listar utilizadores</a></li>
+                        <li><a href="" wire:navigate>Registar Instrutores</a></li>
+                        <li><a href="" wire:navigate>Registar Administradores</a></li>
+                    </x-ancha-dreams-taste.side-nav-item-toggle>
+                </x-slot:nav_item>
+            </x-ancha-dreams-taste.sidebar>
+            @endpersist
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
 
-                    <li class="nav-item m-2">
-                        <a class="nav-link p-2" aria-current="page" href="{{ route('admin.dashboard') }}">
-                            <i class="feather-home me-2"></i>
-                            <span>Dashboard</span></a>
-                    </li>
-                    <li class="nav-item m-2">
-                        <a class="nav-link p-2" aria-current="page" href="{{ route('admin.users') }}">
-                            <i class="feather-users me-2"></i>
-                            <span>Utilizadores</span></a>
-                    </li>
-                    <li class="nav-item m-2">
-                        <a class="nav-link p-2" aria-current="page" href="{{ route('admin.books') }}">
-                            <i class="feather-book me-2"></i>
-                            <span>Livros</span></a>
-                    </li>
-                    <li class="nav-item m-2">
-                        <a class="nav-link p-2" aria-current="page" href="{{ route('admin.courses')}}">
-                            <i class="feather-award me-2"></i>
-                            <span>Cursos</span></a>
-                    </li>
-                    <li class="nav-item m-2">
-                        <a class="nav-link p-2" aria-current="page" href="{{ route('admin.courses')}}">
-                            <i class="feather-shopping-bag me-2"></i>
-                            <span>Produtos</span></a>
-                    </li>
-                    <li class="nav-item m-2">
-                        <a class="nav-link p-2" aria-current="page" href="#">
-                            <i class="feather-info me-2"></i>
-                            <span>Feedbacks</span></a>
-                    </li>
-                </ul>
-            </nav>
-            <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex flex-column">
-    
-                <!-- Main Content -->
-                <div id="content">
-
-                    <div class="rbt-header-wrapper header-space-betwween header-sticky border border-bottom p-2 shadow-sm">
-                        <div class="container-fluid">
-                            <div class="mainbar-row rbt-navigation-center align-items-center">
-                                <div class="header-left rbt-header-content w-100">
-                                    <div class="header-info d-flex justify-content-between w-100">   
-                                        <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3" 
-                                        data-bs-toggle="collapse" href="#sidebar" role="button" data-bs-target="#sidebar">
-                                            <i class="fa fa-bars"></i>
-                                        </button>
-                                        <div class="mt-2">
-                                            <x-profile-dropdown :profileRoute="route('instructor.profile')"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>        
-                    <!-- Content Row -->
-                    <div class="row p-2">
-                        @yield('content')
+            <div class="content-page">
+                <div class="content">
+                    @persist('header')
+                    <x-ancha-dreams-taste.header :role="'administrador'" />
+                    @endpersist
+                    <!-- Start Content-->
+                    <div class="container-fluid">
+                        {{ $slot }}
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-    @include('components.modals.logout')
-    @include('components.modals.delete')
-    @include('components.scripts.get-id-to-delete')
+    <!-- Modals Components -->
+    <x-ancha-dreams-taste.modals.logout-modal />
 
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- bundle -->
+    <script src="{{ asset('admin/js/vendor.min.js') }}"></script>
+    <script src="{{ asset('admin/js/app.min.js') }}"></script>
+    <script src="{{ asset('admin/jodit/jodit.min.js')}}"></script>
+    <script src="{{ asset('admin/js/vendor/Chart.bundle.min.js') }}"></script>
+    <script src="{{ asset('admin/js/pages/demo.dashboard-projects.js') }}"></script>
 
-    <!-- jQuery e DataTables JS -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+    <!-- third party js -->
 
-    <!-- Trix Editor JS -->
-    <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
-
-    <!-- Custom JS -->
-    <script src="{{ asset('assets/js/app.js') }}"></script>
+    <script>
+        const editor = Jodit.make('#editor', {
+    buttons: ['bold', 'italic', 'underline', '|', 'ul', 'ol']
+  });
+    </script>
 </body>
+
 </html>

@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->string('image_path');
+            $table->string('cover');
             $table->longText('preparation_method');
             $table->string('preparation_time');
-            $table->string('rendimento');
             $table->string('category')->nullable();
             $table->boolean('is_associate_course')->default(0);
-            $table->integer('associate_by')->nullable();
+            $table->unsignedBigInteger('course_id')->nullable();
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
             $table->timestamps();
         });
     }

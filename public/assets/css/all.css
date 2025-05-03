@@ -1,0 +1,58 @@
+@import url('css.css');
+@import url('bootstrap-select.min.css');
+@import url('slick.css');
+@import url('slick-theme.css');
+@import url('sal.css');
+@import url('feather.css');
+@import url('euclid-circulara.css');
+@import url('swiper.css');
+@import url('odometer.css');
+@import url('animation.css');
+@import url('jquery-ui.css');
+@import url('magnigy-popup.min.css');
+@import url('plyr.css');
+@import url('jodit.min.css');
+@import url('styles.min.css');
+
+/*scroll revael*/
+.texto{
+    visibility: hidden;
+  } 
+  .img{
+    visibility: hidden;
+  }
+  .imgs{
+    visibility: hidden;
+  }
+
+  .pagination a, .pagination span {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: 1px solid #d1d5db; /* gray-300 */
+    background-color: #ffffff;
+    color: #6b7280; /* gray-500 */
+    text-decoration: none;
+    border-radius: 0.25rem;
+    margin-right: 0.25rem;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .pagination a:hover {
+    background-color: #f3f4f6; /* gray-100 */
+  }
+  
+  .pagination a.active {
+    color: #2563eb; /* blue-600 */
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+  }
+  
+  

@@ -13,16 +13,9 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('surname')->after('name');
-            $table->string('role')->after('profile_photo_path');
-            $table->string('phone_number')->after('role');
-            $table->string('nivel')->after('phone_number')->default('iniciante')->nullable();
-            // dados do instrutor
-            $table->longText('biography')->after('nivel')->nullable();
-            $table->string('specialty')->after('biography')->nullable();
-            $table->integer('experience')->after('specialty')->nullable();
-            $table->longText('certificate')->after('experience')->nullable();
-            $table->string('status')->after('certificate')->nullable()->default('activo');
-            $table->string('slug')->after('status')->nullable();
+            $table->string('phone_number')->after('surname');
+            $table->string('slug')->after('phone_number')->nullable();
+            $table->enum('status', ['activo', 'inactivo'])->default('activo');
         });
     }
 
@@ -33,14 +26,8 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('surname');
-            $table->dropColumn('role');
-            $table->dropColumn('cellnumber');
-            $table->dropColumn('nivel');
-            // dados do instrutor
-            $table->dropColumn('biograph');
-            $table->dropColumn('speciality');
-            $table->dropColumn('anos_experience');
-            $table->dropColumn('certificate');
+            $table->dropColumn('phone_number');
+            $table->dropColumn('slug');
             $table->dropColumn('status');
         });
     }

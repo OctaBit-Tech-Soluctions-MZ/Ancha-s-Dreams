@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('user');
             $table->decimal('total', 10, 2);
-            $table->string('status')->default('pendente');
-            $table->string('type');
+            $table->enum('status',['pendente', 'concluido', 'cancelado', 'recusado'])->default('pendente');
+            $table->enum('type', ['compra de curso', 'compra de livro digital', 'compra de livro fisico', 'compra de outros produtos']);
             $table->timestamps();
         });
     }

@@ -1,52 +1,48 @@
-@extends('layouts.app')
+<x-guest-layout>
+    <x-authentication-card>
+        <x-slot name="logo">
+            <x-authentication-card-logo />
+        </x-slot>
 
-@section('title', 'Entre na Sua Cozinha Virtual')
+        <x-validation-errors class="mb-4" />
 
-@section('header_bg', 'bg-dark')
-
-@section('content')
-        <div class="pt-3 mt-5">
-            @session('status')
-                <div class="mb-4 font-medium text-sm text-green-600">
-                    {{ $value }}
-                </div>
-            @endsession
-
-            
-            <div class="container d-flex justify-content-center align-items-center p-5 mt-2 bg-grey-200 ">
-                <div class="p-4 col-6 card shadow  card-auth">
-                    <h3 class="text-center p-1">Acesse Sua Conta</h3>
-                    <x-validation-errors class="mb-4" />
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="mb-3">
-                            <label class="form-label" for="email" value="{{ __('Email') }}" >Email</label>
-                            <input type="email" class="form-control" placeholder="Digite seu email"  name="email" :value="old('email')" required autofocus autocomplete="username">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="password" value="{{ __('Password') }}">Senha</label>
-                            <input type="password" class="form-control" placeholder="Digite sua senha" name="password" required autocomplete="current-password">
-                        </div>
-
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="remember_me" name="remember">
-                            <label for="remember_me" class="form-check-label text-dark">{{ __('Lembre deste Dispositivo') }}</label>
-                        </div>
-
-                        <div class="d-flex align-items-center justify-content-end mt-4">
-                            @if (Route::has('password.request'))
-                                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                                    {{ __('Esqueceu sua senha?') }}
-                                </a>
-                            @endif
-
-                            <button type="submit" class="ms-4 btn btn-primary">
-                                {{ __('Login') }}
-                            </button>
-                        </div>
-                    </form>
-                </div>
+        @session('status')
+            <div class="mb-4 font-medium text-sm text-green-600">
+                {{ $value }}
             </div>
-        </div>
-@endsection
+        @endsession
+
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
+
+            <div>
+                <x-label for="email" value="{{ __('Email') }}" />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="password" value="{{ __('Password') }}" />
+                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+            </div>
+
+            <div class="block mt-4">
+                <label for="remember_me" class="flex items-center">
+                    <x-checkbox id="remember_me" name="remember" />
+                    <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                </label>
+            </div>
+
+            <div class="flex items-center justify-end mt-4">
+                @if (Route::has('password.request'))
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                        {{ __('Forgot your password?') }}
+                    </a>
+                @endif
+
+                <x-button class="ms-4">
+                    {{ __('Log in') }}
+                </x-button>
+            </div>
+        </form>
+    </x-authentication-card>
+</x-guest-layout>

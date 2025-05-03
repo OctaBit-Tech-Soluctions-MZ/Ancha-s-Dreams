@@ -1,6 +1,8 @@
-window.onload = function() {
-    document.getElementById("loader").classList.add("hidden");
-};
+// var sidebarToggleTop = document.querySelectorAll('.sidebarToggleTopPainel');
+
+// window.onload = function() {
+//     document.getElementById("loader").classList.add("hidden");
+// };
 
 function submitWithCheck(fieldId) {
     // Desmarca ambos primeiro
@@ -39,3 +41,9 @@ document.addEventListener('scroll', function () {
         }
     }
 });
+
+function show_video_form() {
+    const switchInput = document.getElementById('introSwitch');
+    const videoForm = document.getElementById('videoForm');
+    videoForm.style.display = switchInput.checked ? 'block' : 'none'; 
+}

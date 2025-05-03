@@ -323,25 +323,6 @@ body {
 .border-bottom-dark {
   border-bottom: 0.25rem solid #5a5c69 !important;
 }
-.sidebar-brand {
-  height: 4.375rem;
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 800;
-  padding: 1.5rem 1rem;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 0.05rem;
-  z-index: 1;
-}
-
-.sidebar-brand .sidebar-brand-icon i {
-  font-size: 2rem;
-}
-
-.sidebar-brand .sidebar-brand-text {
-  display: none;
-}
 
 .rotate-15 {
   transform: rotate(15deg);
@@ -429,18 +410,6 @@ body {
   font-weight: bolder !important;
 }
 
-#sidebarToggleTop {
-  height: 2.5rem;
-  width: 2.5rem;
-}
-
-#sidebarToggleTop:hover {
-  background-color: #eaecf4;
-}
-
-#sidebarToggleTop:active {
-  background-color: #dddfeb;
-}
 .img-profile {
   height: 2rem;
   width: 2rem;
@@ -455,7 +424,7 @@ body {
 }
 
 @media  (max-width: 487px) {
-  .ard_dash{
+  .card_dash{
     width: 300px;
   }
   .page {

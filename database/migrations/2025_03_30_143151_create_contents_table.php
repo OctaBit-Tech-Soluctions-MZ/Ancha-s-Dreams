@@ -18,15 +18,14 @@ return new class extends Migration
             $table->string('file_id')->nullable();
             $table->string('duration')->nullable();
             $table->integer('order');
-            $table->string('url_preview')->nullable();
-            $table->string('url_view')->nullable();
-            $table->string('url_download')->nullable();
+            $table->string('url')->nullable();
             $table->string('slug')->unique();
-            $table->string('course_id');
+            $table->unsignedBigInteger('course_id');
             $table->enum('video_status',['pendente', 'processando', 'concluido', 'falhou'])
                   ->default('pendente');
             $table->double('rating')->default(0);
             $table->integer('views')->default(0);
+            $table->foreign('course_id')->references('id')->on('courses');
             $table->timestamps();
         });
     }

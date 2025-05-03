@@ -15,7 +15,7 @@ class RoleMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle($request, Closure $next, ...$roles)
+    public function handle(Request $request, Closure $next, ...$roles)
     {
         if (!Auth::check()) {
             return redirect('/login');
@@ -41,5 +41,5 @@ class RoleMiddleware
 
         // Se não tiver role ou rota definida, redireciona para home
         return redirect('/');
-}
+    }
 }
