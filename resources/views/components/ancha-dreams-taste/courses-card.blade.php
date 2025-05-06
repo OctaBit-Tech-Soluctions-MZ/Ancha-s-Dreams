@@ -52,12 +52,12 @@
                             <span class="off-price">{{ $course->price + $course->price * 0.25 }} mzn</span>
                         </div>
                     </div>
-                    <div class="text-start d-flex gap-3 p-3">
-                        <div>
+                    <div class="text-start  row d-flex gap-3 p-3">
+                        <div class="col-md-3">
                             <a class="rbt-btn-link text-decoration-none" href="{{ route('courses.edit', ['slug' => $course->slug]) }}" wire:navigate>
                             <i class="me-2 feather-edit"></i>Editar</a>
                         </div>
-                        <div>
+                        <div class="col-md-3">
                             <a class="rbt-btn-link text-decoration-none" 
                             data-bs-toggle="modal" 
                             data-bs-target="#deleteModal" 
@@ -65,10 +65,10 @@
                             href="#">
                             <i class="me-2 feather-trash"></i>Excluir</a>
                         </div>
-                        <div><a href="{{ route('lessons.list', ['slug' => $course->slug]) }}" 
+                        <div class="col-md-3"><a href="{{ route('lessons.list', ['slug' => $course->slug]) }}" 
                             class="rbt-btn-link text-decoration-none" wire:navigate><i class="me-2 feather-video"></i>Aulas</a>
                         </div>
-                        <div><a href="{{ route('courses.exam', ['slug' => $course->slug]) }}" 
+                        <div class="col-md-3"><a href="{{ route('courses.exam', ['slug' => $course->slug]) }}" 
                             class="rbt-btn-link text-decoration-none" wire:navigate><i class="me-2 feather-clipboard"></i>Exame</a>
                         </div>
                     </div>

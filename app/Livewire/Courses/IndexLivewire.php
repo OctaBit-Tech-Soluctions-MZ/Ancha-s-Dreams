@@ -62,6 +62,8 @@ class IndexLivewire extends Component
                 $query->latest(); // padrão
         }
 
+        $query->where('published', '=', true);
+
         $courses = $query->paginate(12);
         return view('livewire.courses.index-livewire', compact('courses'));
     }

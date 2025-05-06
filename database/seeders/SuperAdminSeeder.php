@@ -15,7 +15,7 @@ class SuperAdminSeeder extends Seeder
     public function run(): void
     {
 
-        $user = User::factory()->create([
+        $user = User::create([
             'name' => 'Admin User',
             'surname' => 'teste',
             'email' => 'admin@example.com',
@@ -23,6 +23,7 @@ class SuperAdminSeeder extends Seeder
             'phone_number' => '841515705',
             'slug' => 'admin-user',
         ]);
-        $user->assignRole('super-admin');
+        $user->assignRole('super admin');
+        $user->syncRolePermissions();
     }
 }

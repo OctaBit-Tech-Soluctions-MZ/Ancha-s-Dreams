@@ -16,57 +16,57 @@ class RoleAndPermission extends Seeder
     {
         
         // Define permissões
-        $course = ['create', 'read', 'update', 'delete', 'publish', 'unpublish'];
-        $contentTypes = ['book', 'recipe', 'product'];
+        $course = ['Registar', 'Visualizar', 'Editar', 'Excluir', 'publicar', 'despublicar'];
+        $contentTypes = ['Livros', 'Receitas', 'Produtos'];
         $admins = ['admin'];
-        $roles = ['admin', 'super-admin', 'instructor', 'student'];
-        $lessonExam = ['lesson', 'exam'];
-        $lessonExamActions = ['create', 'read', 'update', 'delete'];
-        $studentActions = ['create', 'read', 'update', 'delete', 'block'];
+        $roles = ['admin', 'super admin', 'instrutor', 'aluno'];
+        $lessonExam = ['Aulas', 'Exame'];
+        $lessonExamActions = ['Registar', 'Visualizar', 'Editar', 'Excluir'];
+        $studentActions = ['Registar', 'Visualizar', 'Editar', 'Excluir', 'bloquear'];
 
         $permissions = [];
 
         // Courses
         foreach ($course as $action) {
-            $permissions[] = "$action-course";
+            $permissions[] = "$action Curso";
         }
 
-        // Content (book, recipe, product)
+        // Content (Livros, Receitas, Produtos)
         foreach ($contentTypes as $type) {
             foreach ($course as $action) {
-                $permissions[] = "$action-$type";
+                $permissions[] = "$action $type";
             }
         }
 
         // Admins
         foreach ($admins as $admin) {
-            foreach (['create', 'read', 'update', 'delete', 'block'] as $action) {
-                $permissions[] = "$action-$admin";
+            foreach (['Registar', 'Visualizar', 'Editar', 'Excluir', 'bloquear'] as $action) {
+                $permissions[] = "$action $admin";
             }
         }
 
-        // Instructor
-        foreach (['create', 'read', 'update', 'delete', 'block'] as $action) {
-            $permissions[] = "$action-instructor";
+        // instrutor
+        foreach (['Registar', 'Visualizar', 'Editar', 'Excluir', 'bloquear'] as $action) {
+            $permissions[] = "$action instrutor";
         }
 
         // Student
         foreach ($studentActions as $action) {
-            $permissions[] = "$action-student";
+            $permissions[] = "$action Aluno";
         }
 
         // Lesson & Exam
         foreach ($lessonExam as $item) {
             foreach ($lessonExamActions as $action) {
-                $permissions[] = "$action-$item";
+                $permissions[] = "$action $item";
             }
         }
-        $permissions[] = 'watch-lesson';
-        $permissions[] = 'take-exam';
+        $permissions[] = 'Assistir Aulas';
+        $permissions[] = 'Fazer Exame';
 
         // Buy
-        foreach (['course', 'book', 'product'] as $item) {
-            $permissions[] = "buy-$item";
+        foreach (['Curso', 'Livros', 'Produtos'] as $item) {
+            $permissions[] = "Comprar $item";
         }
 
         // Cria permissões
@@ -75,47 +75,47 @@ class RoleAndPermission extends Seeder
         }
 
         // SUPER ADMIN
-        $superAdmin = Role::firstOrCreate(['name' => 'super-admin', 'route' => 'admin']);
+        $superAdmin = Role::firstOrCreate(['name' => 'super admin', 'route' => 'admin']);
         $superAdmin->syncPermissions([
-            'create-admin','read-admin','delete-admin', 'block-admin',
-            'create-instructor', 'read-instructor', 'delete-instructor','block-instructor',
-            'read-course', 'delete-course', 'publish-course', 'unpublish-course',
-            'read-book', 'delete-book', 'publish-book', 'unpublish-book',
-            'read-recipe', 'delete-recipe', 'publish-recipe', 'unpublish-recipe',
-            'read-product', 'delete-product', 'publish-product', 'unpublish-product',
-            'read-lesson', 'read-exam',
-            'read-student', 'block-student', 'delete-student',
+            'Registar admin','Visualizar admin','Excluir admin', 'bloquear admin',
+            'Registar instrutor', 'Visualizar instrutor', 'Excluir instrutor','bloquear instrutor',
+            'Visualizar Curso', 'Excluir Curso', 'publicar Curso', 'despublicar Curso',
+            'Visualizar Livros', 'Excluir Livros', 'publicar Livros', 'despublicar Livros',
+            'Visualizar Receitas', 'Excluir Receitas', 'publicar Receitas', 'despublicar Receitas',
+            'Visualizar Produtos', 'Excluir Produtos', 'publicar Produtos', 'despublicar Produtos',
+            'Visualizar Aulas', 'Visualizar Exame',
+            'Visualizar Aluno', 'bloquear Aluno', 'Excluir Aluno',
         ]);
 
         // ADMIN
         $admin = Role::firstOrCreate(['name' => 'admin', 'route' => 'admin']);
         $admin->syncPermissions([
-            'read-admin',
-            'create-instructor', 'read-instructor', 'delete-instructor', 'block-instructor',
-            'read-course', 'delete-course', 'publish-course', 'unpublish-course',
-            'read-book', 'delete-book', 'publish-book', 'unpublish-book',
-            'read-recipe', 'delete-recipe', 'publish-recipe', 'unpublish-recipe',
-            'read-product', 'delete-product', 'publish-product', 'unpublish-product',
-            'read-lesson', 'read-exam',
-            'read-student', 'block-student', 'delete-student',
+            'Visualizar admin',
+            'Registar instrutor', 'Visualizar instrutor', 'Excluir instrutor', 'bloquear instrutor',
+            'Visualizar Curso', 'Excluir Curso', 'publicar Curso', 'despublicar Curso',
+            'Visualizar Livros', 'Excluir Livros', 'publicar Livros', 'despublicar Livros',
+            'Visualizar Receitas', 'Excluir Receitas', 'publicar Receitas', 'despublicar Receitas',
+            'Visualizar Produtos', 'Excluir Produtos', 'publicar Produtos', 'despublicar Produtos',
+            'Visualizar Aulas', 'Visualizar Exame',
+            'Visualizar Aluno', 'bloquear Aluno', 'Excluir Aluno',
         ]);
 
-        // INSTRUCTOR
-        $instructor = Role::firstOrCreate(['name' => 'instructor', 'route' => 'dashboard']);
-        $instructor->syncPermissions([
-            'create-course', 'read-course', 'update-course', 'delete-course',
-            'create-lesson', 'read-lesson', 'update-lesson', 'delete-lesson',
-            'create-exam', 'read-exam', 'update-exam', 'delete-exam',
-            'read-student',
+        // instrutor
+        $instrutor = Role::firstOrCreate(['name' => 'instrutor', 'route' => 'dashboard']);
+        $instrutor->syncPermissions([
+            'Registar Curso', 'Visualizar Curso', 'Editar Curso', 'Excluir Curso',
+            'Registar Aulas', 'Visualizar Aulas', 'Editar Aulas', 'Excluir Aulas',
+            'Registar Exame', 'Visualizar Exame', 'Editar Exame', 'Excluir Exame',
+            'Visualizar Aluno',
         ]);
 
         // STUDENT
-        $student = Role::firstOrCreate(['name' => 'student']);
+        $student = Role::firstOrCreate(['name' => 'aluno']);
         $student->syncPermissions([
-            'create-student', 'read-student', 'update-student', 'delete-student',
-            'read-lesson', 'watch-lesson',
-            'take-exam',
-            'buy-course', 'buy-book', 'buy-product',
+            'Registar Aluno', 'Visualizar Aluno', 'Editar Aluno', 'Excluir Aluno',
+            'Visualizar Aulas', 'Assistir Aulas',
+            'Fazer Exame',
+            'Comprar Curso', 'Comprar Livros', 'Comprar Produtos',
         ]);
     }
 }

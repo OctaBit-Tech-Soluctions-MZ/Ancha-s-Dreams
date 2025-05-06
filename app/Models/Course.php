@@ -12,14 +12,14 @@ class Course extends Model
         'description',
         'category',
         'price',
-        'slug',
+        'published',
         'certificate',
         'cover',
         'folder_id',
         'status',
     ];
     
-    public function instructor(){
+    public function users(){
 
         return $this->belongsTo(User::class, 'user_id');
     }

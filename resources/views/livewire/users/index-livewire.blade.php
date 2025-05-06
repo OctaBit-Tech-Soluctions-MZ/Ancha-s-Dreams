@@ -9,7 +9,7 @@
                     administradores).
                 </p>
                 <div>
-                    <table class="table table-centered table-borderless mb-0">
+                    <table class="table table-centered table-borderless mb-0" wire:poll.30s>
                         <thead>
                             <tr>
                                 <th>Nome</th>
@@ -31,21 +31,22 @@
                                     {{ $role->name }}
                                     @endforeach</td>
                                 <td>{{ $user->email }}</td>
-                                <td>Onlline a 100 anos</td>
-                                <td>
-                                    <div class="dropdown float-end">
-                                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="dripicons-dots-3"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-end">
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item"><i class="mdi mdi-pencil me-1"></i>Editar Permissões</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item"><i class="mdi mdi-delete me-1"></i>Excluir</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item"><i class="mdi mdi-block-helper me-1"></i>Bloquear</a>
-                                        </div>
-                                    </div>
+                                <td>@if($user->isOnline())
+                                    <span class="badge bg-success p-1">Online</span>
+                                @else
+                                    <span class="badge bg-danger p-1">Offline</span>
+                                @endif</td>
+                                <td class="d-flex gap-1">
+                                    <!-- item-->
+                                    <a href="{{ route('users.permissions',['slug' => $user->slug]) }}"
+                                        class="btn btn-primary" title="Editar Permissões do utilizador" wire:navigate><i class="mdi mdi-pencil me-1"></i></a>
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="btn btn-danger"><i
+                                            class="mdi mdi-delete me-1" title="Excluir utilizador"></i></a>
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="btn btn-warning"><i
+                                            class="mdi mdi-block-helper me-1" title="Bloquear utilizador"></i></a>
+
                                 </td>
                             </tr>
                             @endforeach

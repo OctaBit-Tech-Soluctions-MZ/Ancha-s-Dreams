@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use FFMpeg\FFMpeg;
 use FFMpeg\FFProbe;
 use Illuminate\Database\Eloquent\Model;
@@ -132,3 +133,19 @@ function generateThumbnail($videoPath, $thumbnailPath)
     $video->frame(\FFMpeg\Coordinate\TimeCode::fromSeconds(5))
         ->save($thumbnailPath);
 }
+
+function givePermissionToUser(User $user)
+{
+    $roles = $user->roles;
+
+    foreach ($roles as $role) {
+        $permissions = User::getPermissions($role->name);
+
+        foreach ($permissions as $permission) {
+            if (!$user->hasPermissionTo($permission->name)) {
+                $user->givePermissionTo($permission->name);
+            }
+        }
+    }
+}
+

@@ -41,6 +41,13 @@
 
             </div>
         </li>
+        
+
+        <li class="notification-list">
+            <a class="nav-link end-bar-toggle" href="javascript: void(0);">
+                <i class="dripicons-gear noti-icon"></i>
+            </a>
+        </li>
 
         <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">

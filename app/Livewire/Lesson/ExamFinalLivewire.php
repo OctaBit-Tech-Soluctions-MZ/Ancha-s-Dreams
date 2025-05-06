@@ -17,5 +17,7 @@ class ExamFinalLivewire extends Component
     public function answerType($value)
     {
         $this->answer = $value;
+
+        dd($value);
     }
 }

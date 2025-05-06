@@ -2,9 +2,7 @@
 
 namespace App\Livewire\Courses;
 
-use App\Models\Category;
 use App\Services\UploadService;
-use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -59,7 +57,6 @@ class RegisterLivewire extends Component
     }
 
     public function mount() {
-        $this->categories = Category::all();
     }
     public function render()
     {

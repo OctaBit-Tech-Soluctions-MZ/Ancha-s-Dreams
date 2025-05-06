@@ -28,22 +28,7 @@
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-body">
-                    <div class="dropdown float-end">
-                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="mdi mdi-dots-vertical"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Weekly Report</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Monthly Report</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Settings</a>
-                        </div>
-                    </div>
-                    <h4 class="header-title mb-4">Project Status</h4>
+                    <h4 class="header-title mb-4">Status de Pedidos</h4>
 
                     <div class="my-4 chartjs-chart" style="height: 202px;">
                         <canvas id="project-status-chart" data-colors="#0acf97,#727cf5,#fa5c7c"></canvas>
@@ -55,21 +40,21 @@
                             <h3 class="fw-normal">
                                 <span>64%</span>
                             </h3>
-                            <p class="text-muted mb-0">Completed</p>
+                            <p class="text-muted mb-0">Completo</p>
                         </div>
                         <div class="col-4">
                             <i class="mdi mdi-trending-down text-primary mt-3 h3"></i>
                             <h3 class="fw-normal">
                                 <span>26%</span>
                             </h3>
-                            <p class="text-muted mb-0"> In-progress</p>
+                            <p class="text-muted mb-0"> Pendente</p>
                         </div>
                         <div class="col-4">
                             <i class="mdi mdi-trending-down text-danger mt-3 h3"></i>
                             <h3 class="fw-normal">
                                 <span>10%</span>
                             </h3>
-                            <p class="text-muted mb-0"> Behind</p>
+                            <p class="text-muted mb-0"> Cancelado</p>
                         </div>
                     </div>
                     <!-- end row-->
@@ -81,22 +66,7 @@
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-body">
-                    <div class="dropdown float-end">
-                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="mdi mdi-dots-vertical"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Weekly Report</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Monthly Report</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Settings</a>
-                        </div>
-                    </div>
-                    <h4 class="header-title mb-3">Tasks</h4>
+                    <h4 class="header-title mb-3">Pedidos</h4>
 
                     <p><b>107</b> Tasks completed out of 195</p>
 
@@ -113,7 +83,7 @@
                                         <span class="badge badge-warning-lighten">In-progress</span>
                                     </td>
                                     <td>
-                                        <span class="text-muted font-13">Assigned to</span>
+                                        <span class="text-muted font-13">Feito Por</span>
                                         <h5 class="font-14 mt-1 fw-normal">Logan R. Cohn</h5>
                                     </td>
                                     <td>

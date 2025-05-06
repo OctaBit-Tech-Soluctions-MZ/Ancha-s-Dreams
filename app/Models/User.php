@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Str;
 use Illuminate\Notifications\Notifiable;
@@ -11,6 +12,8 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -33,15 +36,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'surname',
-        'slug',
         'email',
         'password',
-        'role',
         'phone_number',
-        'nivel.',
-        'specialty',
-        'experience',
-        'biography',
     ];
 
     /**
@@ -110,5 +107,31 @@ class User extends Authenticatable
     public function courses()
     {
         return $this->hasMany(Course::class);
+    }
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'created_by');
+    }
+
+    public function instructors(){
+        return $this->hasOne(Instructor::class) ;
+    }
+
+    public static function getPermissions($role) {
+       return Role::with('permissions')->where('name',$role)->first()->permissions;
+    }
+
+    public function isOnline()
+    {
+        return cache()->has('user-is-online-' . $this->id);
+    }
+
+    public function syncRolePermissions()
+    {
+        foreach ($this->roles as $role) {
+            foreach (User::getPermissions($role->name) as $permission) {
+                $this->givePermissionTo($permission->name);
+            }
+        }
     }
 }

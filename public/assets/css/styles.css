@@ -532,6 +532,20 @@ html.sr .widget {
   text-decoration: none;
   color: #fff;
 }
+.floating-alert {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  background-color: #28a745;
+  color: #fff;
+  padding: 15px 18px;
+  font-size: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1040S;
+  text-align: center;
+  transition: background 0.3s ease;
+  text-decoration: none;
+}
 html {
   scroll-padding-top: 4.5rem;
 }

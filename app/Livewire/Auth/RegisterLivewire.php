@@ -56,16 +56,19 @@ class RegisterLivewire extends Component
     public function create() {
 
         $this->validate();
-        
         $user = User::create([
             'name' => $this->name,
             'surname' => $this->surname,
             'email' => $this->email,
             'phone_number' => $this->phone_number,
             'password' => Hash::make($this->password),
-        ])->assignRole('student');
-
+        ]);
+        
+        $user->assignRole('aluno');
+        $user->syncRolePermissions();
+        
         Auth::login($user);
+        
         return redirect(route('home'));
     }
 }

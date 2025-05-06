@@ -29,9 +29,6 @@
                             <input type="text" class="form-control" data-toggle="input-mask" data-mask-format="00:00:00">
                             <span class="font-13 text-muted">e.g "H:M:s = 00:45:00"</span>
                         </div>
-                        <div class="course-field mb--25 d-flex justify-content-end">
-                            <x-ancha-dreams-taste.button-loading :title="'Salvar'" />
-                        </div>
                     </form>
                 </div>
             </div>

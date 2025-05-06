@@ -55,22 +55,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="filter-select-option">
-                    <div class="filter-select rbt-modern-select">
-                        <span class="select-label d-block">Filtrar Por Categoria</span>
-                        <div class="dropdown bootstrap-select">
-                            <select name="categories">
-                                <div class="bg-dark">
-                                    <option value="" selected="select">Selecione a categoria do curso</option>
-                                    @foreach ($categories as $category)    
-                                        <option value="{{ $category->name }}"><span>{{ $category->name }}</span></option>
-                                    @endforeach
-                                </div>
-                            </select>
-                        </div>
-                    </div>
-                </div>
                 <div class="filter-select-option">
                     <div class="filter-select">
                         <div class="price_filter s-filter clear">
