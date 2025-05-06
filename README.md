@@ -20,7 +20,6 @@ Certifique-se de que os seguintes softwares estejam instalados:
 
 ## 📁 Clonando o Projeto
 
-```bash
 git clone https://github.com/OctaBit-Tech-Soluctions-MZ/Ancha-s-Dreams.git
 cd Ancha-s-Dreams
 
@@ -67,3 +66,13 @@ php artisan queue:work
 4. Reiniciar workers após mudanças nos jobs
 
 php artisan queue:restart
+
+## 🖥️ Acesso Local
+
+Após tudo configurado, o projeto estará disponível em:
+
+http://localhost:8000
+
+Para iniciar o servidor:
+
+php artisan serve
