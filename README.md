@@ -41,7 +41,7 @@ Edite o arquivo .env com suas configurações de banco de dados, e-mail, e outra
 
 php artisan key:generate
 
-##🗃️ Migrações e Seeds
+## Migrações e Seeds
 Criar estrutura do banco de dados
 
 php artisan migrate
@@ -50,7 +50,7 @@ Popular o banco com dados iniciais
 
 php artisan db:seed
 
-##✉️ Configurar Fila (Queue) com Driver Database
+## Configurar Fila (Queue) com Driver Database
 1. No .env, defina:
 
 QUEUE_CONNECTION=database
