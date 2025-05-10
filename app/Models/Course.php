@@ -28,6 +28,10 @@ class Course extends Model
     {   
         return $this->hasMany(Content::class, 'course_id');
     }
+
+    public function order_items(){
+        return $this->morphedByMany(order_item::class, 'itemable');
+    }
     
     public static function boot()
     {

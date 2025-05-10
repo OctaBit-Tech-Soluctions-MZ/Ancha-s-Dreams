@@ -4,6 +4,7 @@ namespace App\Livewire\Courses;
 
 use App\Models\Category;
 use App\Models\Course;
+use App\Services\UploadService;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -61,16 +62,22 @@ class EditLivewire extends Component
     }
 
     public function update($slug){
+        
+        if (!auth()->check()) {
+            redirect()->route('login')->with('warning', 'Sessão Experada, faça o login novamente');
+        }
         $this->validate();
         $course = Course::where('slug', $slug)->firstOrFail();
+        if (!$this->cover) {
+            $upload = new UploadService($this->cover);
+            $cover = $upload->upload('books')['name'];
+        }
         $course->update([
             'name' => $this->name,
             'description' => $this->description,
             'price' => $this->price,
-            'cover' => !empty($this->cover) ? $this->cover : $this->cover_2,
+            'cover' => !empty($this->cover) ? $cover : $this->cover_2,
         ]);
-
-        request()->session()->flash('success', 'Curso actualizado com suceso');
-        redirect(route('courses.instructor'), navigate: true);
+        redirect()->route('courses.instructor')->with('success', 'Curso actualizado com suceso');
     }
 }

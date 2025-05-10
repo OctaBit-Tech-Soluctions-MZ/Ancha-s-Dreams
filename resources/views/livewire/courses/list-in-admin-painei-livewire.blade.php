@@ -37,20 +37,19 @@
                                     <td>
                                         <div>
                                             @if($course->published)
-                                            <a href="#" class="rbt-btn-link text-decoration-none" wire:click='publish({{$course->id}},false)'>
-                                                <i class="feather-eye me-2"></i>Despublicar
+                                            <a href="#" class="rbt-btn-link text-decoration-none" wire:click='publish({{$course->id}},false)' wire:confirm='Tem certeza que deseja realizar a operação?'>
+                                                <i class="feather-eye-off me-2"></i>Despublicar
                                             </a>
                                             @else
 
-                                            <a href="#" class="rbt-btn-link text-decoration-none" wire:click='publish({{$course->id}},true )'>
+                                            <a href="#" class="rbt-btn-link text-decoration-none" wire:click='publish({{$course->id}},true )' wire:confirm='Tem certeza que deseja realizar a operação?'>
                                                 <i class="feather-eye me-2"></i>Publicar
                                             </a>
                                             @endif
                                         </div>
                                         <div>
-                                            <a class="rbt-btn-link text-decoration-none" data-bs-toggle="modal"
-                                                data-bs-target="#deleteModal" wire.click='getSlug({{ $course->slug }})'
-                                                href="#">
+                                            <a class="rbt-btn-link text-decoration-none" wire:click='destroy({{ $course->id }})'
+                                                role="button" wire:confirm='Tem certeza que deseja excluir o curso {{ $course->name }} ?'>
                                                 <i class="me-2 feather-trash"></i>Excluir</a>
                                         </div>
                                     </td>

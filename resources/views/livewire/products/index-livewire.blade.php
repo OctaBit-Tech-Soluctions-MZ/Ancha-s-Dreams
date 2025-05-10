@@ -4,9 +4,9 @@
         <div class="row">
             <!-- Lista de Produtos -->
             <div class="row">
-                <h2 class="mb-2 text-center"><i class="feather-book"></i> Culinária de qualidade, entregue à sua porta.</h2>
+                <h2 class="mb-2 text-center"><i class="mdi mdi-basket"></i> Culinária de qualidade, entregue à sua porta.</h2>
                 <div class="p-3">
-                    <x-ancha-dreams-taste.filter :route="route('books')" :placeholder="'o seu produto'" :person="'Autor'"/>
+                    <x-ancha-dreams-taste.filter :route="route('shop')" :placeholder="'Pesquise o seu produto aqui'" :person="'Autor'"/>
                 </div>
                 <div class="row">
                     @foreach ($products as $product)

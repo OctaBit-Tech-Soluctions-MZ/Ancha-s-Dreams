@@ -55,7 +55,7 @@
                                 </a>
                             </div>
                             <div class="rbt-author-info">
-                                Por <span>{{ $course->instructor->name }} {{ $course->instructor->surname }}</span>
+                                Por <span>{{ $course->users->name }} {{ $course->users->surname }}</span>
                             </div>
                         </div>
 
@@ -151,7 +151,7 @@
                         <div class="rbt-instructor rbt-shadow-box intructor-wrapper mt--30" id="intructor">
                             <div class="about-author border border-0 pb--0 pt--0">
                                 <div class="section-title mb--30">
-                                    <h4 class="rbt-title-style-3">Instructor</h4>
+                                    <h4 class="rbt-title-style-3">Instrutor</h4>
                                 </div>
                                 <div class="media align-items-center">
                                     <div class="thumbnail">
@@ -162,16 +162,15 @@
                                     <div class="media-body">
                                         <div class="author-info">
                                             <h5 class="title">
-                                                <a class="hover-flip-item-wrapper" href="" @disabled(true)>{{ $course->instructor->name. ' '. $course->instructor->surname }}</a>
+                                                <a class="hover-flip-item-wrapper" href="" @disabled(true)>{{ $course->users->name. ' '. $course->users->surname }}</a>
                                             </h5>
-                                            <span class="b3 subtitle text-uppercase">Com {{ $course->instructor->experience }} Anos de ExperiÊncia no mundo da Culinaria</span>
                                             <ul class="rbt-meta mb--20 mt--10">
                                                 <li><i class="fas fa-user-graduate me-2"></i>912,970 Alunos</li>
-                                                <li><a href="#"><i class="fas fa-video me-2"></i>{{ $course->instructor->courses_count }} Cursos</a></li>
+                                                <li><a href="#"><i class="fas fa-video me-2"></i>{{ $course->users->courses_count }} Cursos</a></li>
                                             </ul>
                                         </div>
                                         <div class="content">
-                                            <p class="description">{{ $course->instructor->biography }}</p>
+                                            <p class="description">{{ $course->users->instructors->biography }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -267,21 +266,21 @@
                         <div class="row g-5 align-items-end mb--40">
                             <div class="col-lg-8 col-md-8 col-12">
                                 <div class="section-title" id="morecourses">
-                                    <span class="subtitle bg-pink-opacity text-white">Top Curso</span>
-                                    <h4 class="title">Mais Cursos de <strong class="color-primary">{{ $course->instructor->name. ' '. $course->instructor->surname }}</strong></h4>
+                                    <span class="subtitle bg-primary-opacity text-primary">Top Curso</span>
+                                    <h4 class="title">Mais Cursos de <strong class="color-primary">{{ $course->users->name. ' '. $course->users->surname }}</strong></h4>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-12">
                                 <div class="read-more-btn text-start text-md-end">
-                                    <a class="rbt-btn rbt-switch-btn btn-border btn-sm" wire:navigate href="{{ route('courses',['author' => $course->instructor->id])}}">
+                                    <a class="rbt-btn rbt-switch-btn btn-border btn-sm" wire:navigate href="{{ route('courses',['author' => $course->users->id])}}" wire:navigate>
                                         <span data-text="Ver todos cursos">Ver todos cursos</span>
                                     </a>
                                 </div>
                             </div>
                         </div>
                         <div class="row g-5">
-                            @foreach ($recommendedCourses as $course)
-                                <x-ancha-dreams-taste.courses-card :course="$course" :expandWidth="6"/>
+                            @foreach ($recommendedCourses as $recommendedCourse)
+                                <x-ancha-dreams-taste.courses-card :course="$recommendedCourse" :expand="6"/>
                             @endforeach
                         </div>
                     </div>
@@ -301,22 +300,15 @@
                                         <span class="rbt-badge color-danger bg-color-danger-opacity"><i class="fas fa-clock"></i> 3 days left!</span>
                                     </div>
                                 </div>
-
                                 <div class="add-to-card-button mt--15">
-                                    <button class="rbt-btn btn-gradient icon-hover w-100 d-block text-center" 
-                                    @auth
-                                        onclick="handleAddToCart(this)"
-                                        data-id="{{ $course->id }}"
-                                        data-name="{{ $course->name }}"
-                                        data-price="{{ $course->price }}"
-                                        data-type="curso"
-                                        data-folder="courses"
-                                        data-allow_multiple="false"
-                                        id="btn-add-{{ $course->id }}"
-                                        data-photo="courses/{{ $course->course_photo_path }}"
-                                    @endauth>
-                                        <span class="btn-text">Adicionar no carrinho</span>
-                                    </button>
+                                    <a href="#" class="rbt-btn btn-gradient icon-hover w-100 d-block text-center" wire:click='addToCart("{{$course->slug}}")' wire:loading.attr='disabled'>
+                                        <div wire:loading>
+                                            <span class="btn-text">Colocando o curso na carinha...</span>
+                                            <span class="btn-icon me-1 spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                                            
+                                        </div>
+                                        <span class="btn-text" wire:loading.remove>Adicionar no carrinho</span>
+                                    </a>
                                 </div>
 
                                 <div class="rbt-widget-details has-show-more mt--15">

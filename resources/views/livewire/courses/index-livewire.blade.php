@@ -1,12 +1,12 @@
-<div class="mt--100">
+<div>
 
     {{-- Masthead (opcional) --}}
-    {{-- 
-    <x-masthead 
+    
+    <x-ancha-dreams-taste.masthead 
         :subHeading="'Os nossos cursos de culinária'" 
         :heading="'São 100% digitais e com um método inovador.'" 
     />
-    --}}
+   
 
     <!-- Seção de Cursos -->
     <section class="p-1">
@@ -37,7 +37,7 @@
                 <!-- Cards dos Cursos -->
                 <div class="row g-3">
                     @foreach($courses as $course)
-                        <x-ancha-dreams-taste.courses-card :course="$course" />
+                        <x-ancha-dreams-taste.courses-card :course="$course" :expand="3"/>
                     @endforeach
                 </div>
 

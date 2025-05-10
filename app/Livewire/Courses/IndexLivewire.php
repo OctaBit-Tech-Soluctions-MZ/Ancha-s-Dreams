@@ -3,11 +3,10 @@
 namespace App\Livewire\Courses;
 
 use App\Models\Course;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Livewire\Attributes\Layout;
 
-#[Layout('layouts.app', ['headerBg' => 'bg-dark text-white'])]
 class IndexLivewire extends Component
 {
     
@@ -66,5 +65,35 @@ class IndexLivewire extends Component
 
         $courses = $query->paginate(12);
         return view('livewire.courses.index-livewire', compact('courses'));
+    }
+
+    public function addToCart($id)
+    {
+        $course = Course::findOrFail($id);
+    
+        // Verifica se o curso já está no carrinho
+        $exists = Cart::search(function ($cartItem, $rowId) use ($course) {
+            return $cartItem->id === $course->id;
+        })->isNotEmpty();
+    
+        if ($exists) {
+            request()->session()->flash('warning', 'Este curso já está na sua carrinha de compras.');
+        } else {
+            Cart::add([
+                'id'      => $course->id,
+                'name'    => $course->name,
+                'qty'     => 1,
+                'price'   => $course->price,
+                'weight'  => 0,
+                'options' => ['cover' => 'courses/' . $course->cover,
+                                'allow_multiple' => false,
+                                'model' => Course::class
+                                ]
+            ]);
+    
+            request()->session()->flash('success', 'Curso adicionado com sucesso à carrinha de compras.');
+        }
+    
+        return redirect()->back();
     }
 }

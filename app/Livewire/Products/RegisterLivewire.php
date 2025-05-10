@@ -22,6 +22,10 @@ class RegisterLivewire extends Component
     }
 
     public function create(){
+        if (!auth()->check()) {
+            redirect()->route('login')->with('warning', 'Sessão Experada, faça o login novamente');
+        }
+        
         $update = new UploadService($this->cover);
         $cover = $update->upload('products')['name'];
         auth()->user()->products()->create([

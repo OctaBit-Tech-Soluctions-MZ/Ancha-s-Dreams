@@ -20,7 +20,7 @@
 
         <x-ancha-dreams-taste.card-dashboard>
             <i class="uil-package text-muted" style="font-size: 24px;"></i>
-            <h3><span>{{ $orders }}</span></h3>
+            <h3><span>{{ $orders_count }}</span></h3>
             <p class="text-muted font-15 mb-0">Pedidos Pendentes</p>  
         </x-ancha-dreams-taste.card-dashboard>
     </div>
@@ -38,21 +38,21 @@
                         <div class="col-4">
                             <i class="mdi mdi-trending-up text-success mt-3 h3"></i>
                             <h3 class="fw-normal">
-                                <span>64%</span>
+                                <span>{{ $concluido }}%</span>
                             </h3>
                             <p class="text-muted mb-0">Completo</p>
                         </div>
                         <div class="col-4">
                             <i class="mdi mdi-trending-down text-primary mt-3 h3"></i>
                             <h3 class="fw-normal">
-                                <span>26%</span>
+                                <span>{{ $pendente }}%</span>
                             </h3>
                             <p class="text-muted mb-0"> Pendente</p>
                         </div>
                         <div class="col-4">
                             <i class="mdi mdi-trending-down text-danger mt-3 h3"></i>
                             <h3 class="fw-normal">
-                                <span>10%</span>
+                                <span>{{ $cancelado }}%</span>
                             </h3>
                             <p class="text-muted mb-0"> Cancelado</p>
                         </div>
@@ -67,100 +67,52 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="header-title mb-3">Pedidos</h4>
-
-                    <p><b>107</b> Tasks completed out of 195</p>
-
+                    @if (session('success'))
+                        <x-ancha-dreams-taste.alert :type="'success'"/>
+                    @endif
                     <div class="table-responsive">
-                        <table class="table table-centered table-nowrap table-hover mb-0">
+                        <table id="datatable-buttons" class="table table-centered table-nowrap table-hover mb-0">
                             <tbody>
+                                @foreach ($orders as $order)
                                 <tr>
                                     <td>
-                                        <h5 class="font-14 my-1"><a href="javascript:void(0);" class="text-body">Coffee detail page - Main Page</a></h5>
-                                        <span class="text-muted font-13">Due in 3 days</span>
+                                        <span class="text-muted font-13">Items do Pedido</span> <br>
+                                        <h5 class="font-14 my-1 row">
+                                            @foreach($order->order_items as $item)
+                                                <span class="text-body">
+                                                    @if(!empty($item->itemable->name))
+                                                       Curso de {{ $item->itemable->name }}
+                                                    @elseif(!empty($item->itemable->title))
+                                                        {{ $item->itemable->title }}
+                                                    @endif
+                                                </span>
+                                            @endforeach
+                                        </h5>
                                     </td>
                                     <td>
                                         <span class="text-muted font-13">Status</span> <br>
-                                        <span class="badge badge-warning-lighten">In-progress</span>
+                                        @if($order->status == 'pendente')
+                                            <span class="badge badge-warning-lighten">Pendente</span>
+                                        @elseif($order->status == 'cancelado')
+                                            <span class="badge badge-danger-lighten">Cancelado</span>
+                                        @elseif($order->status == 'concluido')
+                                            <span class="badge badge-success-lighten">Concluido</span>
+                                        @endif
                                     </td>
                                     <td>
                                         <span class="text-muted font-13">Feito Por</span>
-                                        <h5 class="font-14 mt-1 fw-normal">Logan R. Cohn</h5>
+                                        <h5 class="font-14 mt-1 fw-normal">{{ $order->users->name}}</h5>
                                     </td>
                                     <td>
-                                        <span class="text-muted font-13">Total time spend</span>
-                                        <h5 class="font-14 mt-1 fw-normal">3h 20min</h5>
+                                        <span class="text-muted font-13">Enviado: </span>
+                                        <h5 class="font-14 mt-1 fw-normal">{{ humanTime($order->created_at)}}</h5>
                                     </td>
-                                    <td class="table-action" style="width: 90px;">
-                                        <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                                        <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                    <td class="table-action" id="tooltip-container2">
+                                        <a role="button" class="btn btn-success btn-sm" data-bs-container="#tooltip-container2" data-bs-toggle="tooltip" data-bs-placement="top" title="Confirmar Pedido" wire:click='changeStatus({{$order->id}}, "concluido", "Pedido confirmado com sucesso")' wire:confirm='Tem certeza que deseja realizar a operação?'> <i class="mdi mdi-checkbox-marked-circle"></i></a>
+                                        <a role="button" class="btn btn-danger btn-sm" data-bs-container="#tooltip-container2" data-bs-toggle="tooltip" data-bs-placement="top" title="Rejeitar Pedido" wire:click='changeStatus({{$order->id}}, "cancelado", "Pedido cancelado com sucesso")' wire:confirm='Tem certeza que deseja realizar a operação?'> <i class="mdi mdi-alpha-x-circle"></i></a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <h5 class="font-14 my-1"><a href="javascript:void(0);" class="text-body">Drinking bottle graphics</a></h5>
-                                        <span class="text-muted font-13">Due in 27 days</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-muted font-13">Status</span> <br>
-                                        <span class="badge badge-danger-lighten">Outdated</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-muted font-13">Assigned to</span>
-                                        <h5 class="font-14 mt-1 fw-normal">Jerry F. Powell</h5>
-                                    </td>
-                                    <td>
-                                        <span class="text-muted font-13">Total time spend</span>
-                                        <h5 class="font-14 mt-1 fw-normal">12h 21min</h5>
-                                    </td>
-                                    <td class="table-action" style="width: 90px;">
-                                        <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                                        <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h5 class="font-14 my-1"><a href="javascript:void(0);" class="text-body">App design and development</a></h5>
-                                        <span class="text-muted font-13">Due in 7 days</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-muted font-13">Status</span> <br>
-                                        <span class="badge badge-success-lighten">Completed</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-muted font-13">Assigned to</span>
-                                        <h5 class="font-14 mt-1 fw-normal">Scot M. Smith</h5>
-                                    </td>
-                                    <td>
-                                        <span class="text-muted font-13">Total time spend</span>
-                                        <h5 class="font-14 mt-1 fw-normal">78h 05min</h5>
-                                    </td>
-                                    <td class="table-action" style="width: 90px;">
-                                        <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                                        <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h5 class="font-14 my-1"><a href="javascript:void(0);" class="text-body">Poster illustation design</a></h5>
-                                        <span class="text-muted font-13">Due in 5 days</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-muted font-13">Status</span> <br>
-                                        <span class="badge badge-warning-lighten">In-progress</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-muted font-13">Assigned to</span>
-                                        <h5 class="font-14 mt-1 fw-normal">John P. Ritter</h5>
-                                    </td>
-                                    <td>
-                                        <span class="text-muted font-13">Total time spend</span>
-                                        <h5 class="font-14 mt-1 fw-normal">26h 58min</h5>
-                                    </td>
-                                    <td class="table-action" style="width: 90px;">
-                                        <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                                        <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                    </td>
-                                </tr>
+                                @endforeach
                                 
                             </tbody>
                         </table>
@@ -171,4 +123,10 @@
         </div><!-- end col-->
     </div>
     <!-- end row-->
+    <script>
+        var pendente = {{ $pendente }};
+        var concluido = {{ $concluido }};
+        var cancelado = {{ $cancelado }};
+        
+    </script>
 </div>

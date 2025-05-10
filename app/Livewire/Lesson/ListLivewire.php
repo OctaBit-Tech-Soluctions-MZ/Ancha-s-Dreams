@@ -38,6 +38,9 @@ class ListLivewire extends Component
     }
 
     public function destroy($id){
+        if (!auth()->check()) {
+            redirect()->route('login')->with('warning', 'Sessão Experada, faça o login novamente');
+        }
         Content::findOrFail($id)->delete();
         request()->session()->flash('success', 'Aula Excluida com sucesso');
     }

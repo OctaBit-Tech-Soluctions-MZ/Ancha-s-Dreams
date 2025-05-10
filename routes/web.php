@@ -4,7 +4,7 @@ use App\Livewire\{
     AboutLivewire,
     ContactLivewire,
     HomeLivewire,
-    MiniShopLivewire
+    ShoppingCartLivewire
 };
 use App\Livewire\Admin\{
     Dashboard
@@ -39,6 +39,7 @@ use App\Livewire\Lesson\{
     RegisterLivewire as LessonRegisterLivewire,
 };
 use App\Livewire\Products\{
+    EditLivewire as ProductsEditLivewire,
     IndexLivewire as ProductsIndexLivewire,
     ListLivewire as ProductsListLivewire,
     RegisterLivewire as ProductsRegisterLivewire
@@ -68,6 +69,7 @@ Route::middleware([
     Route::get('/login', LoginLivewire::class)->name('login');
     Route::get('/register', RegisterLivewire::class)->name('register');
     Route::get('/courses/{slug}/show', DetailsLivewire::class)->name('courses.details');
+    Route::get('/cart', ShoppingCartLivewire::class)->name('cart');
 
     Route::middleware([
         'auth'
@@ -114,5 +116,6 @@ Route::middleware([
         Route::get('/admin/courses', ListInAdminPaineiLivewire::class)->name('courses.admin');
         Route::get('/admin/products', ProductsListLivewire::class)->name('products.list');
         Route::get('/admin/products/register', ProductsRegisterLivewire::class)->name('products.register');
+        Route::get('/admin/products/{slug}/edit', ProductsEditLivewire::class)->name('products.edit');
     });
 });

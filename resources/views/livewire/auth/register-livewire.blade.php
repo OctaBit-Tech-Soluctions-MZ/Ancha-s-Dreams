@@ -3,7 +3,7 @@
         <div class="login-wrapper">
             <div class="container">
                 <div class="loginbox">
-                    <div class="login-left">
+                    <div class="login-left" style="background: #727cf5">
                         <div class="d-flex justify-content-center align-items-center">
                             <img src="{{ asset('assets/img/culinary_classes_online.png')}}" alt="culinary_classes_online">
                         </div>

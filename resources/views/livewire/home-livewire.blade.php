@@ -45,32 +45,32 @@
         <div>
             <div class="row text-center">
                 <div class="col-md-4 p-2 text-center">
-                    <div class="card p-4 border rounded shadow img">
+                    <div class="card p-4 rounded shadow img">
                         <span class="fa-stack fa-4x">
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-utensils fa-stack-1x fa-inverse"></i>
+                            <i class="fas fa-utensils fa-stack-1x fa-inverse" style="margin-left: 100px"></i>
                         </span>
-                        <h4 class="my-3">Receitas Exclusivas</h4>
+                        <h4 class="mt--100">Receitas Exclusivas</h4>
                         <p class="text-muted">Compartilhe e descubra receitas incríveis com a nossa comunidade!</p>
                     </div>
                 </div>
                 <div class="col-md-4 p-2 text-center">
-                    <div class="card p-4 border rounded shadow">
+                    <div class="card p-4 rounded shadow">
                         <span class="fa-stack fa-4x">
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-mobile-alt fa-stack-1x fa-inverse"></i>
+                            <i class="fas fa-mobile-alt fa-stack-1x fa-inverse" style="margin-left: 100px"></i>
                         </span>
-                        <h4 class="my-3">Responsivo</h4>
+                        <h4 class="mt--100">Responsivo</h4>
                         <p class="text-muted">Estude onde e quando quiser no seu dispositivo preferido.</p>
                     </div>
                 </div>
                 <div class="col-md-4 p-2 text-center">
-                    <div class="card p-4 border rounded shadow img">
+                    <div class="card p-4 rounded shadow img">
                         <span class="fa-stack fa-4x">
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-seedling fa-stack-1x fa-inverse"></i>
+                            <i class="fas fa-seedling fa-stack-1x fa-inverse" style="margin-left: 100px"></i>
                         </span>
-                        <h4 class="my-3">Culinária Saudável</h4>
+                        <h4 class="mt--100">Culinária Saudável</h4>
                         <p class="text-muted">Aprenda a preparar receitas saudáveis e nutritivas.</p>
                     </div>
                 </div>
@@ -133,23 +133,24 @@
         </div>
 
     <!-- Contact-->
-    <section class="page-section m-2 d-flex justify-content-center" id="contact">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-heading text-uppercase fw-bold">Compartilhe a sua experiência</h2>
-                
-            </div>
-            <form id="contactForm" class="p-4 shadow rounded bg-white">
-                <div class="row">
-                    <div class="form-group mb-3">
-                        <textarea class="form-control p-3 rounded" 
-                            id="message" placeholder="Sua experiência*" rows="5" required></textarea>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <button class="btn btn-primary px-4 py-2 rounded text-uppercase fw-bold" id="submitButton" type="submit"><span>Enviar</span></button>
-                </div>
-            </form>
+    <div class="row mt-2 py-5 align-items-center p-2">
+        <div class="col-lg-5">
+            <img src="{{ asset('assets/img/online-courses-concept.png')}}" class="img-fluid" alt="">
         </div>
-    </section>
+        <div class="col-lg-6 offset-lg-1">
+            <h3 class="fw-normal">Comece Sua Jornada Culinária Agora</h3>
+            <p class="text-muted mt-3">Descubra o prazer de cozinhar com os melhores chefs e receitas do conforto da sua casa. Inscreva-se, escolha o seu curso e aprenda passo a passo no seu ritmo e no seu tempo.</p>
+
+            <div class="mt-4">
+                <p class="text-muted"><i class="mdi mdi-circle-medium text-primary"></i> Cursos de culinária para todos os níveis</p>
+                <p class="text-muted"><i class="mdi mdi-circle-medium text-primary"></i> Compra de livros e materiais exclusivos</p>
+                <p class="text-muted"><i class="mdi mdi-circle-medium text-primary"></i> Interação com a comunidade em grupos temáticos</p>
+                <p class="text-muted"><i class="mdi mdi-circle-medium text-primary"></i> Partilha de receitas, dicas e experiências</p>
+                <p class="text-muted"><i class="mdi mdi-circle-medium text-primary"></i> Suporte técnico dedicado e rápido</p>
+                <p class="text-muted"><i class="mdi mdi-circle-medium text-primary"></i> Mini loja com produtos selecionados</p>
+            </div>
+            <a href="{{route('register')}}" class="btn btn-primary btn-rounded mt-3" wire:navigate>Vamos cozinhar juntos<i class="mdi mdi-arrow-right ms-1"></i></a>
+
+        </div>
+    </div>
 </div>

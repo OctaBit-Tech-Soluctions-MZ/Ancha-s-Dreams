@@ -76,7 +76,7 @@
             </div>
             <div class="row g-2">
                 <div class="course-field mb-3 col-md-3">
-                    <label for="is_digital">O Livro é Fisico?</label>
+                    <label for="is_digital">O Livro é Digital (E-book)?</label>
                     <div class="form-check form-switch">
                         <input type="checkbox" class="form-check-input" id="is_digital" wire:click='isDigital' checked>
                     </div>

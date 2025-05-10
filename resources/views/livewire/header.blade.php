@@ -14,32 +14,32 @@
                     <ul class="navbar-nav text-capitalize d-flex gap-5 w-auto">
                         <div class="d-sm-flex justify-content-center px-1 me-1 ms-3 pe-1 ps-3">
                             <li class="nav-item">
-                                <a class="nav-link fs-7 border border-0" href="{{ route('home') }}" wire:current.exact="active border-bottom border-3 fw-bolder border-primary" wire:navigate>
+                                <a class="nav-link fs-7 border border-0" href="{{ route('home') }}" wire:current.exact="text-primary border-bottom border-3 fw-bolder border-primary" wire:navigate>
                                     <span>Inicio</span>
                                 </a>
                             </li>
-                             <li class="nav-item">
-                                <a class="nav-link fs-7" href="{{ route('courses') }}"  wire:current.exact="active border-bottom border-3 fw-bolder border-primary" wire:navigate>
+                             <li class="nav-item mx-lg-1">
+                                <a class="nav-link fs-7" href="{{ route('courses') }}"  wire:current.exact="text-primary border-bottom border-3 fw-bolder border-primary" wire:navigate>
                                     <span>Cursos</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link fs-7" href="{{ route('books') }}"  wire:current.exact="active border-bottom border-3 fw-bolder border-primary" wire:navigate>
+                            <li class="nav-item mx-lg-1">
+                                <a class="nav-link fs-7" href="{{ route('books') }}"  wire:current.exact="text-primary border-bottom border-3 fw-bolder border-primary" wire:navigate>
                                     <span>Livros</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link fs-7" href="{{ route('shop') }}"  wire:current.exact="active border-bottom border-3 fw-bolder border-primary" wire:navigate>
-                                    <span>Mini Shop</span>
+                            <li class="nav-item mx-lg-1">
+                                <a class="nav-link fs-7" href="{{ route('shop') }}"  wire:current.exact="text-primary border-bottom border-3 fw-bolder border-primary" wire:navigate>
+                                    <span>Shop</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{ route('about') }}" class="nav-link fs-7"  wire:current.exact="active border-bottom border-3 fw-bolder border-primary" wire:navigate>
+                            <li class="nav-item mx-lg-1">
+                                <a href="{{ route('about') }}" class="nav-link fs-7"  wire:current.exact="text-primary border-bottom border-3 fw-bolder border-primary" wire:navigate>
                                     <span>Sobre Nós</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{ route('contacts') }}" class="nav-link fs-7"  wire:current.exact="active border-bottom border-3 fw-bolder border-primary" wire:navigate>
+                            <li class="nav-item mx-lg-1">
+                                <a href="{{ route('contacts') }}" class="nav-link fs-7"  wire:current.exact="text-primary border-bottom border-3 fw-bolder border-primary" wire:navigate>
                                     <span>Contactos</span>
                                 </a>
                             </li>

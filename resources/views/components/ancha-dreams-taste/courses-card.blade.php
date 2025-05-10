@@ -1,5 +1,5 @@
     <!-- Start Single Course  -->
-    <div class="col-lg-{{ $expandWidth }} col-md-6 col-12">
+    <div class="col-lg-{{ $expand }} col-md-6 col-12">
         <div class="rbt-card variation-01 rbt-hover">
             <div class="rbt-card-img">
                 <a href="{{ route('courses.details', ['slug' => $course->slug]) }}" wire:navigate>
@@ -22,11 +22,11 @@
                         <a class="rbt-round-btn" title="Favorito" href="#"><i class="feather-bookmark"></i></a>
                     </div>
                 </div>
-                <h4 class="rbt-card-title text-start">
+                <h4 class="rbt-card-title text-start" style="font-size: 22px">
                     <a href="{{ route('courses.details', ['slug' => $course->slug]) }}" class=" text-decoration-none" wire:navigate>
                         {{ $course->name }}</a>
                 </h4>
-                <ul class="rbt-meta text-start">
+                <ul class="rbt-meta mt-1 mb-1">
                     <li><i class="feather-book me-2"></i>{{ $course->contents->count() }} Aulas</li>
                     <li><i class="feather-users me-2"></i>30 Alunos</li>
                 </ul>
@@ -35,13 +35,15 @@
                     
                 @if (!$isInstructorPainel)
 
-                    <x-ancha-dreams-taste.short-text :text="$course->description" :limit="60"/>
+                    {{-- <x-ancha-dreams-taste.short-text :text="$course->description" :limit="60"/> --}}
                     <div class="rbt-card-bottom">
                         <div class="rbt-price">
                             <span class="current-price fs-6">{{ $course->price }} mzn</span>
                             <span class="off-price">{{ $course->price + $course->price * 0.25 }} mzn</span>
                         </div>
-                        <a class="rbt-btn-link text-decoration-none" href="{{ route('courses.details', ['slug' => $course->slug]) }}" wire:navigate>Ler Mais<i class="ms-2 feather-arrow-right"></i></a>
+                    </div>
+                    <div class="rbt-card-bottom mt--20 justify-content-end">
+                        <a class="rbt-btn-link text-decoration-none" href="{{ route('courses.details', ['slug' => $course->slug]) }}" wire:navigate>Ler Mais<i class="ms-1 feather-arrow-right"></i></a>
                     </div>
 
                 @else

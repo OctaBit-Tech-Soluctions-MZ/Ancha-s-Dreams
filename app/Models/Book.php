@@ -15,8 +15,13 @@ class Book extends Model
         'price',
         'url',
         'qtd',
-        'is_digital'
+        'is_digital',
+        'published'
     ];
+
+    public function order_items(){
+        return $this->morphedByMany(order_item::class, 'itemable');
+    }
 
     public static function boot()
     {

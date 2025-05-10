@@ -13,12 +13,12 @@
     <!-- Google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <link href="{{ asset('assets/css/all.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/fonts/fontawesome/css/all.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/css/sweetalert.css')}}" rel="stylesheet">
     <link href="{{ asset('admin/jodit/jodit.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('admin/css/icons.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('admin/css/app.min.css') }}" rel="stylesheet" type="text/css" id="light-style">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -62,13 +62,13 @@
     <script src="{{ asset('admin/js/app.min.js') }}"></script>
     <script src="{{ asset('admin/jodit/jodit.min.js')}}"></script>
     <script src="{{ asset('admin/js/pages/demo.toastr.js') }}"></script>
-    <!-- Typehead -->
     <script src="{{ asset('admin/js/vendor/handlebars.min.js') }}"></script>
     <script src="{{ asset('admin/js/vendor/typeahead.bundle.min.js') }}"></script>
-    <!-- Demo -->
     <script src="{{ asset('admin/js/pages/demo.typehead.js') }}"></script>
-    <!-- Timepicker -->
     <script src="{{ asset('admin/js/pages/demo.timepicker.js') }}"></script>
+    <script src="{{ asset('assets/fonts/fontawesome/js/all.min.js')}}"></script>
+    <script src="{{ asset('assets/js/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('assets/js/sweetalert/sweetalert.init.js') }}"></script>
 
     <script>
         const editor = Jodit.make('#editor', {

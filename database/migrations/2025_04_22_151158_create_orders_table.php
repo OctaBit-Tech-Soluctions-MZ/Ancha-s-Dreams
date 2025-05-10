@@ -13,10 +13,8 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('user');
-            $table->decimal('total', 10, 2);
+            $table->integer('user_id');
             $table->enum('status',['pendente', 'concluido', 'cancelado', 'recusado'])->default('pendente');
-            $table->enum('type', ['compra de curso', 'compra de livro digital', 'compra de livro fisico', 'compra de outros produtos']);
             $table->timestamps();
         });
     }

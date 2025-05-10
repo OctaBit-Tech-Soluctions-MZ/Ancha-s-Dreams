@@ -42,12 +42,12 @@ class ListLivewire extends Component
                         ->layout('layouts.instructor');
     }
 
-    public function getSlug($slug){
-        $this->slug = $slug;
-    }
+    public function destroy($slug){
+        if (!auth()->check()) {
+            redirect()->route('login')->with('warning', 'Sessão Experada, faça o login novamente');
+        }
 
-    public function destroy(){
-        Course::where('slug',$this->slug)->firstOrFail()->delete();
+        Course::where('slug',$slug)->firstOrFail()->delete();
 
         request()->session()->flash('success', 'Curso Removido com sucesso');
     }

@@ -12,7 +12,7 @@ class IndexLivewire extends Component
 {
     public function render()
     {
-        $users = User::with('roles')->where('id','<>', Auth()->id())->paginate(10);
+        $users = User::with('roles')->where('id', '<>', Auth()->id())->paginate(10);
         return view('livewire.users.index-livewire', compact('users'));
     }
 }

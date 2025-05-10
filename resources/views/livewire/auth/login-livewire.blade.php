@@ -6,6 +6,9 @@
                         <div class="login-right">
                             <div class="w-100 p-3">
                                 <h3 class="text-center account-subtitle">Acesse Sua Conta</h3>
+                                @if (session('warning'))
+                                    <div class="alert alert-warning">{!! session('warning') !!}</div>
+                                @endif
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
                                     <div class="rbt-course-field-wrapper rbt-default-form">  
@@ -58,7 +61,7 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="login-left">
+                        <div class="login-left" style="background: #727cf5">
                             <div class="d-flex justify-content-center align-items-center">
                                 <img src="{{ asset('assets/img/culinary_classes_online.png')}}" alt="culinary_classes_online">
                             </div>

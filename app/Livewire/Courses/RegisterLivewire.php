@@ -65,6 +65,9 @@ class RegisterLivewire extends Component
 
     public function create()
     {
+        if (!auth()->check()) {
+            redirect()->route('login')->with('warning', 'Sessão Experada, faça o login novamente');
+        }
         $this->validate();
             $upload = new UploadService($this->cover);
             $cover = $upload->upload('courses')['name'];

@@ -17,8 +17,22 @@ class ListInAdminPaineiLivewire extends Component
 
     public function publish($id, $value)
     {
+        if (!auth()->check()) {
+            redirect()->route('login')->with('warning', 'Sessão Experada, faça o login novamente');
+        }
         Course::findOrFail($id)->update([
             'published' => $value
         ]);
+    }
+
+    public function destroy($id)
+    {
+        if (!auth()->check()) {
+            redirect()->route('login')->with('warning', 'Sessão Experada, faça o login novamente');
+        }
+
+        Course::findOrFail($id)->delete();
+
+        request()->session()->flash('success', 'Curso Excluido com sucesso');
     }
 }

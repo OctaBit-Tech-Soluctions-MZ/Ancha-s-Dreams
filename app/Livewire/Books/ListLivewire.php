@@ -9,6 +9,11 @@ use Livewire\Component;
 #[Layout('layouts.admin')]
 class ListLivewire extends Component
 {
+    public $slug;
+
+    public function mount(){
+        $this->slug = '';
+    }
     public function render()
     {
         $books = Book::paginate(10);
@@ -20,5 +25,18 @@ class ListLivewire extends Component
         Book::findOrFail($id)->update([
             'published' => $value
         ]);
+
+        if ($value) {
+            $message = 'Livro Publicado com sucesso';
+        }else{
+            $message = 'Livro despublicado com sucesso';
+        }
+
+        request()->session()->flash('success', $message);
+    }
+
+    public function destroy($slug){
+        Book::where('slug', $slug)->first()->delete();
+        request()->session()->flash('success', 'Livro excluido com sucesso');
     }
 }

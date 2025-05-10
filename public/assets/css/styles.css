@@ -42,25 +42,6 @@ body {
 }
 .login-wrapper .loginbox .login-left{
   align-items:center;
-  background:#009688;
-  background:-moz-linear-gradient(
-    -45deg,#ffc800ff 0%,
-    #ffc800ff 52%,
-    #ffc800ff 100%,
-    #ffc800ff 100%
-    );
-  background:-webkit-linear-gradient(
-    -45deg,#ffc800ff 0%,
-    #ffc800ff 52%,
-    #ffc800ff 100%,
-    #ffc800ff 100%
-    );
-  background:linear-gradient(
-    135deg,#ffc800ff 0%,
-    #ffc800ff 52%,
-    #ffc800ff 100%,
-    #ffc800ff 100%
-    );
     border-radius:6px 0 0 6px;
     padding:80px;
     width:60%;
