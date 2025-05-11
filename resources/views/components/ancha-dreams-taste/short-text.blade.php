@@ -1,0 +1,1 @@
+<p class="rbt-card-text text-start">{!! \Illuminate\Support\Str::limit($text, $limit) !!}</p>
