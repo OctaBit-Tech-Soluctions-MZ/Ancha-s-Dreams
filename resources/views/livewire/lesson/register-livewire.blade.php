@@ -1,5 +1,5 @@
 <div>
-    
+
     @livewire('breadcrumb', [
     'pages' => [
     ['label' => 'Cursos', 'url' => route('courses.instructor')],
@@ -7,7 +7,7 @@
     ['label' => 'Nova Aula', 'url' => null],
     ],
     'pageTitle' => 'Adicionar Nova de Aula'
-    ])    
+    ])
     <div class="row">
         <div class="col-lg-12">
             <form method="POST" enctype="multipart/form-data" wire:submit.prevent='create'>
@@ -28,8 +28,10 @@
                     </div>
                 </div>
                 <div class="course-field mb--20">
-                    <label for="editor">Resumo da Aula</label>
-                    <textarea id="editor" wire:model="description"></textarea>
+                    <label for="description">Resumo da Aula</label>
+                    <div wire:ignore><textarea id="description" wire:model="description"
+                            placeholder="escreva o resumo da aula aqui..."></textarea></div>
+
                     <div>
                         <small>
                             <i class="feather-info"></i> Adicione um resumo de um texto curto
@@ -56,6 +58,26 @@
                         @enderror
                     </div>
                 </div>
+                <div class="row g-2">
+                    <div class="course-field mb--20">
+                        <label for="editor">Escreva sua Receita aqui (opcional)</label>
+                        <!-- Create the editor container -->
+                        <div wire:ignore>
+                            <div id="editor" class="quill-editor" style="height: 200px">
+                                {!! $recipe !!}
+                            </div>
+                        </div>
+                        <br>
+                        <small>
+                            <i class="feather-info"></i> Adicione uma Descrição detalhada sobre os Ingredientes, tempo
+                            de preparo e passos a seguir nesta
+                            receita.
+                        </small>
+                    </div>
+                </div>
+                @if (session('success'))
+                    <x-ancha-dreams-taste.alert :type="'success'"/>
+                @endif
                 <div class="mt--10 row g-5">
                     <div class="col-lg-12">
                         <x-ancha-dreams-taste.button-loading :title="'Registar aula'" />

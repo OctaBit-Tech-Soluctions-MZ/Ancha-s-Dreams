@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->longText('description');
             $table->string('time_limit')->comment('Ex: 30min, 1h'); 
+            $table->foreignId('course_id')->nullable()->constrained('courses');
             $table->double('passing')->comment('Pontuação minima para passar no exame');
             $table->enum('status', ['draft', 'published', 'closed'])->default('draft');
             $table->integer('attempts_allowed')->default(1);
@@ -26,9 +27,8 @@ return new class extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('exam_id');
-            $table->string('question');
-            $table->enum('answer_type', ['multipla escolha', 'verdadeiro ou falso']);
-            $table->integer('points')->default(1);
+            $table->string('question_text');
+            $table->integer('points')->nullable();
             $table->integer('order')->default(0);
             $table->timestamps();
         

@@ -8,8 +8,11 @@
                     Aqui encontraras a lista de todos os utilizadores registados no sistema (alunos, instructores e
                     administradores).
                 </p>
-                <div>
-                    <table class="table table-centered table-borderless mb-0" wire:poll.30s>
+                <div class="table-responsive">
+                    @if (session('success'))
+                    <x-ancha-dreams-taste.alert :type="'success'" />
+                    @endif
+                    <table class="table table-centered table-borderless mb-0" wire:poll.30s id="users-datatable">
                         <thead>
                             <tr>
                                 <th>Nome</th>
@@ -33,20 +36,39 @@
                                 <td>{{ $user->email }}</td>
                                 <td>@if($user->isOnline())
                                     <span class="badge bg-success p-1">Online</span>
-                                @else
+                                    @else
                                     <span class="badge bg-danger p-1">Offline</span>
-                                @endif</td>
+                                    @endif
+                                </td>
                                 <td class="d-flex gap-1">
                                     <!-- item-->
-                                    <a href="{{ route('users.permissions',['slug' => $user->slug]) }}"
-                                        class="btn btn-primary" title="Editar Permissões do utilizador" wire:navigate><i class="mdi mdi-pencil me-1"></i></a>
+                                    {{-- <a href="{{ route('users.permissions',['slug' => $user->slug]) }}"
+                                        class="btn btn-primary" title="Editar Permissões do utilizador" wire:navigate><i
+                                            class="mdi mdi-pencil me-1"></i></a> --}}
                                     <!-- item-->
-                                    <a href="javascript:void(0);" class="btn btn-danger"><i
-                                            class="mdi mdi-delete me-1" title="Excluir utilizador"></i></a>
+                                    <button type="button" class="btn btn-danger" wire:click='destroy'
+                                        wire:confirm='Tem Certeza que deseja excluir o utilizador {{$user->name}}'>
+                                        <i class="mdi mdi-delete me-1" title="Excluir utilizador"></i>
+                                    </button>
                                     <!-- item-->
-                                    <a href="javascript:void(0);" class="btn btn-warning"><i
-                                            class="mdi mdi-block-helper me-1" title="Bloquear utilizador"></i></a>
+                                    @php
+                                    $block = optional($user->blocked)->first(); 
+                                    @endphp
 
+                                    @if($block && $block->is_blocked == 1 && empty($block->unblocked_at))
+                                    <button type="button" wire:click='unblocked({{ $user->id }})'
+                                        wire:confirm='Tem certeza que deseja desbloquear o utilizador {{ $user->name }}?'
+                                        class="btn btn-warning">
+                                        <i class="mdi mdi-account-check me-1" title="Desbloquear utilizador"></i>
+                                        Desbloquear
+                                    </button>
+                                    @else
+                                    <a href="{{ route('users.blocked', ['slug' => $user->slug]) }}"
+                                        class="btn btn-warning">
+                                        <i class="mdi mdi-block-helper me-1" title="Bloquear utilizador"></i>
+                                        Bloquear
+                                    </a>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach

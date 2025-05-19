@@ -32,6 +32,21 @@ class Course extends Model
     public function order_items(){
         return $this->morphedByMany(order_item::class, 'itemable');
     }
+
+    public function testimonials()
+    {
+        return $this->hasMany(Testimonial::class, 'course_id');
+    }
+
+    public function exams()
+    {
+        return $this->hasOne(Exam::class, 'course_id');
+    }
+
+    public function myCourses()
+    {
+        return $this->hasMany(MyCourse::class);
+    }
     
     public static function boot()
     {

@@ -49,8 +49,11 @@ class LoginLivewire extends Component
         RateLimiter::clear($throttleKey);
 
         session()->regenerate();
-
-        return redirect()->intended(route('dashboard'));
+        
+        foreach(auth()->user()->roles as $role){
+            $route = $role->route;
+        }
+        return redirect()->intended(route($route));
     }
 
     public function render()

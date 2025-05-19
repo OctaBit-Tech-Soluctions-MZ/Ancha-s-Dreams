@@ -27,8 +27,8 @@
                     </div>
                 </div>
                 <div class="course-field mb--20">
-                    <label for="editor">Resumo da Aula</label>
-                    <textarea id="editor" wire:model="description">{{$description}}</textarea>
+                    <label for="description">Resumo da Aula</label>
+                    <textarea id="description" wire:model="description">{{$description}}</textarea>
                     <div>
                         <small>
                             <i class="feather-info"></i> Adicione um resumo de um texto curto
@@ -42,6 +42,24 @@
                         @enderror
                     </div>
                 </div>
+                <div class="course-field mb--20">
+                    <label for="editor">Edite sua Receita aqui</label>
+                    <!-- Create the editor container -->
+                    <div wire:ignore>
+                        <div id="editor" class="quill-editor" style="height: 200px">
+                            {!! $recipe !!}
+                        </div>
+                    </div>
+                    <br>
+                    <small>
+                        <i class="feather-info"></i> Adicione uma Descrição detalhada sobre os Ingredientes, tempo
+                        de preparo e passos a seguir nesta
+                        receita.
+                    </small>
+                </div>
+                @if (session('success'))
+                <x-ancha-dreams-taste.alert :type="'success'" />
+                @endif
                 <div class="course-field mb--15">
                     <label for="videoUrl">Carregue o Video</label>
                     <input id="videoUrl" type="file" class="form-control" wire:model="video">
@@ -67,3 +85,14 @@
         </div>
     </div>
 </div>
+
+@script
+<script>
+    const quill = new Quill('#editor', {
+    theme: 'snow'
+  });
+    quill.on('text-change', () => {
+        $wire.set('recipe', quill.root.innerHTML)
+    })
+</script>
+@endscript

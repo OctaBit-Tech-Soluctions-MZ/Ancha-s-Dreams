@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class Content extends Model
 {
-    protected $fillable = ['title', 'description', 'url', 'order', 'file_id', 'course_id'];
+    protected $fillable = ['title', 'description', 'url', 'order', 'file_id', 'course_id', 'recipe'];
     
     public static function boot()
     {
@@ -42,5 +42,10 @@ class Content extends Model
 
     public function courses() {
         return $this->belongsTo(Course::class, 'course_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

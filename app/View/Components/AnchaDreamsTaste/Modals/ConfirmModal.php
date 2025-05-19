@@ -11,7 +11,7 @@ class ConfirmModal extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public $message = 'Tem certeza que deseja realizar a operação?')
+    public function __construct(public $action ,public $show = 'd-none', public $message = 'Tem certeza que deseja realizar a operação?')
     {
         //
     }

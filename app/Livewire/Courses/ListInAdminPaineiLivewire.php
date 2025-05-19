@@ -6,9 +6,11 @@ use App\Models\Course;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
-#[Layout('layouts.admin')]
+#[Layout('layouts.admin', ['action' => 'destroy'])]
 class ListInAdminPaineiLivewire extends Component
 {
+    public $id,
+            $showModal = false;
     public function render()
     {
         $courses = Course::with('users')->paginate(10);
@@ -25,13 +27,19 @@ class ListInAdminPaineiLivewire extends Component
         ]);
     }
 
-    public function destroy($id)
+    public function setId($id)
+    {
+        $this->id = $id;
+        $this->showModal = true;
+    }
+
+    public function destroy()
     {
         if (!auth()->check()) {
             redirect()->route('login')->with('warning', 'Sessão Experada, faça o login novamente');
         }
-
-        Course::findOrFail($id)->delete();
+        dd($this->id);
+        Course::findOrFail($this->id)->delete();
 
         request()->session()->flash('success', 'Curso Excluido com sucesso');
     }

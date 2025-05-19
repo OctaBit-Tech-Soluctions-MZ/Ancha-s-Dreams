@@ -11,7 +11,7 @@ class CardDashboard extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public $col_value = 3)
+    public function __construct(public $colvalue = 3)
     {
         //
     }

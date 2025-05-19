@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Middleware\BlockedMiddleware;
+use App\Http\Middleware\EnsureCoursePurchased;
+use App\Http\Middleware\EnsureUserIsAuth;
 use App\Http\Middleware\LastUserActivity;
 use App\Http\Middleware\RoleMiddleware;
 use Illuminate\Foundation\Application;
@@ -19,6 +22,9 @@ return Application::configure(basePath: dirname(__DIR__))
                 'role' => RoleMiddleware::class,
                 'role_spatie' => MiddlewareRoleMiddleware::class,
                 'last_user_activity' => LastUserActivity::class,
+                'blocked' => BlockedMiddleware::class,
+                'purchased.course' => EnsureCoursePurchased::class,
+                'is_auth' => EnsureUserIsAuth::class,
             ]
         );
     })

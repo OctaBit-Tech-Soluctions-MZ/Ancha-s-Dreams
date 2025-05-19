@@ -3,7 +3,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top {{ $bg }}" id="mainNav">
             <div class="container gap-5">
-                <a class="navbar-brand" href="#page-top">
+                <a class="navbar-brand" href="#page-top" id='logo-nav'>
                     <img src="{{ asset('assets/img/navbar-logo.svg') }}" alt="Logo" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" 
@@ -24,13 +24,8 @@
                                 </a>
                             </li>
                             <li class="nav-item mx-lg-1">
-                                <a class="nav-link fs-7" href="{{ route('books') }}"  wire:current.exact="text-primary border-bottom border-3 fw-bolder border-primary" wire:navigate>
-                                    <span>Livros</span>
-                                </a>
-                            </li>
-                            <li class="nav-item mx-lg-1">
                                 <a class="nav-link fs-7" href="{{ route('shop') }}"  wire:current.exact="text-primary border-bottom border-3 fw-bolder border-primary" wire:navigate>
-                                    <span>Shop</span>
+                                    <span>Loja</span>
                                 </a>
                             </li>
                             <li class="nav-item mx-lg-1">
@@ -66,7 +61,13 @@
         
                 {{-- so aparece quando o utilizador esta logado --}}
                 @auth
-                    <x-ancha-dreams-taste.profile-dropdown :profileRoute="route('profile.show')" :color='"text-white"'/>
+                    @if(auth()->user()->hasAnyRole('admin') || auth()->user()->hasAnyRole('super admin'))
+                        <a href="{{ route('admin') }}" class="rbt-btn-link text-white" wire:navigate>Voltar Para o Painel de Admin</a>
+                    @elseif(auth()->user()->hasAnyRole('instrutor'))
+                        <a href="{{ route('dashboard') }}" class="rbt-btn-link text-white" wire:navigate>Voltar Para o Painel do Instrutor</a>
+                    @else
+                        <x-ancha-dreams-taste.profile-dropdown :profileRoute="route('profile.show')" :color='"text-white"'/>
+                    @endif
                 @endauth
             </div>
         </nav>

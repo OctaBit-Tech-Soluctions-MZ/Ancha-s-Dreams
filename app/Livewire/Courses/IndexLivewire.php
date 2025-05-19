@@ -20,14 +20,13 @@ class IndexLivewire extends Component
 
     protected $queryString = [
         'search' => ['except' => ''],
-        'category' => ['except' => ''],
         'orderBy' => ['except' => 'default'],
         'page' => ['except' => 1],
     ];
 
     public function updated($property)
     {
-        if (in_array($property, ['search', 'category', 'orderBy'])) {
+        if (in_array($property, ['search', 'orderBy'])) {
             $this->resetPage();
         }
     }
@@ -38,10 +37,6 @@ class IndexLivewire extends Component
 
         if ($this->search) {
             $query->where('name', 'like', '%' . $this->search . '%');
-        }
-
-        if ($this->category) {
-            $query->where('category', $this->category);
         }
 
         switch ($this->orderBy) {
@@ -62,6 +57,7 @@ class IndexLivewire extends Component
         }
 
         $query->where('published', '=', true);
+        $query->with('testimonials');
 
         $courses = $query->paginate(12);
         return view('livewire.courses.index-livewire', compact('courses'));

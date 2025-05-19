@@ -3,13 +3,12 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-
                     <h4 class="header-title">Cursos</h4>
                     <p class="text-muted font-14">
                         Aqui encontraras a lista de todos os Cursos registado na sistema.
                     </p>
-                    <div>
-                        <table class="table table-centered table-borderless mb-0">
+                    <div class="table-responsive">
+                        <table class="table table-centered table-borderless mb-0" id="courses-datatable">
                             <thead>
                                 <tr>
                                     <th>Capa</th>
@@ -48,8 +47,8 @@
                                             @endif
                                         </div>
                                         <div>
-                                            <a class="rbt-btn-link text-decoration-none" wire:click='destroy({{ $course->id }})'
-                                                role="button" wire:confirm='Tem certeza que deseja excluir o curso {{ $course->name }} ?'>
+                                            <a role="button" class="rbt-btn-link text-decoration-none" wire:click='setId({{ $course->id }})'
+                                               data-bs-toggle="modal" data-bs-target="#confirmModal">
                                                 <i class="me-2 feather-trash"></i>Excluir</a>
                                         </div>
                                     </td>

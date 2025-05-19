@@ -11,13 +11,12 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/favicon.ico') }}" />
 
     <!-- Google fonts-->
+    @livewireStyles
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/all.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('admin/css/vendor/dataTables.bootstrap5.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('admin/css/vendor/responsive.bootstrap5.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('admin/css/vendor/select.bootstrap5.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('admin/css/vendor/buttons.bootstrap5.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/datatables/datatables.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/print.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/fonts/fontawesome/css/all.min.css')}}" rel="stylesheet">
     <link href="{{ asset('assets/css/sweetalert.css')}}" rel="stylesheet">
     <link href="{{ asset('admin/jodit/jodit.min.css') }}" rel="stylesheet" type="text/css">
@@ -29,6 +28,7 @@
 <body
     data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
 
+    <script src="{{ asset('assets/js/print.min.js') }}"></script>
     <div class="">
         <div class="wrapper">
             @persist('sidebar')
@@ -36,8 +36,9 @@
                 <x-slot:nav_item>
                     <x-ancha-dreams-taste.side-nav-item :route="route('admin')" :icon="'uil-home'"
                         :name="'Dashboard'" />
+                    {{--
                     <x-ancha-dreams-taste.side-nav-item :route="route('books.list')" :icon="'uil-book'"
-                        :name="'Livros'" />
+                        :name="'Livros'" /> --}}
                     <x-ancha-dreams-taste.side-nav-item :route="route('courses.admin')" :icon="'uil-award'"
                         :name="'Cursos'" />
                     <x-ancha-dreams-taste.side-nav-item :route="route('products.list')" :icon="'uil-utensils-alt'"
@@ -135,6 +136,7 @@
 
     <!-- Modals Components -->
     <x-ancha-dreams-taste.modals.logout-modal />
+    <x-ancha-dreams-taste.modals.confirm-modal :action="$action ?? ''"/>
 
 
     <!-- bundle -->
@@ -145,23 +147,57 @@
     <script src="{{ asset('assets/fonts/fontawesome/js/all.min.js')}}"></script>
     <script src="{{ asset('assets/js/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/js/sweetalert/sweetalert.init.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/datatables/datatables.js') }}"></script>
+    @livewireScripts
+    <script>
+    function initAllDataTables() {
+        const tables = [
+            '#products-datatable',
+            '#courses-datatable',
+            '#books-datatable',
+            '#users-datatable'
+        ];
 
-    <!-- third party js -->
-    <script src="{{ asset('admin/js/vendor/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('admin/js/vendor/dataTables.bootstrap5.js') }}"></script>
-    <script src="{{ asset('admin/js/vendor/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('admin/js/vendor/responsive.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('admin/js/vendor/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('admin/js/vendor/buttons.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('admin/js/vendor/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('admin/js/vendor/buttons.flash.min.js') }}"></script>
-    <script src="{{ asset('admin/js/vendor/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('admin/js/vendor/dataTables.keyTable.min.js') }}"></script>
-    <script src="{{ asset('admin/js/vendor/dataTables.select.min.js') }}"></script>
-    <!-- third party js ends -->
+        tables.forEach(selector => {
+            const el = document.querySelector(selector);
+            if (el) {
+                if ($.fn.DataTable && $.fn.DataTable.isDataTable(el)) {
+                    $(el).DataTable().destroy();
+                }
+                if ($.fn.DataTable) {
+                    $(el).DataTable();
+                }
+            }
+        });
 
-    <!-- demo app -->
-    <script src="{{ asset('admin/js/pages/demo.datatable-init.js') }}"></script>
+        try {
+            const selection = document.getSelection();
+            if (selection && selection.focusNode) {
+                // Se precisares fazer algo com o foco, podes colocar aqui
+                // Ex: console.log('Foco atual:', selection.focusNode);
+            }
+        } catch (e) {
+            console.warn('Erro ao acessar focusNode:', e);
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        initAllDataTables();
+    });
+
+    document.addEventListener("livewire:load", () => {
+        initAllDataTables();
+
+        Livewire.hook('message.processed', () => {
+            setTimeout(() => {
+                initAllDataTables();
+            }, 100);
+        });
+    });
+</script>
+
+
 </body>
 
 </html>

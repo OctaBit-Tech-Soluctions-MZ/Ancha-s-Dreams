@@ -125,6 +125,24 @@ class User extends Authenticatable
         return $this->hasMany(Blocked_user::class);
     }
 
+    public function testimonials()
+    {
+        return $this->hasMany(Testimonial::class, 'user_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'user_id');
+    }
+
+    public function replies(){
+        return $this->hasMany(Reply::class, 'user_id');
+    }
+
+    public function myCourses()
+    {
+        return $this->hasMany(MyCourse::class);
+    }
     public static function getPermissions($role) {
        return Role::with('permissions')->where('name',$role)->first()->permissions;
     }

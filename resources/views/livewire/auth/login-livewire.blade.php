@@ -9,12 +9,12 @@
                                 @if (session('warning'))
                                     <div class="alert alert-warning">{!! session('warning') !!}</div>
                                 @endif
-                                <form method="POST" action="{{ route('login') }}">
+                                <form method="POST" wire:submit.prevent='login'>
                                     @csrf
                                     <div class="rbt-course-field-wrapper rbt-default-form">  
                                         <div class="col-md-12 course-field mb--15">
                                             <label for="email" value="{{ __('Email') }}" >Email</label>
-                                            <input type="email" class="form-control" placeholder="Digite seu email"  name="email">
+                                            <input type="email" class="form-control" placeholder="Digite seu email"  wire:model="email">
                                             @error('email')
                                                 <span class="color-danger pt-3 fs-7"><i class="feather-alert-triangle"></i> 
                                                     @if ($errors->any())
@@ -28,7 +28,7 @@
                                         <div class="rbt-course-field-wrapper rbt-default-form"> 
                                             <div class="col-md-12 course-field mb--15">
                                                 <label class="form-label" for="password" value="{{ __('Password') }}">Palavra-Passe</label>
-                                                <input type="password" class="form-control" placeholder="Digite sua palavra-passe" name="password">
+                                                <input type="password" class="form-control" placeholder="Digite sua palavra-passe" wire:model="password">
                                                 @error('password')
                                                     <span class="color-danger pt-3 fs-7"><i class="feather-alert-triangle"></i> 
                                                         @if ($errors->any())

@@ -1,10 +1,12 @@
 <div class="">
     <!-- Navbar Icons -->
     <ul class="quick-access">
-        <li class="dropdown rbt-user-wrapper d-none d-xl-block">
+        <li class="dropdown rbt-user-wrapper d-none d-xl-block position-relative">
             <a href="#" class="rbt-btn-link text-capitalize {{$color}}"
-                 data-bs-toggle="dropdown" aria-expanded="false"><i class="feather-user"></i>{{Auth::user()->role}}</a>
-            <div class="dropdown-menu rbt-user-menu-list-wrapper">
+               data-bs-toggle="dropdown" aria-expanded="false">
+               <i class="feather-user"></i>{{ Auth::user()->role }}
+            </a>
+            <div class="dropdown-menu dropdown-menu-end rbt-user-menu-list-wrapper">
                 <div class="inner">
                     <div class="rbt-admin-profile">
                         <div class="admin-thumbnail">
@@ -23,18 +25,17 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" role="button" data-bs-toggle="modal" data-bs-target="#logoutModal">
-                                <i class="feather-log-out"></i>
-                                <span>Logout</span>
-                            </a>
                         </li>
                     </ul>
                 </div>
             </div>
         </li>
 
+        <!-- Mobile Dropdown (continua como antes) -->
         <li class="dropdown access-icon rbt-user-wrapper d-block d-xl-none">
-            <a class="{{$color}} rbt-round-btn" href="#" data-bs-toggle="dropdown" aria-expanded="false"><i class="feather-user"></i></a>
+            <a class="{{$color}} rbt-round-btn" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="feather-user"></i>
+            </a>
             <div class="dropdown-menu rbt-user-menu-list-wrapper">
                 <div class="inner">
                     <div class="rbt-admin-profile">
@@ -63,6 +64,9 @@
                 </div>
             </div>
         </li>
-
     </ul>
+                            <a href="#" role="button" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                                <i class="feather-log-out"></i>
+                                <span>Logout</span>
+                            </a>
 </div>

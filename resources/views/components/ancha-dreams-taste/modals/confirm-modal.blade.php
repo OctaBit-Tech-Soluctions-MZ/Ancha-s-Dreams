@@ -1,10 +1,10 @@
-<!-- Modal Delete -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
+<!-- Modal confirm -->
+<div class="modal fade show bg-dark {{$show}}" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel"
+    aria-hidden="true" style=" wire:ignore>
+    <div class="modal-dialog>
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">Confirmação</h5>
+                <h5 class="modal-title" id="confirmModalLabel">Confirmação</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -12,7 +12,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger" wire:click="confirmAction">Confirmar</a>
+                <button type="button" class="btn btn-danger" wire:click="{{$action}}">Confirmar</button>
             </div>
         </div>
     </div>

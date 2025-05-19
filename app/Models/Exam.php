@@ -6,5 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Exam extends Model
 {
-    //
+    protected $fillable = [
+            'title',
+            'description',
+            'time_limit' ,
+            'passing', 
+            'status'     
+    ];
+
+    public function courses()
+    {
+        return $this->belongsTo(Course::class, 'course_id');
+    }
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
 }

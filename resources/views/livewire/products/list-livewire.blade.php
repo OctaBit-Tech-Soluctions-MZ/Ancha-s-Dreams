@@ -9,15 +9,15 @@
                                     class="mdi mdi-plus-circle me-2"></i> Adicionar novo produto</a>
                         </div>
                     </div>
-
+                    
                     <div class="table-responsive">
-                        <table class="table table-centered w-100 dt-responsive nowrap" id="products-datatable">
+                        <table class="table table-centered w-100 dt-responsive nowrap display" id="products-datatable">
                             <thead class="table-light">
                                 <tr>
                                     <th class="all">Produto</th>
+                                    <th>Tipo</th>
                                     <th>Registado</th>
                                     <th>Preço</th>
-                                    <th>Quantidade</th>
                                     <th>Status</th>
                                     <th>Acção</th>
                                 </tr>
@@ -39,6 +39,7 @@
                                             <span class="text-warning mdi mdi-star"></span>
                                         </p>
                                     </td>
+                                    <td>{{ $product->type }}</td>
                                     <td>
                                         @php
                                         echo humanTime($product->created_at)
@@ -46,10 +47,6 @@
                                     </td>
                                     <td>
                                         {{ $product->price }} MZN
-                                    </td>
-
-                                    <td>
-                                        {{ $product->qtd }}
                                     </td>
                                     <td>
                                         {!!$product->published ? '<span class="badge bg-success">Publicado</span>' :
@@ -90,6 +87,7 @@
 
                             </tbody>
                         </table>
+                        {{-- <button onclick="printJS('products-datatable', 'html')">Teste</button> --}}
                     </div>
                 </div>
             </div>

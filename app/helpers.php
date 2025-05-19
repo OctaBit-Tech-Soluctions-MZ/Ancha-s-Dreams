@@ -6,6 +6,7 @@ use FFMpeg\FFProbe;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Route;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
  * Retorna a rota anterior no estilo role.module
@@ -149,3 +150,30 @@ function givePermissionToUser(User $user)
     }
 }
 
+if (!function_exists('thumbnail')) {
+    function thumbnail(?Media $media, string $conversion = 'thumb'): string
+    {
+        if (!$media) {
+            return asset('images/icons/default-file.png');
+        }
+
+        $mime = $media->mime_type;
+
+        // Se for imagem, retorna o thumbnail real
+        if (str_starts_with($mime, 'image/')) {
+            return $media->getUrl($conversion);
+        }
+
+        // Formata o nome do ícone com base no mime type
+        $iconName = str_replace(['/', '.'], '-', $mime) . '.png'; // ex: application-pdf.png
+
+        // Verifica se o ícone existe
+        $iconPath = public_path('images/icons/' . $iconName);
+        if (file_exists($iconPath)) {
+            return asset('images/icons/' . $iconName);
+        }
+
+        // Fallback genérico
+        return asset('images/icons/file.png');
+    }
+}

@@ -16,6 +16,7 @@ class EditLivewire extends Component
            $description,
            $video,
            $slug,
+           $recipe,
            $slug_course;
     protected $rules = [
         'title' => 'required|string|max:255',
@@ -41,6 +42,7 @@ class EditLivewire extends Component
         $this->title = $content->title;
         $this->description = $content->description;
         $this->video = $content->url;
+        $this->recipe = $content->recipe;
         $this->slug_course = $content->courses->slug;
     }
     

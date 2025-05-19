@@ -16,6 +16,7 @@
     <link href="{{ asset('assets/css/all.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/fonts/fontawesome/css/all.min.css')}}" rel="stylesheet">
     <link href="{{ asset('assets/css/sweetalert.css')}}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
     <link href="{{ asset('admin/jodit/jodit.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('admin/css/icons.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('admin/css/app.min.css') }}" rel="stylesheet" type="text/css" id="light-style">
@@ -32,6 +33,8 @@
                         :name="'Dashboard'" />
                     <x-ancha-dreams-taste.side-nav-item :route="route('courses.instructor')" :icon="'uil-award'"
                         :name="'Meus cursos'" />
+                    <x-ancha-dreams-taste.side-nav-item :route="route('home')" :icon="'uil-arrow-left'"
+                        :name="'Inicio'" />
                 </x-slot:nav_item>
             </x-ancha-dreams-taste.sidebar>
             @endpersist
@@ -60,21 +63,15 @@
     <!-- bundle -->
     <script src="{{ asset('admin/js/vendor.min.js') }}"></script>
     <script src="{{ asset('admin/js/app.min.js') }}"></script>
-    <script src="{{ asset('admin/jodit/jodit.min.js')}}"></script>
     <script src="{{ asset('admin/js/pages/demo.toastr.js') }}"></script>
     <script src="{{ asset('admin/js/vendor/handlebars.min.js') }}"></script>
     <script src="{{ asset('admin/js/vendor/typeahead.bundle.min.js') }}"></script>
     <script src="{{ asset('admin/js/pages/demo.typehead.js') }}"></script>
     <script src="{{ asset('admin/js/pages/demo.timepicker.js') }}"></script>
     <script src="{{ asset('assets/fonts/fontawesome/js/all.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
     <script src="{{ asset('assets/js/sweetalert/sweetalert.min.js') }}"></script>
-    <script src="{{ asset('assets/js/sweetalert/sweetalert.init.js') }}"></script>
 
-    <script>
-        const editor = Jodit.make('#editor', {
-    buttons: ['bold', 'italic', 'underline', '|', 'ul', 'ol']
-  });
-    </script>
 </body>
 
 </html>

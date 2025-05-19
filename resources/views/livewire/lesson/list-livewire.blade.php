@@ -51,9 +51,6 @@
                             <div></div>
                             <!-- actions -->
                             <div class="d-flex gap-2 justify-content-end fw-bolder">
-                                <a href="{{ route('lessons.recipes', ['slug' => $content->slug]) }}" class="rbt-btn-link" wire:navigate>
-                                    <i class="uil-food"> Receitas</i>
-                                </a>
                                 <a href="{{ route('lessons.edit', ['slug' => $content->slug]) }}" class="rbt-btn-link" wire:navigate>
                                     <i class="uil-edit"> Editar</i>
                                 </a>

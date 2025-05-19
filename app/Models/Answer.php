@@ -6,5 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Answer extends Model
 {
-    //
+    protected $fillable = [
+        'answer_text',
+        'is_correct',
+        'explanation'
+    ];
+
+    public function questions()
+    {
+        return $this->belongsTo(Question::class);
+    }
 }

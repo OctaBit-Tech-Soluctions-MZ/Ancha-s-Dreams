@@ -16,7 +16,7 @@ class EditLivewire extends Component
 {
     use WithFileUploads;
 
-    public $categories,
+    public 
         $name,
         $description,
         $price,
@@ -46,7 +46,6 @@ class EditLivewire extends Component
 
     public function mount($slug)
     {
-        $this->categories = Category::all();
 
         $course = Course::where('slug', $slug)->firstOrFail();
 

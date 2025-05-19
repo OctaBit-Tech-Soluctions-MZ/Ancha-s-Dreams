@@ -3,13 +3,22 @@
 namespace App\Livewire\Users;
 
 use App\Models\User;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 use function Symfony\Component\Clock\now;
 
+#[Layout('layouts.admin')]
 class BlockedLivewire extends Component
 {
-    public $reason;
+    public $reason,
+            $id;
+
+    public function mount($slug)
+    {
+        $user = User::where('slug',$slug)->firstOrFail();
+        $this->id = $user->id;
+    }
     
     public function render()
     {
@@ -20,6 +29,10 @@ class BlockedLivewire extends Component
     {
         if (!auth()->check()) {
             redirect()->route('login')->with('warning', 'Sessão Experada, faça o login novamente');
+        }
+
+        if (!auth()->user()->hasAnyRole('super admin')) {
+            return request()->session()->flash('warning', 'Não tem autorização para realização essa operação');
         }
         
         $user = User::findOrFail($id);

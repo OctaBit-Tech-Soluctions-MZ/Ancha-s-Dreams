@@ -14,9 +14,10 @@ class RegisterLivewire extends Component
     use WithFileUploads;
 
     public $title,
-           $description,
-           $video,
-           $slug;
+        $description,
+        $video,
+        $slug,
+        $recipe;
     protected $rules = [
         'title' => 'required|string|max:255',
         'description' => 'required|string',
@@ -45,12 +46,12 @@ class RegisterLivewire extends Component
         return view('livewire.lesson.register-livewire');
     }
 
-    public function create(){
-        
+    public function create()
+    {
+
         if (!auth()->check()) {
             redirect()->route('login')->with('warning', 'Sessão Experada, faça o login novamente');
         }
-
         $this->validate();
         $course = Course::where('slug', $this->slug)->firstOrFail();
         $maxOrder = $course->contents->max('order');
@@ -59,6 +60,7 @@ class RegisterLivewire extends Component
             'title' => $this->title,
             'description' => $this->description,
             'order' => $newOrder,
+            'recipe' => !empty($this->recipe)? $this->recipe : "",
         ]);
 
         $path = $this->video->store('tmp');
@@ -66,6 +68,6 @@ class RegisterLivewire extends Component
         UploadVideoToGoogleDriveJob::dispatch($content->id, basename($path), $this->title, $course->folder_id);
 
         request()->session()->flash('success', 'Aula Registada com sucesso');
-
+        $this->reset('title', 'description', 'recipe', 'video');
     }
 }
