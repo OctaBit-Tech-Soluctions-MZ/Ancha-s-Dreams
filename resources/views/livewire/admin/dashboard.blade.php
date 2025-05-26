@@ -25,16 +25,16 @@
         </x-ancha-dreams-taste.card-dashboard>
     </div>
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
                     <h4 class="header-title mb-4">Status de Pedidos</h4>
 
-                    <div class="my-4 chartjs-chart" style="height: 202px;">
+                    <div class="my-4 chartjs-chart" style="height: 202px;" wire:ignore>
                         <canvas id="project-status-chart" data-colors="#0acf97,#727cf5,#fa5c7c"></canvas>
                     </div>
 
-                    <div class="row text-center mt-2 py-2">
+                    <div class="row text-center mt-2 py-2" wire:poll.30s>
                         <div class="col-4">
                             <i class="mdi mdi-trending-up text-success mt-3 h3"></i>
                             <h3 class="fw-normal">
@@ -43,7 +43,7 @@
                             <p class="text-muted mb-0">Completo</p>
                         </div>
                         <div class="col-4">
-                            <i class="mdi mdi-trending-down text-primary mt-3 h3"></i>
+                            <i class="mdi mdi-trending-down text-warning mt-3 h3"></i>
                             <h3 class="fw-normal">
                                 <span>{{ $pendente }}%</span>
                             </h3>
@@ -63,29 +63,46 @@
             </div> <!-- end card -->
         </div><!-- end col-->
 
-        <div class="col-lg-8">
+        <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title mb-3">Pedidos</h4>
+                    <h4 class="header-title mb-3">Gestão de Pedidos</h4>
                     @if (session('success'))
                     <x-ancha-dreams-taste.alert :type="'success'" />
                     @endif
-                    <div class="table-responsive">
+                    <div class="table-responsive" wire:poll.30s>
                         <table id="datatable-buttons" class="table table-centered table-nowrap table-hover mb-0">
                             <tbody>
                                 @foreach ($orders as $order)
                                 <tr>
                                     <td>
+                                        <span class="text-muted font-13">Id do Pedido</span>
+                                        <h5 class="font-14 mt-1 fw-normal">#{{ $order->id}}</h5>
+                                    </td>
+                                    <td>
                                         <span class="text-muted font-13">Items do Pedido</span> <br>
                                         <h5 class="font-14 my-1 row">
                                             @foreach($order->order_items as $item)
-                                            <span class="text-body">
-                                                @if(!empty($item->itemable->name))
-                                                Curso de {{ $item->itemable->name }}
-                                                @elseif(!empty($item->itemable->title))
-                                                {{ $item->itemable->title }}
-                                                @endif
-                                            </span>
+                                            <div class="text-body d-flex justify-content-between w-100 p-2">
+                                                <div>
+                                                    @if(!empty($item->itemable->name))
+                                                    {{ $item->itemable->name }}
+                                                    @elseif(!empty($item->itemable->title))
+                                                    {{ $item->itemable->title }}
+                                                    @endif
+                                                </div>
+                                                <div>
+                                                    <button type="button"
+                                                        class="btn btn-danger btn-sm ms-2 d-flex justify-content-center"
+                                                        {{$order->status == 'concluido' || $order->status == 'cancelado'
+                                                        || count($order->order_items) <= 1 ? 'disabled' : '' }}
+                                                            wire:confirm='Tem certeza que deseja excluir o item
+                                                        {{$item->itemable->name}}'
+                                                            wire:click='removeItem({{$item->id}})'>
+                                                            <i class="feather-x"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
                                             @endforeach
                                         </h5>
                                     </td>
@@ -110,17 +127,14 @@
                                     <td class="table-action" id="tooltip-container2">
                                         @if($order->status == 'pendente')
                                         <a role="button" class="btn btn-success btn-sm"
-                                            data-bs-container="#tooltip-container2" data-bs-toggle="tooltip"
-                                            data-bs-placement="top" title="Confirmar Pedido"
-                                            wire:click='confirmOrder({{$order->id}}, "concluido", "Pedido confirmado com sucesso")'
+                                            wire:click='confirmOrRevertOrder({{$order->id}}, "concluido", "Pedido confirmado com sucesso")'
                                             wire:confirm='Tem certeza que deseja realizar a operação?'>
-                                            <i class="mdi mdi-checkbox-marked-circle" style="font-size: 17px"></i> confirmar
+                                            <i class="mdi mdi-checkbox-marked-circle" style="font-size: 17px"></i>
+                                            confirmar
                                         </a>
                                         @elseif($order->status == 'concluido')
                                         <a role="button" class="btn btn-danger btn-sm"
-                                            data-bs-container="#tooltip-container2" data-bs-toggle="tooltip"
-                                            data-bs-placement="top" title="Reverter Pedido"
-                                            wire:click='reverse({{$order->id}}, "pendente", "Acção revertida com sucesso")'
+                                            wire:click='confirmOrRevertOrder({{$order->id}}, "pendente", "Acção revertida com sucesso")'
                                             wire:confirm='Tem certeza que deseja realizar a operação?'>
                                             <i class="mdi mdi-undo" style="font-size: 17px"></i> reverter
                                         </a>
@@ -135,6 +149,11 @@
 
                             </tbody>
                         </table>
+
+                        <!-- Paginação -->
+                        <div class="mt-2">
+                            {{ $orders->onEachSide(3)->links() }}
+                        </div>
                     </div> <!-- end table-responsive-->
 
                 </div> <!-- end card body-->
@@ -142,10 +161,10 @@
         </div><!-- end col-->
     </div>
     <!-- end row-->
-    <script>
-        var pendente = {{ $pendente }};
+</div>
+<script>
+    var pendente = {{ $pendente }};
         var concluido = {{ $concluido }};
         var cancelado = {{ $cancelado }};
         
-    </script>
-</div>
+</script>

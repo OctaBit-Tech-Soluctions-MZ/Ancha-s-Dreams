@@ -13,11 +13,16 @@ class ListLivewire extends Component
     public $slug,
             $load = false,
             $confirmDelete = false,
-            $id = 0;
+            $id = 0,
+            $display = 'd-none';
 
     public function mount($slug)
     {
         $this->slug = $slug;
+    }
+
+    function showModal(){
+        $this->display = 'show d-block';
     }
 
     public function confirm($id){

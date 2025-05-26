@@ -3,7 +3,9 @@
 namespace App\Livewire\Courses;
 
 use App\Models\Course;
+use App\Models\MyCourse;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -12,23 +14,12 @@ class IndexLivewire extends Component
     
     use WithPagination;
 
-    public $search = '';
-    public $category = '';
-    public $orderBy = 'default';
+    public $search;
 
     protected string $paginationTheme = 'bootstrap';
 
-    protected $queryString = [
-        'search' => ['except' => ''],
-        'orderBy' => ['except' => 'default'],
-        'page' => ['except' => 1],
-    ];
-
-    public function updated($property)
+    public function mount()
     {
-        if (in_array($property, ['search', 'orderBy'])) {
-            $this->resetPage();
-        }
     }
 
     public function render()
@@ -39,28 +30,15 @@ class IndexLivewire extends Component
             $query->where('name', 'like', '%' . $this->search . '%');
         }
 
-        switch ($this->orderBy) {
-            case 'latest':
-                $query->orderBy('created_at', 'desc');
-                break;
-            case 'popular':
-                $query->orderBy('views', 'desc');
-                break;
-            case 'name_asc':
-                $query->orderBy('name', 'asc');
-                break;
-            case 'name_desc':
-                $query->orderBy('name', 'desc');
-                break;
-            default:
-                $query->latest(); // padrão
-        }
-
         $query->where('published', '=', true);
         $query->with('testimonials');
 
         $courses = $query->paginate(12);
-        return view('livewire.courses.index-livewire', compact('courses'));
+        $myCourses = MyCourse::with(['courses' => function ($query){
+            $query->with('testimonials');
+        }])->where('user_id', auth()->id())->paginate(6);
+        
+        return view('livewire.courses.index-livewire', compact('courses', 'myCourses'));
     }
 
     public function addToCart($id)

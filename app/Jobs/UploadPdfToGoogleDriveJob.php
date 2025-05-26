@@ -29,7 +29,7 @@ class UploadPdfToGoogleDriveJob implements ShouldQueue
      */
     public function handle(): void
     {
-    Log::info('Iniciando upload de vídeo', ['product_id' => $this->product]);
+    Log::info('Iniciando upload do Arquivo', ['product_id' => $this->product]);
 
         $product = Product::find($this->product);
 
@@ -40,8 +40,8 @@ class UploadPdfToGoogleDriveJob implements ShouldQueue
         
         $path = storage_path('app/public/tmp/'. $this->productPath);
         if (!file_exists($path)) {
-            Log::error('Arquivo de Livro não encontrado', ['path' => $path]);
-            throw new \Exception('Arquivo de Livro não encontrado');
+            Log::error('Arquivo não encontrado', ['path' => $path]);
+            throw new \Exception('Arquivo não encontrado');
         }
 
         try {
@@ -59,7 +59,7 @@ class UploadPdfToGoogleDriveJob implements ShouldQueue
                 'status' => 'concluido',
             ]);
             Storage::disk('public')->delete('tmp/' . basename($path));
-            Log::info('product atualizado com sucesso', ['product_id' => $product->id]);
+            Log::info('Tabela atualizado com sucesso', ['product_id' => $product->id]);
         } catch (\Exception $e) {
             Log::error('Erro durante o upload: '.$e->getMessage());
             throw $e;

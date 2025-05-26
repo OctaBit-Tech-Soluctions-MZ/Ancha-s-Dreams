@@ -149,54 +149,6 @@
     <script src="{{ asset('assets/js/sweetalert/sweetalert.init.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/datatables/datatables.js') }}"></script>
-    @livewireScripts
-    <script>
-    function initAllDataTables() {
-        const tables = [
-            '#products-datatable',
-            '#courses-datatable',
-            '#books-datatable',
-            '#users-datatable'
-        ];
-
-        tables.forEach(selector => {
-            const el = document.querySelector(selector);
-            if (el) {
-                if ($.fn.DataTable && $.fn.DataTable.isDataTable(el)) {
-                    $(el).DataTable().destroy();
-                }
-                if ($.fn.DataTable) {
-                    $(el).DataTable();
-                }
-            }
-        });
-
-        try {
-            const selection = document.getSelection();
-            if (selection && selection.focusNode) {
-                // Se precisares fazer algo com o foco, podes colocar aqui
-                // Ex: console.log('Foco atual:', selection.focusNode);
-            }
-        } catch (e) {
-            console.warn('Erro ao acessar focusNode:', e);
-        }
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-        initAllDataTables();
-    });
-
-    document.addEventListener("livewire:load", () => {
-        initAllDataTables();
-
-        Livewire.hook('message.processed', () => {
-            setTimeout(() => {
-                initAllDataTables();
-            }, 100);
-        });
-    });
-</script>
-
 
 </body>
 

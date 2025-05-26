@@ -24,7 +24,7 @@ class EditLivewire extends Component
 
     public function mount($id)
     {
-        $this->exam = Exam::findOrFail($id);
+        $this->exam = Exam::with('courses')->findOrFail($id);
         $this->title = $this->exam->title;
         $this->description = $this->exam->description;
         $this->timelimit = $this->exam->time_limit;

@@ -5,7 +5,7 @@
                 <div class="rbt-sorting-list d-flex flex-wrap align-items-center justify-content-start justify-content-lg-end">
                     <div class="rbt-short-item">
                         <form action="{{ $route }}" class="rbt-search-style me-0">
-                            <input type="text" placeholder="{{ $placeholder }}" name="search">
+                            <input type="text" placeholder="{{ $placeholder }}" wire:model.live="search">
                             <button type="submit" class="rbt-search-btn rbt-round-btn">
                                 <i class="fas fa-search"></i>
                             </button>
@@ -27,7 +27,7 @@
                     <div class="filter-select rbt-modern-select">
                         <span class="select-label d-block">Ordenar Por</span>
                         <div class="dropdown bootstrap-select">
-                            <select class="">
+                            <select class="" wire:model.live='orderBy'>
                                 <option selected="selected">Padrão</option>
                                 <option>Ultimo Adicionado</option>
                                 <option>Popularidade</option>

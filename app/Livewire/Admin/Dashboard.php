@@ -4,15 +4,18 @@ namespace App\Livewire\Admin;
 
 use App\Models\Course;
 use App\Models\Order;
+use App\Models\Order_item;
 use App\Models\Product;
 use App\Models\User;
 use App\Services\OrderItemDeliveryService;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 #[Layout('layouts.admin')]
 class Dashboard extends Component
 {
+    use WithPagination;
     public $courses,
         $books,
         $users,
@@ -21,6 +24,8 @@ class Dashboard extends Component
         $pendente,
         $cancelado,
         $concluido;
+
+    protected string $paginationTheme = 'bootstrap';
 
     public function mount()
     {
@@ -37,23 +42,32 @@ class Dashboard extends Component
 
     public function render()
     {
-        $orders = Order::with('order_items.itemable', 'users')->paginate(10);
+        $orders = Order::with('order_items.itemable', 'users')->orderBy('status')->paginate(5);
         return view('livewire.admin.dashboard', compact('orders'));
     }
 
-    public function confirmOrder($id, $value, $message)
+    public function confirmOrRevertOrder($id, $value, $message)
     {
-        $order = Order::with('order_items.itemable')->findOrFail($id);
+        $order = Order::with('order_items.itemable', 'users')->findOrFail($id);
+        $service = new OrderItemDeliveryService();
         if($value == 'concluido'){
-            $service = new OrderItemDeliveryService();
-
             foreach ($order->order_items as $item) {
                 $service->deliver($item, $order->user_id);
+            }
+        }else if($value == 'pendente'){
+            foreach ($order->order_items as $item) {
+                $service->reverter($item, $order);
             }
         }
 
         $order->update(['status' => $value]);
 
         request()->session()->flash('success', $message);
+    }
+
+    public function removeItem($id)
+    {
+        Order_item::findOrFail($id)->delete();
+        return request()->session()->flash('success', 'Item Removido com sucesso');
     }
 }

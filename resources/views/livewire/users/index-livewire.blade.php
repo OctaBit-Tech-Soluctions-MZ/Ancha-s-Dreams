@@ -8,6 +8,15 @@
                     Aqui encontraras a lista de todos os utilizadores registados no sistema (alunos, instructores e
                     administradores).
                 </p>
+                <form wire:submit.prevent='filter' class="row mb-2 mt-2 d-flex justify-content-end">
+                    @csrf
+                    <div class="course-field col-md-6 d-flex">
+                        <input type="text" placeholder="pesquise aqui..." wire:model='filter' class="border border-1 rounded-0">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
                 <div class="table-responsive">
                     @if (session('success'))
                     <x-ancha-dreams-taste.alert :type="'success'" />
@@ -42,17 +51,8 @@
                                 </td>
                                 <td class="d-flex gap-1">
                                     <!-- item-->
-                                    {{-- <a href="{{ route('users.permissions',['slug' => $user->slug]) }}"
-                                        class="btn btn-primary" title="Editar Permissões do utilizador" wire:navigate><i
-                                            class="mdi mdi-pencil me-1"></i></a> --}}
-                                    <!-- item-->
-                                    <button type="button" class="btn btn-danger" wire:click='destroy'
-                                        wire:confirm='Tem Certeza que deseja excluir o utilizador {{$user->name}}'>
-                                        <i class="mdi mdi-delete me-1" title="Excluir utilizador"></i>
-                                    </button>
-                                    <!-- item-->
                                     @php
-                                    $block = optional($user->blocked)->first(); 
+                                    $block = optional($user->blocked)->first();
                                     @endphp
 
                                     @if($block && $block->is_blocked == 1 && empty($block->unblocked_at))

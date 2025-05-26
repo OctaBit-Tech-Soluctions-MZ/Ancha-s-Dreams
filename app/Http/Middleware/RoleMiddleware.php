@@ -23,23 +23,9 @@ class RoleMiddleware
 
         $user = Auth::user();
 
-        if ($user->hasAnyRole($roles)) {
-            return $next($request);
+        if (!$user->hasAnyRole($roles)) {
+            abort(403, 'Acesso não autorizado');
         }
-
-        // Se não tiver permissão, pega a primeira role do usuário
-        $userRoleName = $user->roles->pluck('name')->first();
-        
-        if ($userRoleName) {
-            $role = Role::where('name', $userRoleName)->first();
-
-            if ($role && $role->route) {
-                // Se existe rota personalizada, redireciona
-                return redirect(route($role->route));
-            }
-        }
-
-        // Se não tiver role ou rota definida, redireciona para home
-        return redirect('/');
+        return $next($request);
     }
 }

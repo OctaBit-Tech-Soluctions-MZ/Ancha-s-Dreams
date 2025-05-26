@@ -17,7 +17,7 @@ class QuestionLivewire extends Component
             ['text' => '', 'correct' => false],
             ['text' => '', 'correct' => false],
         ],
-        $exam;
+        $exam, $correctIndex = null;
 
     public function addOption()
     {
@@ -36,8 +36,14 @@ class QuestionLivewire extends Component
         $this->id = $id;
     }
 
-    public function hasCorrect() {}
-
+    public function hasCorrect($value)
+    {
+        $this->correctIndex = $value;
+        foreach ($this->options as $index => $option) {
+            $this->options[$index]['correct'] = false;
+        }
+        $this->options[$value]['correct'] = true;
+    }
     public function create()
     {
         $maxOrder = $this->exam->questions->max('order');

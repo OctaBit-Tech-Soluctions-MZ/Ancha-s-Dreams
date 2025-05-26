@@ -4,6 +4,7 @@ namespace App\Livewire\Lesson;
 
 use App\Models\Comment;
 use App\Models\Content;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -17,25 +18,67 @@ class IndexLivewire extends Component
         $comment,
         $reply,
         $attachment = null,
-        $replyCommentId = null;
+        $replyCommentId = null,
+        $lesson,
+        $lessons_other;
 
     public function mount($slug)
     {
         $this->slug = $slug;
-    }
-    public function render()
-    {
-        $lesson = Content::with(['comments' => function ($query) {
+        $user = auth()->user(); // usuário logado
+
+        // Lição atual
+        $this->lesson = Content::with(['comments' => function ($query) {
             $query->with(['users', 'replies' => function ($query1) {
                 $query1->with('users');
             }]);
         }, 'courses'])->where('slug', $this->slug)->firstOrFail();
-        $query = Content::query();
+        
+        $this->prevWatchCheck($user);
+        $this->markAsWatched();
 
-        $query = $query->where('course_id', $lesson->courses->id);
-        $query = $query->where('id', '<>', $lesson->id);
-        $lessons_other = $query->get();
-        return view('livewire.lesson.index-livewire', compact('lesson', 'lessons_other'));
+        // Outras lições do mesmo curso, exceto a atual
+        $this->lessons_other = Content::where('course_id', $this->lesson->course_id)
+            ->where('id', '<>', $this->lesson->id)
+            ->get();
+    }
+    public function render()
+    {
+
+        return view('livewire.lesson.index-livewire');
+    }
+
+    private function prevWatchCheck($user)
+    {
+        // Busca a lição anterior pela posição
+        $previous = Content::where('course_id', $this->lesson->course_id)
+            ->where('order', '<', $this->lesson->order)
+            ->orderBy('order', 'desc')
+            ->first();
+
+        // Se existe lição anterior, verifica se foi assistida
+        if ($previous) {
+            $prevWatch = DB::table('content_users')
+                ->where('user_id', $user->id)
+                ->where('content_id', $previous->id)
+                ->where('watched', true)
+                ->exists();
+
+            if (!$prevWatch) {
+                abort(403, 'Você precisa assistir ao vídeo anterior primeiro.');
+            }
+        }
+    }
+
+    public function markAsWatched()
+    {
+        $user = auth()->user();
+        $contentId = $this->lesson->id;
+
+        DB::table('content_users')->updateOrInsert(
+            ['user_id' => $user->id, 'content_id' => $contentId],
+            ['watched' => true, 'updated_at' => now(), 'created_at' => now()]
+        );
     }
 
     public function sendComment()

@@ -87,3 +87,13 @@
         </div>
     </div>
 </div>
+@script
+<script>
+    const quill = new Quill('#editor', {
+    theme: 'snow'
+  });
+    quill.on('text-change', () => {
+        $wire.set('recipe', quill.root.innerHTML)
+    })
+</script>
+@endscript

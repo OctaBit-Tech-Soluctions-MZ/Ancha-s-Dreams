@@ -152,6 +152,16 @@ class User extends Authenticatable
         return cache()->has('user-is-online-' . $this->id);
     }
 
+    public function contentView()
+    {
+        return $this->belongsToMany(Content::class)->wherePivot('watched');
+    }
+
+    public function attempts()
+    {
+        return $this->hasMany(ExamAttempt::class, 'user_id');
+    }
+
     public function syncRolePermissions()
     {
         foreach ($this->roles as $role) {

@@ -8,7 +8,7 @@
         </div>
         <div class="rbt-card-body">
             <div class="rbt-card-top">
-                <div class="rbt-review">
+                <div class="rbt-review" wire:ignore>
                     @livewire('star-rating', ['rate' => $rate, 'font_size' => 12])
                     <span class="rating-count"> ({{$course->testimonials->count()}} Avaliações)</span>
                 </div>
@@ -58,11 +58,6 @@
                         href="{{ route('courses.edit', ['slug' => $course->slug]) }}" wire:navigate>
                         <i class="me-2 feather-edit"></i>Editar</a>
                 </div>
-                <div class="col-md-3">
-                    <a class="rbt-btn-link text-decoration-none" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                        wire.click='getSlug({{ $course->slug }})' href="#">
-                        <i class="me-2 feather-trash"></i>Excluir</a>
-                </div>
                 <div class="col-md-3"><a href="{{ route('lessons.list', ['slug' => $course->slug]) }}"
                         class="rbt-btn-link text-decoration-none" wire:navigate><i
                             class="me-2 feather-video"></i>Aulas</a>
@@ -71,6 +66,28 @@
                         class="rbt-btn-link text-decoration-none" wire:navigate><i
                             class="me-2 feather-clipboard"></i>Exame</a>
                 </div>
+                @if ($course->myCourses->count() == 0)
+                <div class="col-md-3">
+                    <a class="rbt-btn-link text-decoration-none" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                        wire.click='getSlug({{ $course->slug }})' href="#">
+                        <i class="me-2 feather-trash"></i>Excluir</a>
+                </div>
+                @else
+
+                @if($course->published)
+                <div class="col-md-3">
+                    <a class="rbt-btn-link text-decoration-none" href="#" wire:click='publish({{$course->id}},false)'
+                        wire:confirm='Tem certeza que deseja realizar a operação?'>
+                        <i class="me-2 feather-eye-off"></i>Despublicar</a>
+                </div>
+                @else
+                <div class="col-md-3">
+                    <a class="rbt-btn-link text-decoration-none" href="#" wire:click='publish({{$course->id}},true)'
+                        wire:confirm='Tem certeza que deseja realizar a operação?'>
+                        <i class="me-2 feather-eye"></i>Publicar</a>
+                </div>
+                @endif
+                @endif
             </div>
             @endif
         </div>

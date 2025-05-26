@@ -32,23 +32,29 @@
                                     <td>{{ $course->name }}</td>
                                     <td>{{ $course->users->name. ' '.$course->users->surname }}</td>
                                     <td>{{ $course->price }}</td>
-                                    <td>{!! $course->published? '<span class="badge bg-success">Publicado</span>' : '<span class="badge bg-danger">Não Publicado</span>' !!}</td>
+                                    <td>{!! $course->published? '<span class="badge bg-success">Publicado</span>' :
+                                        '<span class="badge bg-danger">Não Publicado</span>' !!}</td>
                                     <td>
                                         <div>
                                             @if($course->published)
-                                            <a href="#" class="rbt-btn-link text-decoration-none" wire:click='publish({{$course->id}},false)' wire:confirm='Tem certeza que deseja realizar a operação?'>
+                                            <a href="#" class="rbt-btn-link text-decoration-none"
+                                                wire:click='publish({{$course->id}},false)'
+                                                wire:confirm='Tem certeza que deseja realizar a operação?'>
                                                 <i class="feather-eye-off me-2"></i>Despublicar
                                             </a>
                                             @else
 
-                                            <a href="#" class="rbt-btn-link text-decoration-none" wire:click='publish({{$course->id}},true )' wire:confirm='Tem certeza que deseja realizar a operação?'>
+                                            <a href="#" class="rbt-btn-link text-decoration-none"
+                                                wire:click='publish({{$course->id}},true )'
+                                                wire:confirm='Tem certeza que deseja realizar a operação?'>
                                                 <i class="feather-eye me-2"></i>Publicar
                                             </a>
                                             @endif
                                         </div>
                                         <div>
-                                            <a role="button" class="rbt-btn-link text-decoration-none" wire:click='setId({{ $course->id }})'
-                                               data-bs-toggle="modal" data-bs-target="#confirmModal">
+                                            <a role="button" class="rbt-btn-link text-decoration-none"
+                                                wire:click='setId({{ $course->id }})' data-bs-toggle="modal"
+                                                data-bs-target="#confirmModal">
                                                 <i class="me-2 feather-trash"></i>Excluir</a>
                                         </div>
                                     </td>

@@ -17,12 +17,14 @@ class CoursesCard extends Component
     {
         $sum = 0;
         $count = 0;
-        if (count($course->testimonials) != 0) {
-            foreach ($course->testimonials as $testimonial) {
-                $sum = $sum + $testimonial->rate;
-                $count = $count + 1;
+        if (!empty($course->testimonials)) {
+            if (count($course->testimonials) != 0) {
+                foreach ($course->testimonials as $testimonial) {
+                    $sum = $sum + $testimonial->rate;
+                    $count = $count + 1;
+                }
+                $this->rate = $sum / $count;
             }
-            $this->rate = $sum/$count;
         }
     }
 

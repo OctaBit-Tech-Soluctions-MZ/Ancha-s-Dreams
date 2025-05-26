@@ -2,7 +2,7 @@
     @livewire('breadcrumb', [
     'pages' => [
     ['label' => 'Cursos', 'url' => route('courses.instructor')],
-    // ['label' => 'Exame Final', 'url' => route('exams.list', ['slug' => $slug])],
+    ['label' => 'Exame Final', 'url' => route('exams.list', ['slug' => $question_model->exams->courses->slug])],
     ['label' => 'Questões do Exame', 'url' => null],
     ],
     'pageTitle' => 'Questões do Exame'
@@ -38,8 +38,9 @@
                             <div class="col-md-3 d-flex justify-content-center align-items-center">
                                 <div class="form-check">
                                     @php $uid = uniqid() @endphp
-                                    <input type="radio" id="customRadio{{ $uid }}" name="correctIndex"
-                                        wire:model="correctIndex" value="{{ $index }}" class="form-check-input">
+                                    <input type="radio" id="customRadio{{ $uid }}" wire:model="correctIndex"
+                                        wire:click="hasCorrect({{ $index }})" value="{{ $index }}"
+                                        class="form-check-input" name="correctIndex">
                                     <label class="form-check-label d-inline-block" for="customRadio">Opção
                                         correcta</label>
                                 </div>

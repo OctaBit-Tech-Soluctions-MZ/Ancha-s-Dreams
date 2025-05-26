@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained('users');
             $table->foreignId('course_id')->nullable()->constrained('courses');
+            $table->foreignId('order_id')->nullable()->constrained('orders');
             $table->timestamps();
         });
     }

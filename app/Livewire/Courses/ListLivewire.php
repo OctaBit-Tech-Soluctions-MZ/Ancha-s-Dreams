@@ -52,6 +52,16 @@ class ListLivewire extends Component
         request()->session()->flash('success', 'Curso Removido com sucesso');
     }
 
+    public function publish($id, $value)
+    {
+        if (!auth()->check()) {
+            redirect()->route('login')->with('warning', 'Sessão Experada, faça o login novamente');
+        }
+        Course::findOrFail($id)->update([
+            'published' => $value
+        ]);
+    }
+
     public function loadCourses()
     {
         $this->load = true;

@@ -34,7 +34,9 @@
 /* =========================
    UTILITÁRIOS E ANIMAÇÕES
    ========================= */
-.texto, .img, .imgs {
+.texto,
+.img,
+.imgs {
   visibility: hidden;
 }
 
@@ -43,8 +45,15 @@
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(8%); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(8%);
+  }
 }
 
 .swiper {
@@ -198,7 +207,8 @@
 
 .product__btn:hover {
   box-shadow: 0 36px 28px -20px rgba(0, 0, 0, 0.20);
-  background-color: #22080c; /* fallback do mix($accent, $black, 95%) */
+  background-color: #22080c;
+  /* fallback do mix($accent, $black, 95%) */
 }
 
 /* =========================
@@ -250,9 +260,64 @@
 .new-arrival-content.text-center .price {
   float: unset !important;
 }
-.quill-editor{
+
+.quill-editor {
   height: 200px;
 }
+
 .text-p {
   font-size: 15px !important;
+}
+
+
+.result-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  transition: transform 0.3s ease;
+}
+
+.result-card:hover {
+  transform: scale(1.02);
+}
+
+.status.pass {
+  color: #28a745;
+  background-color: #e6f9ed;
+  border: 2px solid #28a745;
+}
+
+.status.fail {
+  color: #dc3545;
+  background-color: #fdecea;
+  border: 2px solid #dc3545;
+}
+
+.status {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 15px;
+  border-radius: 12px;
+  margin: 20px 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.student-info {
+  font-size: 18px;
+  color: #333;
+}
+
+.score {
+  font-size: 22px;
+  margin-top: 10px;
+}
+
+.__footer__ {
+  margin-top: 30px;
+  font-size: 14px;
+  color: #999;
 }

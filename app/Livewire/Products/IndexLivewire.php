@@ -8,9 +8,17 @@ use Livewire\Component;
 
 class IndexLivewire extends Component
 {
+    public $search;
+
     public function render()
     {
-        $products = Product::where(['published' => true])->paginate(12);
+        $query = Product::query();
+
+        if ($this->search) {
+            $query->where('name', 'like', '%' . $this->search . '%');
+        }
+        $query->where(['published' => true]);
+        $products = $query->paginate(12);
         return view('livewire.products.index-livewire', compact('products'));
     }
 

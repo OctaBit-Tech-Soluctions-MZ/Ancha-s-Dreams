@@ -2,6 +2,7 @@
     @livewire('breadcrumb', [
     'pages' => [
     ['label' => 'Cursos', 'url' => route('courses.instructor')],
+    ['label' => 'Exame Final', 'url' => route('exams.list', ['slug' => $exam->courses->slug])],
     ['label' => 'Editar Exame', 'url' => null],
     ],
     'pageTitle' => 'Editar Exame'

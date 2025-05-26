@@ -26,7 +26,7 @@ class Course extends Model
 
     public function contents()
     {   
-        return $this->hasMany(Content::class, 'course_id');
+        return $this->hasMany(Content::class, 'course_id')->orderBy('order');;
     }
 
     public function order_items(){
@@ -45,7 +45,7 @@ class Course extends Model
 
     public function myCourses()
     {
-        return $this->hasMany(MyCourse::class);
+        return $this->hasMany(MyCourse::class, 'course_id');
     }
     
     public static function boot()

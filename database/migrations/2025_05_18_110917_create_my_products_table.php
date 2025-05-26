@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('my_products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained('users');
-            $table->foreignId('course_id')->nullable()->constrained('courses');
+            $table->foreignId('product_id')->nullable()->constrained('products');
+            $table->foreignId('order_id')->nullable()->constrained('orders');
             $table->timestamps();
         });
     }

@@ -2,8 +2,10 @@
 
 namespace App\Livewire\Courses;
 
+use App\Models\Content;
 use App\Models\Course;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -19,6 +21,7 @@ class DetailsLivewire extends Component
         $totalCourses,
         $recommendedCourses,
         $uniqueStudentCount;
+    public $unlockedLessons = [];
 
     public function mount($slug)
     {
@@ -31,11 +34,10 @@ class DetailsLivewire extends Component
                 $query->with('users');
             }, 'exams' => function ($query) {
                 $query->where('status', 'published');
-            }]
+            }, 'myCourses']
         )->where('slug', $this->slug)->firstOrFail();
-
         // Contar alunos únicos
-        $this->uniqueStudentCount = Course::where('user_id',$this->course->user_id)->get()
+        $this->uniqueStudentCount = Course::where('user_id', $this->course->user_id)->get()
             ->flatMap(fn($__course) => $__course->myCourses->pluck('user_id'))
             ->unique()
             ->count();
@@ -47,7 +49,7 @@ class DetailsLivewire extends Component
                 $sum = $sum + $testimonial->rate;
                 $count = $count + 1;
             }
-            $this->rate_details = $sum/$count;
+            $this->rate_details = $sum / $count;
         }
 
         // Obtém os cursos do mesmo instrutor, excluindo o curso atual
@@ -57,7 +59,45 @@ class DetailsLivewire extends Component
             ->get();
 
         $this->totalCourses = Course::where('user_id', $this->course->users->id)->count();
+
+        if (auth()->check()) {
+            $this->checkUnlockedLessons(auth()->user());
+        }
     }
+
+    private function checkUnlockedLessons($user)
+    {
+        $this->unlockedLessons = [];
+        $contents = Content::where('course_id', $this->course->id)->orderBy('order')->get();
+
+        foreach ($contents as $key => $content) {
+            if ($key === 0) {
+                $this->unlockedLessons[$content->id] = true; // Primeira lição sempre desbloqueada
+            } else {
+                $previous = $contents[$key - 1];
+                $prevWatched = DB::table('content_users')
+                    ->where('user_id', $user->id)
+                    ->where('content_id', $previous->id)
+                    ->where('watched', true)
+                    ->exists();
+
+                $this->unlockedLessons[$content->id] = $prevWatched;
+            }
+        }
+    }
+    // private function checkUnlockedLastLesson($user)
+    // {
+    //     $this->unlockedLessons = [];
+    //     $contents = Content::where('course_id', $this->course->id)->orderBy('order')->get();
+    //     $last = $contents[$contents->count() - 1];
+    //     $prevWatched = DB::table('content_users')
+    //         ->where('user_id', $user->id)
+    //         ->where('content_id', $last->id)
+    //         ->where('watched', true)
+    //         ->exists();
+
+    //     $this->unlockedLessons[$content->id] = $prevWatched;
+    // }
 
     public function setRating($rate)
     {

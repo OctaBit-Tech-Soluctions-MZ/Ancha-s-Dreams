@@ -1,6 +1,10 @@
 <?php
 
 use App\Models\User;
+use BaconQrCode\Renderer\Image\SvgImageBackEnd;
+use BaconQrCode\Renderer\ImageRenderer;
+use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+use BaconQrCode\Writer;
 use FFMpeg\FFMpeg;
 use FFMpeg\FFProbe;
 use Illuminate\Database\Eloquent\Model;
@@ -116,6 +120,12 @@ function getDurationVideo($fullPath)
     return $formatted;
 }
 
+/**
+ * Gera Thumbnail usando FFMpeg
+ * @param string $videoPath ex: '/tmp/50dsfg.mp4'
+ * @param string $thumbnailPath  ex: '/thumbnail/'
+ * @return void
+ */
 function generateThumbnail($videoPath, $thumbnailPath)
 {
     // Sanitiza nome do arquivo (sem espaços)
@@ -135,6 +145,11 @@ function generateThumbnail($videoPath, $thumbnailPath)
         ->save($thumbnailPath);
 }
 
+/**
+ * Responsavel por atribuir permissões ao utilizador
+ * @param User $user
+ * @return void
+ */
 function givePermissionToUser(User $user)
 {
     $roles = $user->roles;
@@ -150,6 +165,12 @@ function givePermissionToUser(User $user)
     }
 }
 
+/**
+ * Gera um thumbnail usando spatie media
+ * @param Media $media
+ * @param string $conversion ex: 'thumb'
+ * @return string
+ */
 if (!function_exists('thumbnail')) {
     function thumbnail(?Media $media, string $conversion = 'thumb'): string
     {
@@ -176,4 +197,75 @@ if (!function_exists('thumbnail')) {
         // Fallback genérico
         return asset('images/icons/file.png');
     }
+}
+
+/**
+ * Retorna um link do whatsapp para o envio de mensagens
+ * @param string $message
+ * @return string
+ */
+function generateWhatsappLink($message)
+{
+    $admin = env('ADMIN_WHATSAPP'); // número do admin com código do país
+    $text = urlencode($message);
+
+    return "https://wa.me/{$admin}?text={$text}";
+}
+
+/**
+ * Converte uma data para o formato por extenso: "1 de março de 2025".
+ *
+ * @param string $data Data no formato "Y/m/d H:i:s" ou "Y-m-d" etc.
+ * @param string|null $formatoEntrada Formato da data, se não for detectável.
+ * @return string
+ */
+function dateInFull(string $date, string $formatInput = null): string
+{
+    Carbon::setLocale('pt'); // Define o idioma para português
+
+    // Parse a data com ou sem formato especificado
+    $carbon = $formatInput
+        ? Carbon::createFromFormat($formatInput, $date)
+        : Carbon::parse($date);
+
+    return $carbon->translatedFormat('j \d\e F \d\e Y');
+}
+
+function timeFormat(string $time, $formatInput = null)
+{
+    Carbon::setLocale('pt');
+    $carbon = $formatInput 
+        ? Carbon::createFromFormat($formatInput, $time)
+        : Carbon::parse($time);
+    
+    return $carbon->translateTimeString($time);
+}
+
+/**
+ * Formata o preço no formato internacional MZN
+ * @param integer $value
+ * @return string
+ */
+function formatMetical($value)
+{
+    return 'MZN ' . number_format($value, 2, '.', '');
+}
+
+/**
+ * Gera um qr code
+ * @param string $route
+ * @return string
+ */
+function generateQrCode($route)
+{
+    $renderer = new ImageRenderer(
+        new RendererStyle(400),
+        new SvgImageBackEnd()
+    );
+
+    $writer = new Writer($renderer);
+
+    $qrCodeSvg = $writer->writeString($route);
+
+    return $qrCodeSvg;
 }

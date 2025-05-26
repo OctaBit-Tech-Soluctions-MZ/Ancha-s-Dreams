@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('folder_id')->unique()->nullable();
             $table->integer('views')->default(0);
             $table->double('rating')->default(0);
-            $table->string('status')->default('inactivo');
+            $table->boolean('published')->default(true);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
         });

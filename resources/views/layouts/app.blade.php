@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/sweetalert.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/swiper/swiper-bundle.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/icons.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css')}}">
     <link rel="stylesheet" href="{{ asset('admin/css/app.min.css') }}" type="text/css" id="light-style">

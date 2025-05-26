@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrderInvoice;
 use App\Livewire\{
     AboutLivewire,
     ContactLivewire,
@@ -28,7 +29,8 @@ use App\Livewire\Exams\{
     IndexLivewire as ExamsIndexLivewire,
     MakeLivewire,
     QuestionLivewire,
-    RegisterLivewire as ExamsRegisterLivewire
+    RegisterLivewire as ExamsRegisterLivewire,
+    ResultLivewire
 };
 use App\Livewire\Instructor\{
     DashboardLivewire,
@@ -47,7 +49,10 @@ use App\Livewire\Products\{
     RegisterLivewire as ProductsRegisterLivewire
 };
 use App\Livewire\Profile\{
-    ShowLivewire
+    EditLivewire as ProfileEditLivewire,
+    IndexLivewire as ProfileIndexLivewire,
+    OrderLivewire,
+    PasswordLivewire,
 };
 use App\Livewire\Users\{
     BlockedLivewire,
@@ -60,7 +65,9 @@ Route::middleware([
     'last_user_activity',
     'blocked'
 ])->group(function () {
-
+    Route::get('/invoice', function () {
+        return view('invoice.order-invoice');
+    });
     Route::get('/', HomeLivewire::class)->name('home');
     Route::get('/courses', IndexLivewire::class)->name('courses');
     Route::get('/shop', ProductsIndexLivewire::class)->name('shop');
@@ -79,18 +86,22 @@ Route::middleware([
         'auth',
     ])->group(function () {
 
-        Route::get('/profile', ShowLivewire::class)->name('profile.show');
+        Route::get('/profile', ProfileIndexLivewire::class)->name('profile.show');
+        Route::get('/profile/edit', ProfileEditLivewire::class)->name('profile.edit');
+        Route::get('/profile/password', PasswordLivewire::class)->name('profile.password');
         Route::middleware([
             'purchased.course'
         ])->group(function () {
             Route::get('/lessons/{slug}/learn', LessonIndexLivewire::class)->name('lessons');
+            Route::get('/exam/{id}/make', MakeLivewire::class)->name('exams.make');
         });
-            Route::get('/exam/{id}/make', MakeLivewire::class)->name('exams.make');//nao esquece de colocar no middleware
 
         Route::middleware([
             'role:aluno'
         ])->group(function () {
             Route::get('/review/{slug}', ReviewLivewire::class)->name('reviews');
+            Route::get('/exam/{attempt_id}/results', ResultLivewire::class)->name('exams.result');
+            Route::get('/profile/orders', OrderLivewire::class)->name('profile.orders');
         });
 
         Route::middleware([
@@ -122,6 +133,7 @@ Route::middleware([
             Route::get('/admin/products', ProductsListLivewire::class)->name('products.list');
             Route::get('/admin/products/register', ProductsRegisterLivewire::class)->name('products.register');
             Route::get('/admin/products/{slug}/edit', ProductsEditLivewire::class)->name('products.edit');
+            Route::get('/orders/{id}/invoice', [OrderInvoice::class, 'index'])->name('orders.invoice');
         });
     });
 });

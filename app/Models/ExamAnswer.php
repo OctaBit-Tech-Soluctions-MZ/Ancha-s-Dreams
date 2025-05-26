@@ -12,4 +12,19 @@ class ExamAnswer extends Model
                 'answer_id',
                 'is_correct'
     ];
+
+    public function attempts()
+    {
+        return $this->belongsTo(ExamAttempt::class);
+    }
+
+    public function questions()
+    {
+        return $this->belongsTo(Question::class);
+    }
+
+    public function answers()
+    {
+        return $this->belongsTo(Answer::class);
+    }
 }

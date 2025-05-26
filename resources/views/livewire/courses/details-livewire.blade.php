@@ -102,7 +102,7 @@
                             </nav>
                         </div>
 
-
+                        @auth
                         <!-- Start Course Content  -->
                         <div class="course-content rbt-shadow-box coursecontent-wrapper mt-3" id="coursecontent">
                             <div class="rbt-course-feature-inner">
@@ -119,12 +119,17 @@
                                                         $content->title}}</span>
                                                 </div>
                                                 <div class="course-content-right d-flex justify-content-between w-100">
-                                                    <span class="min-lable">Duração: {{ $content->duration
+                                                    <span class="min-lable">Duração: {{ timeFormat($content->duration)
                                                         }}</span>
+                                                    @if(isset($unlockedLessons[$content->id]) &&
+                                                    !$unlockedLessons[$content->id])
+                                                    <span class="ms-2 text-danger"><i class="fa fa-lock"></i></span>
+                                                    @else
                                                     <a href="{{ route('lessons',['slug' => $content->slug]) }}"
                                                         wire:navigate
                                                         class="rbt-badge variation-03 bg-primary-opacity"><i
                                                             class="fas fa-eye"></i> Assistir Aula</a>
+                                                    @endif
                                                 </div>
                                             </span>
                                         </div>
@@ -143,7 +148,8 @@
                                                 <div class="course-content-right d-flex justify-content-between w-100">
                                                     <span class="min-lable">Duração: {{ $course->exams->time_limit
                                                         }}</span>
-                                                    <a href="{{route('exams.make', ['id' => $course->exams->id])}}" wire:navigate
+                                                    <a href="{{route('exams.make', ['id' => $course->exams->id])}}"
+                                                        wire:navigate
                                                         class="rbt-badge variation-03 bg-primary-opacity"><i
                                                             class="fas fa-edit"></i> Fazer Exame Final</a>
                                                 </div>
@@ -154,6 +160,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endauth
                         <!-- End Course Content  -->
                         <!-- Start Intructor Area  -->
                         <div class="rbt-instructor rbt-shadow-box intructor-wrapper mt--30" id="intructor">
@@ -174,7 +181,8 @@
                                                     $course->users->name. ' '. $course->users->surname }}</a>
                                             </h5>
                                             <ul class="rbt-meta mb--20 mt--10">
-                                                <li><i class="fas fa-user-graduate me-2"></i>{{$uniqueStudentCount}} Alunos</li>
+                                                <li><i class="fas fa-user-graduate me-2"></i>{{$uniqueStudentCount}}
+                                                    Alunos</li>
                                                 <li><a href="#"><i class="fas fa-video me-2"></i>{{
                                                         $course->users->courses_count }} Cursos</a></li>
                                             </ul>
@@ -328,6 +336,7 @@
                                     </div>
                                 </div>
                                 <div class="add-to-card-button mt--15">
+                                    @if(empty($course->myCourses))
                                     <a href="#" class="rbt-btn btn-gradient icon-hover w-100 d-block text-center"
                                         wire:click='addToCart("{{$course->slug}}")' wire:loading.attr='disabled'>
                                         <div wire:loading>
@@ -338,15 +347,34 @@
                                         </div>
                                         <span class="btn-text" wire:loading.remove>Adicionar no carrinho</span>
                                     </a>
-                                </div>
+                                    @else
+                                    @guest
+                                    <a href="#" class="rbt-btn btn-gradient icon-hover w-100 d-block text-center"
+                                        wire:click='addToCart("{{$course->slug}}")' wire:loading.attr='disabled'>
+                                        <div wire:loading>
+                                            <span class="btn-text">Colocando o curso na carinha...</span>
+                                            <span class="btn-icon me-1 spinner-border spinner-border-sm me-1"
+                                                role="status" aria-hidden="true"></span>
 
+                                        </div>
+                                        <span class="btn-text" wire:loading.remove>Adicionar no carrinho</span>
+                                    </a>
+                                    @endguest
+                                    @auth
+                                    <span class="rbt-btn btn-gradient icon-hover w-100 d-block text-center">
+                                        <span class="btn-text">Curso Adquirido</span>
+                                    </span>
+                                    @endauth
+                                    @endif
+                                </div>
                                 <div class="rbt-widget-details has-show-more mt--15">
                                     <ul class="has-show-more-inner-content rbt-course-details-list-wrapper">
                                         <li><span>Lançado</span><span class="rbt-feature-value rbt-badge-5">@php
                                                 echo humanTime($course->created_at);
                                                 @endphp</span>
                                         </li>
-                                        <li><span>Inscritos</span><span class="rbt-feature-value rbt-badge-5">{{$course->myCourses->count()}}</span>
+                                        <li><span>Inscritos</span><span
+                                                class="rbt-feature-value rbt-badge-5">{{$course->myCourses->count()}}</span>
                                         </li>
                                         <li><span>Certificado</span><span
                                                 class="rbt-feature-value rbt-badge-5">Sim</span></li>

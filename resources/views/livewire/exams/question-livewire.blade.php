@@ -15,13 +15,14 @@
                     <div class="row">
                         <div class="course-field mb--15">
                             <label for="question">Escreva a sua questão aqui</label>
-                            <input type="text" wire:model="question" id="question">
+                            <input type="text" wire:model="question" id="question"
+                                placeholder="Escreva a sua questão aqui...">
                         </div>
                     </div>
                     <div class="row">
                         @foreach($options as $index => $option)
-                        <div class="row mb-3">
-                            <div class="col-md-6">
+                        <div class="row mb-3 gap-1">
+                            <div class="col-md-5">
                                 <input type="text" class="form-control" wire:model="options.{{ $index }}.text"
                                     placeholder="Opção {{ $index + 1 }}">
                             </div>
@@ -37,10 +38,14 @@
                             </div>
                             <div class="col-md-3 d-flex justify-content-center align-items-center">
                                 <div class="form-check">
-                                    <input type="radio" id="customRadio{{ $index }}" name="correctIndex"
-                                        wire:model="correctIndex" value="{{ $index }}" class="form-check-input">
-                                    <label class="form-check-label d-inline-block" for="customRadio">Opção
-                                        correcta</label>
+                                    @php $uid = uniqid() @endphp
+                                    <input type="radio" id="customRadio{{ $uid }}" wire:model="correctIndex"
+                                        wire:click="hasCorrect({{ $index }})" value="{{ $index }}"
+                                        class="form-check-input" name="correctIndex">
+
+                                    <label class="form-check-label d-inline-block" for="customRadio{{ $uid }}">
+                                        Opção correcta
+                                    </label>
                                 </div>
                             </div>
                         </div>

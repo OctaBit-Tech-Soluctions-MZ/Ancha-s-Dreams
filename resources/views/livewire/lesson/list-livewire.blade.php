@@ -54,7 +54,7 @@
                                 <a href="{{ route('lessons.edit', ['slug' => $content->slug]) }}" class="rbt-btn-link" wire:navigate>
                                     <i class="uil-edit"> Editar</i>
                                 </a>
-                                <a href="#" role="button" wire:click="destroy({{$content->id}})" wire:confirm class="rbt-btn-link"><i class="uil-trash"></i> Remover</a>
+                                <a role="button" wire:click="showModal" class="rbt-btn-link"><i class="uil-trash"></i> Remover</a>
                             </div>
                         </div>
                     </div>
@@ -64,5 +64,5 @@
         </div>
         @endif
     </div>
-    <x-ancha-dreams-taste.modals.delete-modal />
+    <x-ancha-dreams-taste.modals.confirm-modal :action="1" :show="'{{$display}}'"/>
 </div>

@@ -50,6 +50,8 @@ class MakeLivewire extends Component
         $score = 0;
         $totalQuestions = $this->exam->questions->count();
 
+        $point = 20/$totalQuestions;
+
         // 2. Salvar cada resposta
         foreach ($this->options as $index => $answerId) {
             $answer = Answer::find($answerId); // Pega a resposta selecionada
@@ -60,7 +62,7 @@ class MakeLivewire extends Component
 
             // Contabiliza a pontuação
             if ($isCorrect) {
-                $score++;
+                $score = $score + $point;
             }
 
             ExamAnswer::create([
@@ -76,9 +78,6 @@ class MakeLivewire extends Component
             'score' => $score,
         ]);
 
-        // 4. Opcional: redirecionar com feedback
-        session()->flash('success', 'Exame submetido com sucesso! Você acertou ' . $score . ' de ' . $totalQuestions . '.');
-
-        // return redirect()->route('exams.result', ['id' => $this->exam->id]);
+        return redirect()->route('exams.result', ['attempt_id' => $attempt->id]);
     }
 }

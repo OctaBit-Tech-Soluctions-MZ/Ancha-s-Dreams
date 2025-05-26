@@ -56,7 +56,7 @@
                 }))),
             0 < o("#project-status-chart").length && (a = {
                 labels: ["Completo", "Pendente", "Cancelado"], 
-                datasets: [{ data: [concluido, pendente, cancelado], backgroundColor: (r = o("#project-status-chart").data("colors")) ? r.split(",") : ["#0acf97", "#727cf5", "#fa5c7c"], borderColor: "transparent", borderWidth: "3" }]
+                datasets: [{ data: [concluido, pendente, cancelado], backgroundColor: (r = o("#project-status-chart").data("colors")) ? r.split(",") : ["#0acf97", "#ffbe09", "#fa5c7c"], borderColor: "transparent", borderWidth: "3" }]
             }, e.push(this.respChart(o("#project-status-chart"), "Doughnut", a, { maintainAspectRatio: !1, cutoutPercentage: 80, legend: { display: !1 } }))), e
     }, t.prototype.init = function () { var r = this; Chart.defaults.global.defaultFontFamily = '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif', r.charts = this.initCharts(), o(window).on("resize", function (t) { o.each(r.charts, function (t, r) { try { r.destroy() } catch (t) { } }), r.charts = r.initCharts() }) }, o.ChartJs = new t, o.ChartJs.Constructor = t
 }(window.jQuery), function () { "use strict"; window.jQuery.ChartJs.init() }();

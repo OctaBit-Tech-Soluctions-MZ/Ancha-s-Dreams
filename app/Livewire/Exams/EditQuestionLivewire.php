@@ -13,18 +13,30 @@ class EditQuestionLivewire extends Component
     public $question;
     public $options = [];
     public $correctIndex;
+    public $question_model;
 
     public function mount($id)
     {
-        $question = Question::with('answers')->findOrFail($id);
-        $this->questionId = $question->id;
-        $this->question = $question->question_text;
-        $this->options = $question->answers->map(function ($answer) {
+        $this->question_model = Question::with(['answers', 'exams' => function ($query){
+            $query->with('courses');
+        }])->findOrFail($id);
+        $this->questionId = $this->question_model->id;
+        $this->question = $this->question_model->question_text;
+        $this->options = $this->question_model->answers->map(function ($answer) {
             return [
                 'text' => $answer->answer_text,
             ];
         })->toArray();
-        $this->correctIndex = $question->answers->search(fn ($a) => $a->is_correct);
+        $this->correctIndex = $this->question_model->answers->search(fn ($a) => $a->is_correct);
+    }
+
+    public function hasCorrect($value)
+    {
+        $this->correctIndex = $value;
+        foreach ($this->options as $index => $option) {
+            $this->options[$index]['correct'] = false;
+        }
+        $this->options[$value]['correct'] = true;
     }
 
     public function update()
